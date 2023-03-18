@@ -21,3 +21,25 @@
     padding: 20px 0;
     font-size: 30px;
 }
+
+#cont-read{
+
+}
+
+.book-row{
+    display: flex;
+    overflow-x: scroll;
+    gap: 20px;
+    width: 100%;
+}
+
+.book-block{
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+    overflow-x: auto;
+    margin-left: 20px;
+    min-width: 200px;
+    height: 350px;
+    border: 1px solid black;
+}
