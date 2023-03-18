@@ -2,11 +2,13 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import { BrowserRouter, Routes, Route } from 'react-router-dom' 
 import Homepage from "./components/Homepage";
+import HotCategories from "./components/HotCategories/HotCategories";
 
 
 function App() {
   //hi this is Joshua
   return (
+    //<HotCategories />
       <BrowserRouter>
         <a href="/">Home page</a><br/>
         <a href="/login">Login</a><br/>
@@ -17,6 +19,7 @@ function App() {
           <Route path="/register" element={<Register/>}/>
         </Routes>
       </BrowserRouter>
+
   );
 }
 
