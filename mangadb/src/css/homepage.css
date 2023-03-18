@@ -21,3 +21,31 @@
     padding: 20px 0;
     font-size: 30px;
 }
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+.menu {
+ text-align: left;
+ margin-bottom: 200px;
+}
+.Home{
+  cursor: pointer;
+}
+
+.RankingSystem{
+  cursor: pointer;
+}
+.account {
+  text-align: left;
+}
+.profile{
+  cursor: pointer;
+}
+.bookmarked{
+  cursor: pointer;
+}
+.ReadingHistory{
+  cursor: pointer;
+}
