@@ -12,28 +12,28 @@ const Homepage = () => {
                 </div>
               <div class ="RankingSystem"> Ranking System</div>
           </div>
-
               <div class = "account"> Account
                 <div class ="profile">Profile</div>
                 <div class ="bookmarked">Bookmarked</div>
                 <div class ="ReadingHistory">Reading History</div>
               </div>
         </div>
-        <div class="item3">
-        <h3 id="cont-read">Continue Reading</h3>
-            <div className="book-row">
-                <div className="book-block">Title</div>
-                <div className="book-block">Title</div>
-                <div className="book-block">Title</div>
-                <div className="book-block">Title</div>
-                <div className="book-block">Title</div>
-                <div className="book-block">Title</div>
-                <div className="book-block">Title</div>
-                <div className="book-block">Title</div>
-                <div className="book-block">Title</div>
-            </div>  
+        <div class="item3">Main
         </div>  
-        <div class="item5">Footer</div>
+        <div class="item5">
+          <h3 id="cont-read">Continue Reading</h3>
+            <div className="book-row">
+              <div className="book-block">Title</div>
+              <div className="book-block">Title</div>
+              <div className="book-block">Title</div>
+              <div className="book-block">Title</div>
+              <div className="book-block">Title</div>
+              <div className="book-block">Title</div>
+              <div className="book-block">Title</div>
+              <div className="book-block">Title</div>
+              <div className="book-block">Title</div>
+            </div>  
+        </div>
     </div>
   )
 }
