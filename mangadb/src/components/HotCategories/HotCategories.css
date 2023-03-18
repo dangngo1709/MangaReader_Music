@@ -1,0 +1,244 @@
+.all-category,
+.all-category-wrapper {
+  width: 131.61px;
+  display: flex;
+  align-items: center;
+}
+.all-category {
+  position: relative;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  justify-content: center;
+  height: 32px;
+  flex-shrink: 0;
+  -webkit-text-stroke: 1px #1f1f1f;
+}
+.all-category-wrapper {
+  position: absolute;
+  top: 17px;
+  left: 33px;
+  border-radius: 8px;
+  background-color: gray 100;
+  border: 1px solid gray 200;
+  box-sizing: border-box;
+  height: 33px;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.adventure {
+  position: relative;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  justify-content: center;
+  width: 131.61px;
+  height: 32px;
+  flex-shrink: 0;
+  -webkit-text-stroke: 1px #1f1f1f;
+}
+.adventure,
+.adventure-wrapper,
+.shonen {
+  display: flex;
+  align-items: center;
+}
+.adventure-wrapper {
+  position: absolute;
+  top: 64px;
+  left: 81px;
+  border-radius: 8px;
+  background-color: gray 100;
+  border: 1px solid gray 200;
+  box-sizing: border-box;
+  width: 131.61px;
+  height: 33px;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.shonen {
+  position: relative;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  justify-content: center;
+  width: 108.99px;
+  height: 32px;
+  flex-shrink: 0;
+  -webkit-text-stroke: 1px #1f1f1f;
+}
+.shojo-wrapper,
+.shonen-wrapper {
+  position: absolute;
+  top: 17px;
+  border-radius: 8px;
+  background-color: gray 100;
+  border: 1px solid gray 200;
+  box-sizing: border-box;
+  width: 108.99px;
+  height: 33px;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.shonen-wrapper {
+  left: 170.78px;
+  display: flex;
+  align-items: center;
+}
+.shojo-wrapper {
+  left: 285.94px;
+}
+.kodomomuke,
+.seinen-wrapper,
+.shojo-wrapper {
+  display: flex;
+  align-items: center;
+}
+.seinen-wrapper {
+  position: absolute;
+  top: 17px;
+  left: 401.09px;
+  border-radius: 8px;
+  background-color: gray 100;
+  border: 1px solid gray 200;
+  box-sizing: border-box;
+  width: 108.99px;
+  height: 33px;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.kodomomuke {
+  position: relative;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  justify-content: center;
+  width: 127.59px;
+  height: 32px;
+  flex-shrink: 0;
+  -webkit-text-stroke: 1px #1f1f1f;
+}
+.action-wrapper,
+.fantasy-wrapper,
+.josei-wrapper,
+.kodomomuke-wrapper,
+.one-shot-wrapper,
+.shonen-container {
+  position: absolute;
+  top: 17px;
+  left: 631.41px;
+  border-radius: 8px;
+  background-color: gray 100;
+  border: 1px solid gray 200;
+  box-sizing: border-box;
+  width: 127.59px;
+  height: 33px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.action-wrapper,
+.fantasy-wrapper,
+.josei-wrapper,
+.one-shot-wrapper,
+.shonen-container {
+  left: 765px;
+  width: 108.99px;
+}
+.action-wrapper,
+.fantasy-wrapper,
+.josei-wrapper,
+.shonen-container {
+  left: 516.25px;
+}
+.action-wrapper,
+.fantasy-wrapper,
+.shonen-container {
+  left: 995.16px;
+}
+.action-wrapper,
+.fantasy-wrapper {
+  left: 880px;
+}
+.fantasy-wrapper {
+  top: 65px;
+  left: 219.13px;
+}
+.dark-fantasy {
+  position: relative;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 145.72px;
+  height: 32px;
+  flex-shrink: 0;
+  -webkit-text-stroke: 1px #1f1f1f;
+}
+.dark-fantasy-wrapper,
+.ecchi-wrapper,
+.horror-wrapper,
+.mistery-wrapper,
+.parody-wrapper,
+.romance-wrapper {
+  position: absolute;
+  top: 65px;
+  left: 334.28px;
+  border-radius: 8px;
+  background-color: gray 100;
+  border: 1px solid gray 200;
+  box-sizing: border-box;
+  width: 145.72px;
+  height: 33px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.ecchi-wrapper,
+.horror-wrapper,
+.mistery-wrapper,
+.parody-wrapper,
+.romance-wrapper {
+  left: 601.16px;
+  width: 108.99px;
+}
+.ecchi-wrapper,
+.horror-wrapper,
+.mistery-wrapper,
+.parody-wrapper {
+  left: 716.32px;
+}
+.ecchi-wrapper,
+.mistery-wrapper,
+.parody-wrapper {
+  left: 486px;
+}
+.mistery-wrapper,
+.parody-wrapper {
+  left: 946.63px;
+}
+.parody-wrapper {
+  left: 831.47px;
+}
+.frame {
+  align-self: stretch;
+  position: relative;
+  height: 112px;
+  flex-shrink: 0;
+}
+.hotcategories {
+  position: relative;
+  border-radius: 1 1 0 0;
+  background-color: #f4b333;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+  border: 0.5px solid gray 200;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: small;
+  color: gray 200;
+  font-family: "lato";
+}
