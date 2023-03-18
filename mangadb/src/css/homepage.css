@@ -20,6 +20,7 @@
     text-align: center;
     padding: 20px 0;
     font-size: 30px;
+    overflow-x: auto;
 }
 #cont-read{
 
@@ -27,18 +28,15 @@
 
 .book-row{
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
     gap: 20px;
-    width: 100%;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .book-block{
-    flex-grow: 1;
     flex-shrink: 0;
-    flex-basis: auto;
-    overflow-x: auto;
-    margin-left: 20px;
-    min-width: 200px;
+    width: 250px;
     height: 350px;
     border: 1px solid black;
 }
