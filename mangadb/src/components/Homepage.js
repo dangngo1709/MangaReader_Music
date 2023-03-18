@@ -4,7 +4,21 @@ const Homepage = () => {
   return (
     <div class="grid-container">
         <div class="item1">Header</div>
-        <div class="item2">Menu</div>
+        <div class="item2">
+          <div class= "menu">
+              <div>Menu</div>  
+              <div class = "Home">
+                Home
+                </div>
+              <div class ="RankingSystem"> Ranking System</div>
+          </div>
+
+              <div class = "account"> Account
+                <div class ="profile">Profile</div>
+                <div class ="bookmarked">Bookmarked</div>
+                <div class ="ReadingHistory">Reading History</div>
+              </div>
+        </div>
         <div class="item3">Main</div>  
         <div class="item5">Footer</div>
     </div>
