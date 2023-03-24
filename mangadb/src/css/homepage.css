@@ -21,31 +21,51 @@
     padding: 20px 0;
     font-size: 30px;
 }
-.menu-container {
+.menu {
   display: flex;
   flex-direction: column;
   font-size: 12px;
 }
-.menu {
- text-align: left;
- margin-bottom: 200px;
+.MenuButton{
+  background-color: transparent;
+  border-radius: 1px;
+  text-align: left;
+  text-indent: 10px;
+  margin-right: 50px;
+  font-size: 30px;
+  
 }
-.Home{
-  cursor: pointer;
+.MenuButton:hover{
+  background: gray;
 }
 
-.RankingSystem{
-  cursor: pointer;
+.HomeButton:hover{
+  background-color: peru;
 }
-.account {
+.RankingButton:hover{
+  background-color: peru;
+}
+
+.AccountButton{
+  margin-top: 200px;
+  background-color: transparent;
+  border-radius: 1px;
   text-align: left;
+  text-indent: 10px;
+  margin-right: 50px;
+  font-size: 30px;
 }
-.profile{
-  cursor: pointer;
+.AccountButton:hover{
+  background: gray;
 }
-.bookmarked{
-  cursor: pointer;
+.ProfileButton:hover{
+  background-color: peru;
 }
-.ReadingHistory{
-  cursor: pointer;
+.MyListButton:hover{
+  background-color: peru;
 }
+.SettingButton:hover{
+  background-color: peru;
+}
+
+
