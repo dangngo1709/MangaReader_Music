@@ -1,5 +1,6 @@
 import "../css/homepage.css";
 import Cont_Read from "./Cont_Read";
+import React, {useState} from 'react';
 const Homepage = () => {
   const sessionID = localStorage.getItem('session_id');
   if (!sessionID) {
