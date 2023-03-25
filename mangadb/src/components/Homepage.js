@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
 import "../css/homepage.css";
-
+import Cont_Read from "./Cont_Read";
 const Homepage = () => {
+  const sessionID = localStorage.getItem('session_id');
+  if (!sessionID) {
+    localStorage.setItem('login_missing', 'true');
+    window.location.href = '/login'
+  }
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = '/login';
+  }
+  
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
   const [isAccountExpanded, setIsAccountExpanded] = useState(false);
 
@@ -12,12 +21,13 @@ const Homepage = () => {
   const handleAccountClick = () => {
     setIsAccountExpanded(!isAccountExpanded);
   };
-
   return (
-    <div class="grid-container">
-      <div class="item1">Header</div>
-      <div class="item2">
-        <div class="menu">
+    <div className="grid-container">
+      <div className="item1">
+      <button onClick={handleLogout}>Logout</button>
+      Header</div>
+      <div className="item2">
+        <div className="menu">
           <button onClick={handleMenuClick} className="MenuButton">
             Menu
           </button>
@@ -38,9 +48,16 @@ const Homepage = () => {
             </div>
           )}
         </div>
+        <div className="account">
+          {" "}
+          Account
+          <div className="profile">Profile</div>
+          <div className="bookmarked">Bookmarked</div>
+          <div className="ReadingHistory">Reading History</div>
+        </div>
       </div>
-      <div class="item3">Main</div>
-      <div class="item5">Footer</div>
+      <div className="item3">Main</div>
+      <Cont_Read />
     </div>
   );
 };
