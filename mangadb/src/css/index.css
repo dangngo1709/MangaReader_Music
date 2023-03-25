@@ -18,7 +18,7 @@ section{
 .form-box{
     position: relative;
     width: 400px;
-    height: 500px;
+    height: 600px;
     background: transparent;
     border: 2px solid rgba(255,255,255,0.5);
     border-radius: 20px;
@@ -26,8 +26,20 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
+.form-box-login{
+    position: relative;
+    width: 400px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 h2{
     font-size: 2em;
     color: #fff;
@@ -115,3 +127,12 @@ button{
     text-decoration: underline;
 }
 
+.error-msg {
+    color: rgb(199, 49, 49);
+    font-weight: 600;
+    text-align: center;
+}
+
+#Login_Missing, #Login_Bad, #Username_Bad, #Email_Bad, #Register_Bad {
+    display: none;
+}

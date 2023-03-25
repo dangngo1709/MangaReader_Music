@@ -6,17 +6,16 @@ import HotCategories from "./components/HotCategories/HotCategories";
 
 
 function App() {
-  //hi this is Joshua
   return (
     //<HotCategories />
       <BrowserRouter>
-        <a href="/">Home page</a><br/>
+        <a href="/">Register</a><br/>
         <a href="/login">Login</a><br/>
-        <a href="/register">Register</a>
+        <a href="/homepage">Homepage</a><br/>
         <Routes>
-          <Route path="/" element={<Homepage/>}/>
+          <Route path="/" element={<Register/>}/>
+          <Route path="/homepage" element={<Homepage/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
         </Routes>
       </BrowserRouter>
 

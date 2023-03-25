@@ -1,41 +1,38 @@
-import React from 'react'
-import "../css/homepage.css"
+import "../css/homepage.css";
+import Cont_Read from "./Cont_Read";
 const Homepage = () => {
+  const sessionID = localStorage.getItem('session_id');
+  if (!sessionID) {
+    localStorage.setItem('login_missing', 'true');
+    window.location.href = '/login'
+  }
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = '/login';
+  }
   return (
-    <div class="grid-container">
-        <div class="item1">Header</div>
-        <div class="item2">
-          <div class= "menu">
-              <div>Menu</div>  
-              <div class = "Home">
-                Home
-                </div>
-              <div class ="RankingSystem"> Ranking System</div>
-          </div>
-              <div class = "account"> Account
-                <div class ="profile">Profile</div>
-                <div class ="bookmarked">Bookmarked</div>
-                <div class ="ReadingHistory">Reading History</div>
-              </div>
+    <div className="grid-container">
+      <div className="item1">
+      <button onClick={handleLogout}>Logout</button>
+      Header</div>
+      <div className="item2">
+        <div className="menu">
+          <div>Menu</div>
+          <div className="Home">Home</div>
+          <div className="RankingSystem"> Ranking System</div>
         </div>
-        <div class="item3">Main
-        </div>  
-        <div class="item5">
-          <h3 id="cont-read">Continue Reading</h3>
-            <div className="book-row">
-              <div className="book-block">Title</div>
-              <div className="book-block">Title</div>
-              <div className="book-block">Title</div>
-              <div className="book-block">Title</div>
-              <div className="book-block">Title</div>
-              <div className="book-block">Title</div>
-              <div className="book-block">Title</div>
-              <div className="book-block">Title</div>
-              <div className="book-block">Title</div>
-            </div>  
+        <div className="account">
+          {" "}
+          Account
+          <div className="profile">Profile</div>
+          <div className="bookmarked">Bookmarked</div>
+          <div className="ReadingHistory">Reading History</div>
         </div>
+      </div>
+      <div className="item3">Main</div>
+      <Cont_Read />
     </div>
-  )
-}
+  );
+};
 
-export default Homepage
+export default Homepage;
