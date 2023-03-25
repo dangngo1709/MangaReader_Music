@@ -10,6 +10,17 @@ const Homepage = () => {
     localStorage.clear();
     window.location.href = '/login';
   }
+  
+  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
+  const [isAccountExpanded, setIsAccountExpanded] = useState(false);
+
+  const handleMenuClick = () => {
+    setIsMenuExpanded(!isMenuExpanded);
+  };
+
+  const handleAccountClick = () => {
+    setIsAccountExpanded(!isAccountExpanded);
+  };
   return (
     <div className="grid-container">
       <div className="item1">
@@ -17,9 +28,25 @@ const Homepage = () => {
       Header</div>
       <div className="item2">
         <div className="menu">
-          <div>Menu</div>
-          <div className="Home">Home</div>
-          <div className="RankingSystem"> Ranking System</div>
+          <button onClick={handleMenuClick} className="MenuButton">
+            Menu
+          </button>
+          {isMenuExpanded && (
+            <div className="submenu">
+              <button className="HomeButton">Home</button>
+              <button className="RankingButton">Ranking</button>
+            </div>
+          )}
+          <button onClick={handleAccountClick} className="AccountButton">
+            Account
+          </button>
+          {isAccountExpanded && (
+            <div className="submenu">
+              <button className="ProfileButton">Profile</button>
+              <button className="MyListButton">My List</button>
+              <button className="SettingButton">Settings</button>
+            </div>
+          )}
         </div>
         <div className="account">
           {" "}
