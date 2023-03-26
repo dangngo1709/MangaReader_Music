@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import "../css/homepage.css";
+import { FaHome } from 'react-icons/fa';
+import {AiOutlineMenu, AiTwotoneSetting, AiFillProfile} from 'react-icons/ai';
+import {ImFire} from  'react-icons/im';
+import {MdAccountCircle, MdFavorite} from 'react-icons/md'
 
 const Homepage = () => {
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
@@ -19,22 +23,29 @@ const Homepage = () => {
       <div class="item2">
         <div class="menu">
           <button onClick={handleMenuClick} className="MenuButton">
-            Menu
+           <AiOutlineMenu style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/> Menu
           </button>
           {isMenuExpanded && (
-            <div className="submenu">
-              <button className="HomeButton">Home</button>
-              <button className="RankingButton">Ranking</button>
+            <div className="submenu1">
+              <button className="HomeButton"><FaHome style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/> Home</button>
+              <button className="MostPopularButton"> <ImFire style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/>Most Popular</button>
             </div>
           )}
           <button onClick={handleAccountClick} className="AccountButton">
-            Account
+          <MdAccountCircle style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/>
+           Account
           </button>
           {isAccountExpanded && (
-            <div className="submenu">
-              <button className="ProfileButton">Profile</button>
-              <button className="MyListButton">My List</button>
-              <button className="SettingButton">Settings</button>
+            <div className="submenu2">
+              <button className="ProfileButton">
+              <AiFillProfile style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
+                Profile</button>
+              <button className="MyFavoriteListButton">
+              <MdFavorite style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
+                My Favorite List</button>
+              <button className="SettingButton">
+              <AiTwotoneSetting style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
+                Settings</button>
             </div>
           )}
         </div>

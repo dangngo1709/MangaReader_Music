@@ -10,17 +10,19 @@
       'menu main main main main main'
       'menu footer footer footer footer footer';
     gap: 10px;
-    background-color: #2196F3;
+    background-color: #1B6FA8;
     padding: 10px;
     min-height: 110vh;
+    outline: none;
 }
 
 .grid-container > div {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    padding: 20px 0;
+    padding: 20px 10px;
     font-size: 30px;
     overflow-x: auto;
+    outline: none;
 }
 #cont-read{
 
@@ -40,48 +42,84 @@
     height: 350px;
     border: 1px solid black;
 }
+
 .menu {
-  display: flex;
+  outline: none;
+  background-color: transparent;
   flex-direction: column;
-  font-size: 12px;
+  font-size: 25px;
+  width: 300px;
+  height: 300px;
+
 }
+
 .MenuButton{
   background-color: transparent;
   border-radius: 1px;
   text-align: left;
   text-indent: 10px;
-  margin-right: 50px;
-  font-size: 30px;
-  
 }
 .MenuButton:hover{
   background: gray;
 }
+.HomeButton{
+  background-color: transparent;
+  border-radius: 5px;
+  text-align: left;
+  text-indent: 30px;
 
+}
 .HomeButton:hover{
   background-color: peru;
 }
-.RankingButton:hover{
+.MostPopularButton{
+  background-color: transparent;
+  border-radius: 5px;
+  text-align: left;
+  text-indent: 30px;
+
+}
+.MostPopularButton:hover{
   background-color: peru;
 }
 
 .AccountButton{
-  margin-top: 200px;
+  
+
   background-color: transparent;
   border-radius: 1px;
   text-align: left;
   text-indent: 10px;
-  margin-right: 50px;
-  font-size: 30px;
 }
 .AccountButton:hover{
   background: gray;
 }
+.ProfileButton{
+  background-color: transparent;
+  border-radius: 5px;
+  text-align: left;
+  text-indent: 30px;
+  
+}
 .ProfileButton:hover{
   background-color: peru;
 }
-.MyListButton:hover{
+.MyFavoriteListButton{
+  background-color: transparent;
+  border-radius: 5px;
+  text-align: left;
+  text-indent: 30px;
+ 
+}
+.MyFavoriteListButton:hover{
   background-color: peru;
+}
+.SettingButton{
+  background-color: transparent;
+  border-radius: 5px;
+  text-align: left;
+  text-indent: 30px;
+  
 }
 .SettingButton:hover{
   background-color: peru;
