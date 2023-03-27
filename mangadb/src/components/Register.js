@@ -11,7 +11,7 @@ const Register = () => {
     const resp = await fetch("http://localhost:5000/mangadb/register", {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             user_name,

@@ -1,7 +1,17 @@
 import "../css/homepage.css";
 import Cont_Read from "./Cont_Read";
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import MangaList from "../utility/MangaList";
 const Homepage = () => {
+  /** How to fetch Manga */
+  const list = new MangaList();
+  useEffect(() => {
+    list.fetchMangaID().then( () => {
+      list.fetchMangaFromID().then( (res) => {
+        console.log(list.generateMangaList(res));
+    })})
+  }, [])
+
   const sessionID = localStorage.getItem('session_id');
   if (!sessionID) {
     localStorage.setItem('login_missing', 'true');

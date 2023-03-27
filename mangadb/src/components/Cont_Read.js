@@ -41,7 +41,6 @@ const Cont_Read = () => {
     /** Fetch manga ids from Mangadex API based on a filter*/
     fetchMangaID(shounen_filter);
     if (doneFetchManga){
-      console.log('done fetching')
       /** Fetch the actual manga for each manga id */
       fetchMangaFromID()
       .then( (res) => {
