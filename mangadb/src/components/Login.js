@@ -9,8 +9,11 @@ const Login = () => {
     const user_pass = event.target[1].value;
     const resp = await fetch(`http://localhost:5000/mangadb/login`, {
       method: 'POST',
+      mode: "cors",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
       },
       body: JSON.stringify({
         user_email,

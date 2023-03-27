@@ -10,11 +10,11 @@ import Cont_Read from "./Cont_Read";
 import React, {useState} from 'react';
 
 const Homepage = () => {
-  const sessionID = localStorage.getItem('session_id');
-  if (!sessionID) {
-    localStorage.setItem('login_missing', 'true');
-    window.location.href = '/login'
-  }
+  // const sessionID = localStorage.getItem('session_id');
+  // if (!sessionID) {
+  //   localStorage.setItem('login_missing', 'true');
+  //   window.location.href = '/login'
+  // }
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = '/login';
@@ -63,13 +63,6 @@ const Homepage = () => {
                 Settings</button>
             </div>
           )}
-        </div>
-        <div className="account">
-          {" "}
-          Account
-          <div className="profile">Profile</div>
-          <div className="bookmarked">Bookmarked</div>
-          <div className="ReadingHistory">Reading History</div>
         </div>
       </div>
       <div className="item3">Main</div>

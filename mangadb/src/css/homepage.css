@@ -89,10 +89,7 @@
 .menu {
   outline: none;
   background-color: transparent;
-
-.menu-container {
   display: flex;
-
   flex-direction: column;
   font-size: 25px;
   width: 300px;
@@ -132,7 +129,7 @@
 
 .AccountButton{
   
-
+  margin-top: 50px;
   background-color: transparent;
   border-radius: 1px;
   text-align: left;

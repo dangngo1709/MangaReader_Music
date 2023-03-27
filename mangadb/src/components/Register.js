@@ -10,9 +10,12 @@ const Register = () => {
     const confirm_user_pass = event.target[3].value;
     const resp = await fetch("http://localhost:5000/mangadb/register", {
         method: "POST",
+        mode: "cors",
         headers: {
-            'Content-Type': 'application/json'
-        },
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
+          },
         body: JSON.stringify({
             user_name,
             user_email,
