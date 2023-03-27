@@ -18,7 +18,6 @@ router.post("/mangadb/register", async (req,res) => {
                 email: req.body.user_email,
                 password: hashPass
             })
-            console.log(user);
             if (user) {
                 return res.json({ status: 'ok', user: true});
             } else {

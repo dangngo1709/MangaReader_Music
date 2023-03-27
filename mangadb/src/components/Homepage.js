@@ -7,14 +7,26 @@ import {MdAccountCircle, MdFavorite} from 'react-icons/md'
 
 
 import Cont_Read from "./Cont_Read";
+import React, {useState, useEffect} from 'react';
+import MangaList from "../utility/MangaList";
 import React, {useState} from 'react';
 
 const Homepage = () => {
-  // const sessionID = localStorage.getItem('session_id');
-  // if (!sessionID) {
-  //   localStorage.setItem('login_missing', 'true');
-  //   window.location.href = '/login'
-  // }
+
+  /** How to fetch Manga */
+  const list = new MangaList();
+  useEffect(() => {
+    list.fetchMangaID().then( () => {
+      list.fetchMangaFromID().then( (res) => {
+        console.log(list.generateMangaList(res));
+    })})
+  }, [])
+
+  const sessionID = localStorage.getItem('session_id');
+  if (!sessionID) {
+    localStorage.setItem('login_missing', 'true');
+    window.location.href = '/login'
+  }
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = '/login';

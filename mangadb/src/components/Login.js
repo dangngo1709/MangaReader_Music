@@ -12,8 +12,6 @@ const Login = () => {
       mode: "cors",
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
       },
       body: JSON.stringify({
         user_email,
