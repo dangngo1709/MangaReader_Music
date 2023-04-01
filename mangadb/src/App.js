@@ -5,6 +5,7 @@ import Homepage from "./components/Homepage";
 import HotCategories from "./components/HotCategories/HotCategories";
 import MangaPage from "./components/MangaPage";
 
+
 function App() {
   return (
     //<HotCategories />

@@ -1,13 +1,15 @@
 import React, {useRef, useEffect} from 'react'
 
 const Login = () => {
+  const base_url = process.env.REACT_APP_SERVER_URL;
   const login_missing_ref = useRef(null);
   const login_bad_ref = useRef(null);
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     const user_email = event.target[0].value;
     const user_pass = event.target[1].value;
-    const resp = await fetch(`https://4429-76-102-12-38.ngrok.io/mangadb/login`, {
+
+    const resp = await fetch(`${base_url}/mangadb/login`, {
       method: 'POST',
       mode: "cors",
       headers: {

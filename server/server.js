@@ -12,13 +12,8 @@ mongoose.connect(
 
 const app = express();
 app.use(express.json());
-app.use(cors ({
-    origin: "http://localhost:3000",
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-    credentials: true
-}))
-app.use(UserData);
+app.use(cors());
+app.use(UserData)
 const port = 5000;
 
 app.listen(port, () => {
