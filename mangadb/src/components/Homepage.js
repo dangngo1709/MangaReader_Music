@@ -1,10 +1,25 @@
 import "../css/homepage.css";
-import Cont_Read from "./Cont_Read";
-import React, {useState, useEffect} from 'react';
+
 import { FaHome } from 'react-icons/fa';
 import {AiOutlineMenu, AiTwotoneSetting, AiFillProfile} from 'react-icons/ai';
 import {ImFire} from  'react-icons/im';
 import {MdAccountCircle, MdFavorite} from 'react-icons/md'
+
+
+import Cont_Read from "./Cont_Read";
+import React, {useState, useEffect} from 'react';
+import MangaList from "../utility/MangaList";
+import React, {useState} from 'react';
+
+const Homepage = () => {
+  /** How to fetch Manga */
+  const list = new MangaList();
+  useEffect(() => {
+    list.fetchMangaID().then( () => {
+      list.fetchMangaFromID().then( (res) => {
+        console.log(list.generateMangaList(res));
+    })})
+  }, [])
 
 const Homepage = () => {
   const [manga, setManga] = useState(null);
@@ -69,6 +84,7 @@ const Homepage = () => {
       <Cont_Read setManga={setManga}/>
     </div>
   );
-};
+}
+}
 
 export default Homepage;

@@ -10,17 +10,19 @@
       'menu main main main main main'
       'menu footer footer footer footer footer';
     gap: 10px;
-    background-color: #2196F3;
+    background-color: #1B6FA8;
     padding: 10px;
     min-height: 110vh;
+    outline: none;
 }
 
 .grid-container > div {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    padding: 20px 0;
+    padding: 20px 10px;
     font-size: 30px;
     overflow-x: auto;
+    outline: none;
 }
 
 #item_5{
@@ -95,7 +97,6 @@
   font-size: 25px;
   width: 300px;
   height: 300px;
-
 }
 
 .MenuButton{
@@ -129,7 +130,6 @@
 }
 
 .AccountButton{
-  
   margin-top: 50px;
   background-color: transparent;
   border-radius: 1px;
