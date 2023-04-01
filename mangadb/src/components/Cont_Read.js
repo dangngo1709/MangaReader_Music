@@ -44,7 +44,7 @@ const Cont_Read = ({setManga}) => {
     }, 1200)
   }, []);
   return (
-    <div className="item5" id="item_5">
+    <div className="item3" id="item_3">
       <h3 id="cont-read">
         Genre: <span id="reading">{genre} </span>
       </h3>
