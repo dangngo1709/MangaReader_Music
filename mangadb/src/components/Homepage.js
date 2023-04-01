@@ -9,18 +9,11 @@ import {MdAccountCircle, MdFavorite} from 'react-icons/md'
 import Cont_Read from "./Cont_Read";
 import React, {useState, useEffect} from 'react';
 import MangaList from "../utility/MangaList";
-import React, {useState} from 'react';
 
 const Homepage = () => {
-  /** How to fetch Manga */
-  const list = new MangaList();
-  useEffect(() => {
-    list.fetchMangaID().then( () => {
-      list.fetchMangaFromID().then( (res) => {
-        console.log(list.generateMangaList(res));
-    })})
+  const [manga, setManga] = useState(null);
+  useEffect( () => {
   }, [])
-
   const sessionID = localStorage.getItem('session_id');
   if (!sessionID) {
     localStorage.setItem('login_missing', 'true');
@@ -48,45 +41,38 @@ const Homepage = () => {
       Header</div>
       <div className="item2">
         <div className="menu">
-          <button onClick={handleMenuClick} className="MenuButton">
-           <AiOutlineMenu style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/> Menu
-          </button>
-          {isMenuExpanded && (
-            <div className="submenu1">
-              <button className="HomeButton"><FaHome style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/> Home</button>
-              <button className="MostPopularButton"> <ImFire style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/>Most Popular</button>
-            </div>
-          )}
-          <button onClick={handleAccountClick} className="AccountButton">
-          <MdAccountCircle style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/>
-           Account
-          </button>
-          {isAccountExpanded && (
-            <div className="submenu2">
-              <button className="ProfileButton">
-              <AiFillProfile style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
-                Profile</button>
-              <button className="MyFavoriteListButton">
-              <MdFavorite style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
-                My Favorite List</button>
-              <button className="SettingButton">
-              <AiTwotoneSetting style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
-                Settings</button>
-            </div>
-          )}
-        </div>
-        <div className="account">
-          {" "}
-          Account
-          <div className="profile">Profile</div>
-          <div className="bookmarked">Bookmarked</div>
-          <div className="ReadingHistory">Reading History</div>
-        </div>
+            <button onClick={handleMenuClick} className="MenuButton">
+            <AiOutlineMenu style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/> Menu
+            </button>
+            {isMenuExpanded && (
+              <div className="submenu1">
+                <button className="HomeButton"><FaHome style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/> Home</button>
+                <button className="MostPopularButton"> <ImFire style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/>Most Popular</button>
+              </div>
+            )}
+            <button onClick={handleAccountClick} className="AccountButton">
+            <MdAccountCircle style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/>
+            Account
+            </button>
+            {isAccountExpanded && (
+              <div className="submenu2">
+                <button className="ProfileButton">
+                <AiFillProfile style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
+                  Profile</button>
+                <button className="MyFavoriteListButton">
+                <MdFavorite style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
+                  My Favorite List</button>
+                <button className="SettingButton">
+                <AiTwotoneSetting style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
+                  Settings</button>
+              </div>
+            )}
+          </div>
       </div>
       <div className="item3">Main</div>
-      <Cont_Read />
+      <Cont_Read setManga={setManga}/>
     </div>
   );
-};
+}
 
 export default Homepage;
