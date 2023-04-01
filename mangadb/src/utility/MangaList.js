@@ -1,4 +1,4 @@
-import Manga from "../utility/Manga.js";
+
 import axios from "axios";
 export default class MangaList {
   constructor() {
