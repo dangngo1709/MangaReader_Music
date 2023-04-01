@@ -1,78 +1,74 @@
-import React, {useEffect,useState,useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../css/homepage.css";
-import axios from "axios";
+import MangaList from "../utility/MangaList";
 
-const Cont_Read = () => {
-  const width = 256;
-  const [manga_list,setList] = useState([]);
-  const [manga_ids,setIDs] = useState([]);
-  const [doneFetchManga,setFM] = useState(false);
-  const BASE_URL = 'https://api.mangadex.org';
-  const author_artist_cover = '?includes[]=author&includes[]=artist&includes[]=cover_art'
-
-  /** Filters */
-  const shounen_filter = {
-    publicationDemographic: ['shounen']
+const Cont_Read = ({setManga}) => {
+  const [loading,setLoading] = useState(false);
+  /** How to fetch Manga */
+  const [mangaList, setList] = useState([]);
+  const [genre,setGenre] = useState('Genre');
+  const handleMangaClick = async (manga, event) => {
+    event.preventDefault();
+    const id = manga.id
+    const resp = await manga.generateChapters(id)
+    setManga(manga);
+    setTimeout( () => {
+      setManga(manga);
+    }, 700)
   };
-
-  const fetchMangaID = async (filters) => {
-    const response = await axios({
-      method: 'GET',
-      url: `${BASE_URL}/manga`,
-      params: filters
-    })
-    setIDs([...manga_ids, response.data.data.map(manga => manga.id)])
-    setFM(true);
-  }
-
-  const fetchMangaFromID = async () => {
-    const promise = manga_ids[0].map( async(id) => {
-      const response = await axios({
-        method: 'GET',
-        url: `${BASE_URL}/manga/${id}/${author_artist_cover}`,
-      })
-      return response;
-    })
-    return Promise.all(promise);
-  }
-
-  /* */
   useEffect(() => {
-    /** Fetch manga ids from Mangadex API based on a filter*/
-    fetchMangaID(shounen_filter);
-    if (doneFetchManga){
-      /** Fetch the actual manga for each manga id */
-      fetchMangaFromID()
-      .then( (res) => {
-        setList([...manga_list, res.map( data => data.data.data)]);
+    if(mangaList.length == 0){
+      const list = new MangaList();
+      const includedTags = ["Isekai"];
+      setGenre(includedTags[0]);
+      const excludedTags = ["Harem"];
+      const order = {
+        updatedAt: "desc",
+      };
+      const titleSearch = 'Fairy Tail'
+      const filterObj = {
+        includedTags: includedTags,
+        excludedTags: excludedTags,
+      };
+      // Create filters above ^^ 
+      // If you like to search just for a title, add in the titleSearch 
+      // variable inside generateMangaList. If u want multiple filters add
+      // in a blank string '' as a parameter instead.
+      list.setFilter(filterObj).then( () => {
+        list.generateMangaList('').then( (res) => {
+          setList([...mangaList, res]);
+        })
       })
-    }
-  }, [doneFetchManga])
-
-
+    }//important, need to wait 1 second or else it wont render
+    setTimeout( () => {
+      setLoading(true);
+    }, 1200)
+  }, []);
   return (
     <div className="item5" id="item_5">
       <h3 id="cont-read">
-        Continue <span id="reading">Reading</span>
+        Genre: <span id="reading">{genre} </span>
       </h3>
       <div className="book-row">
-        {manga_list[0] ? (
-          manga_list[0].map((manga, index) => (
-            <div className="book-block" key={index}>
-              {manga.relationships[2].attributes.fileName ? <img src={
-                `https://uploads.mangadex.org/covers/${manga.id}/` +
-                `${manga.relationships[2].attributes.fileName}.${width}.jpg`} alt="img"/>
-              : <img src={
-                `https://uploads.mangadex.org/covers/${manga.id}/` +
-                `${manga.relationships[3].attributes.fileName}.${width}.jpg`} alt="img"/>}
-              <div id="rec_title">{Object.values(manga.attributes.title)[0]}<br/>
-              <span>Author: {manga.relationships[0].attributes.name}</span><br/>
-              <span>Artist: {manga.relationships[1].attributes.name}</span>
+        {loading ? 
+        mangaList[0].map( (manga,index) => 
+            (
+              <div
+                className="book-block"
+                onClick={(e) => handleMangaClick(manga, e)}
+                key={index}
+              >
+                <img src={manga.coverArt} alt="img" />
+                <div id="rec_title">
+                  {manga.title}
+                  <br />
+                  <span id="rec_author">Author: {manga.author}</span>
+                  <br />
+                  <span id="rec_author">Artist: {manga.artist}</span>
+                </div>
               </div>
-              <div className="author"></div>
-            </div>
-          ))
-        ) : (
+            )
+          ) : (
           <h1>Loading</h1>
         )}
       </div>
