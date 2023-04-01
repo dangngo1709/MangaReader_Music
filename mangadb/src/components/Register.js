@@ -8,7 +8,7 @@ const Register = () => {
     const user_email = event.target[1].value;
     const user_pass = event.target[2].value;
     const confirm_user_pass = event.target[3].value;
-    const resp = await fetch("http://localhost:5000/mangadb/register", {
+    const resp = await fetch("https://4429-76-102-12-38.ngrok.io/mangadb/register", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',

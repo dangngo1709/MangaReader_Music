@@ -1,0 +1,32 @@
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.grid-container {
+   display: grid;
+   grid-template-areas:
+     'header header header header header header'
+     'menu main main main main main'
+     'menu main main main main main';
+   gap: 10px;
+   background-color: #1B6FA8;
+   padding: 10px;
+   min-height: 110vh;
+   outline: none;
+}
+.column{
+ display: flex;
+ flex-direction: column;
+ align-items: left;
+ padding: 20px;
+}
+.left-image{
+ float: left;
+ margin-top: 50px;
+ margin-left:20px;
+ flex-direction: column;
+}
+.ReadMangaButton{
+ margin-top: 20px;
+ max-width: 200px;
+ max-height: 50px;
+ }

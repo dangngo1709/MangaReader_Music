@@ -7,7 +7,7 @@ const Login = () => {
     event.preventDefault();
     const user_email = event.target[0].value;
     const user_pass = event.target[1].value;
-    const resp = await fetch(`http://localhost:5000/mangadb/login`, {
+    const resp = await fetch(`https://4429-76-102-12-38.ngrok.io/mangadb/login`, {
       method: 'POST',
       mode: "cors",
       headers: {

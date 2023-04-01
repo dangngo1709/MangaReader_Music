@@ -1,37 +1,14 @@
+
 import "../css/homepage.css";
 
 import { FaHome } from 'react-icons/fa';
 import {AiOutlineMenu, AiTwotoneSetting, AiFillProfile} from 'react-icons/ai';
 import {ImFire} from  'react-icons/im';
 import {MdAccountCircle, MdFavorite} from 'react-icons/md'
-
-
-import Cont_Read from "./Cont_Read";
 import React, {useState, useEffect} from 'react';
 import MangaList from "../utility/MangaList";
 
-
-const Homepage = () => {
-
-  /** How to fetch Manga */
-  const list = new MangaList();
-  useEffect(() => {
-    list.fetchMangaID().then( () => {
-      list.fetchMangaFromID().then( (res) => {
-        console.log(list.generateMangaList(res));
-    })})
-  }, [])
-
-  // const sessionID = localStorage.getItem('session_id');
-  // if (!sessionID) {
-  //   localStorage.setItem('login_missing', 'true');
-  //   window.location.href = '/login'
-  // }
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.href = '/login';
-  }
-  
+const Menu = () => {
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
   const [isAccountExpanded, setIsAccountExpanded] = useState(false);
 
@@ -43,11 +20,8 @@ const Homepage = () => {
     setIsAccountExpanded(!isAccountExpanded);
   };
   return (
-    <div className="grid-container">
-      <div className="item1">
-      <button onClick={handleLogout}>Logout</button>
-      Header</div>
-      <div className="item2">
+    
+     
         <div className="menu">
           <button onClick={handleMenuClick} className="MenuButton">
            <AiOutlineMenu style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/> Menu
@@ -76,11 +50,8 @@ const Homepage = () => {
             </div>
           )}
         </div>
-      </div>
-      <div className="item3">Main</div>
-      <Cont_Read />
-    </div>
-  );
-};
+    
+  )
+}
 
-export default Homepage;
+export default Menu
