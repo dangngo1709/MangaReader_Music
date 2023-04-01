@@ -25,7 +25,6 @@ const Cont_Read = ({setManga}) => {
       const order = {
         updatedAt: "desc",
       };
-      const titleSearch = 'Fairy Tail'
       const filterObj = {
         includedTags: includedTags,
         excludedTags: excludedTags,
@@ -35,7 +34,7 @@ const Cont_Read = ({setManga}) => {
       // variable inside generateMangaList. If u want multiple filters add
       // in a blank string '' as a parameter instead.
       list.setFilter(filterObj).then( () => {
-        list.generateMangaList('').then( (res) => {
+        list.generateMangaList().then( (res) => {
           setList([...mangaList, res]);
         })
       })

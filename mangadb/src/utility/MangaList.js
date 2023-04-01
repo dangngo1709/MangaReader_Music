@@ -55,32 +55,22 @@ export default class MangaList {
     }
   }
 
-  async fetchMangaID(title) {
-    let param, resp;
-    if(title.length == 0 ){
-      resp = await axios({
-        method: "GET",
-        url: `${this.base_url}/manga`,
-        params: {
-          includedTags: this.includedTagNames,
-          excludedTags: this.excludedTagNames,
-          ...this.order,
-        },
-      })
-    } else {
-      resp = await axios({
-        method: "GET",
-        url: `${this.base_url}/manga`,
-        params: {
-          title: title
-        },
-      })
-    }
-    resp.data.data.map((manga) => {
-      const newManga = new Manga();
-      newManga.setID(manga.id);
-      this.addManga(newManga);
-    }); 
+  async fetchMangaID() {
+    const resp = await axios({
+      method: "GET",
+      url: `${this.base_url}/manga`,
+      params: {
+        includedTags: this.includedTagNames,
+        excludedTags: this.excludedTagNames,
+        ...this.order,
+      },
+    }).then( (resp) => {
+      resp.data.data.map((manga) => {
+        const newManga = new Manga();
+        newManga.setID(manga.id);
+        this.addManga(newManga);
+      }); 
+    })
   }
 
   async fetchMangaFromID() {
@@ -121,8 +111,8 @@ export default class MangaList {
     return this.manga_list;
   }
 
-  async generateMangaList(title) {
-    this.fetchMangaID(title).then(() => {
+  async generateMangaList() {
+    this.fetchMangaID().then(() => {
       this.fetchMangaFromID().then((res) => {
         this.generateMangaInfo(res);
       });
