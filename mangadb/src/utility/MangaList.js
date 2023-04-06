@@ -3,6 +3,7 @@ import axios from "axios";
 export default class MangaList {
   constructor() {
     this.manga_list = [];
+    this.titleSearch = '';
     this.order = "";
     this.filters = "";
     this.includedTagNames = "";
@@ -10,6 +11,12 @@ export default class MangaList {
     this.base_url = "https://api.mangadex.org";
     this.include =
       "?includes[]=author&includes[]=artist&includes[]=cover_art&includes[]=tag&includes[]=leader&includes[]=member";
+  }
+  setTitleSearch(x){
+    this.titleSearch = x;
+  }
+  getTitleSearch(x){
+    return this.titleSearch;
   }
   setIncludedTag(x) {
     this.includedTagNames = x;
@@ -62,6 +69,7 @@ export default class MangaList {
       params: {
         includedTags: this.includedTagNames,
         excludedTags: this.excludedTagNames,
+        title: this.getTitleSearch(),
         ...this.order,
       },
     }).then( (resp) => {

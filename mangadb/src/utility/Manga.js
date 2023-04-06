@@ -48,6 +48,7 @@ export default class Manga {
   getCoverArt(x) {
     return this.coverArt;
   }
+
   async getlistChapters(manga_id) {
     const resp = await axios({
       method: "GET",
