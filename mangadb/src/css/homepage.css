@@ -8,26 +8,29 @@
       'header header header header header header'
       'menu main main main main main'
       'menu main main main main main';
-    gap: 10px;
     background-color: #1B6FA8;
-    padding: 10px;
-    min-height: 110vh;
-    outline: none;
+    min-height: 90vh;
 }
 
 .grid-container > div {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    padding: 20px 10px;
     font-size: 30px;
     overflow-x: auto;
     outline: none;
 }
+#item_1{
+  background-color: whitesmoke;
+  border: 1px solid #1f1f1f;
+}
+#item_2{
+  background-color:#10a7c2;
+  width: 250px;
+}
 
 #item_3{
-  background-color: #181818;
   color: whitesmoke;
-  padding: 25px;
+  overflow-y: hidden;
 }
 
 #cont-read{
@@ -36,8 +39,13 @@
     font-weight: 10;
 }
 
+.cont_read_container{
+  background-color:rgb(32,32,32);
+  height: 100%;
+}
+
 #reading{
-    color: pink;
+    color: #ff0080;
 }
 
 .book-row{
@@ -45,7 +53,6 @@
     overflow-x: auto;
     gap: 50px;
     margin: 20px;
-    height: 70%;
 }
 
 ::-webkit-scrollbar{
@@ -60,19 +67,25 @@
 ::-webkit-scrollbar-thumb {
   background: darkgray;
   border-radius: 10px;
+  padding: 1px;
   width: 10px;
 }
 
 .book-block{
     flex-shrink: 0;
     width: 256px;
-    height: 370px;
+    height: 490px;
     margin-bottom: 5px;
-    border: 1px solid black;
+    border: 2px solid rgb(32,32,32);
+    background-color: whitesmoke;
+    overflow: hidden;
+    border-radius: 8px;
 }
 
 .book-block:hover{
-  border: 1px solid whitesmoke;
+  border: 2px solid rgb(32,32,32);
+  border-radius: 8px;
+  background-color: antiquewhite;
 }
 
 .book-block > img{
@@ -83,19 +96,29 @@
 
 #rec_title{
   font-size: 20px;
-  background-color: rgb(57, 151, 182);
+  background-color: #1B6FA8;
   height: 100px;
-  overflow: hidden;
+  overflow-x: hidden;
   white-space: nowrap;
+}
+
+#description{
+  font-size: 20px;
+  color: black;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }
 .menu {
   outline: none;
-  background-color: transparent;
   display: flex;
   flex-direction: column;
-  font-size: 25px;
-  width: 300px;
-  height: 300px;
+  font-size: 22px;
+  overflow: hidden;
+  color: whitesmoke;
 }
 
 .MenuButton{
