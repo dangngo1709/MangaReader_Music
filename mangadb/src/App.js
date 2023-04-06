@@ -2,7 +2,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import { BrowserRouter, Routes, Route } from 'react-router-dom' 
 import Homepage from "./components/Homepage";
-import HotCategories from "./components/HotCategories/HotCategories";
+import HotCategories from "./components/HotCategories";
 import MangaPage from "./components/MangaPage";
 
 

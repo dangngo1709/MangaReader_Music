@@ -1,0 +1,50 @@
+.genres {
+  font-weight: 500;
+  justify-content: center;
+  height: 32px;
+  -webkit-text-stroke: 1px #1f1f1f;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 5px 10px;
+  user-select: none;
+}
+.genres:hover {
+  background-color: wheat;
+}
+.frame {
+  color: black;
+  padding: 0.5px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+.hotcategories {
+  background-color: #10a7c2;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+.categories{
+  background-color: whitesmoke;
+  border: 1px solid #1f1f1f;
+}
+.categories-header{
+  text-align: left;
+  margin-left: 20px;
+  font-weight: 10;
+  color:  #303030;
+}
+#hot{
+  color: #ff0080
+}
+/* The rule below is implemented in most browsers by now */

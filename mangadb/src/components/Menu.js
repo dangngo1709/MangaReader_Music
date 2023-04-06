@@ -17,29 +17,32 @@ const Menu = () => {
   return (
     <div className="menu">
     <button onClick={handleMenuClick} className="MenuButton">
-    <AiOutlineMenu style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/> Menu
+    <AiOutlineMenu style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/> <span style={{color: 'white', letterSpacing: '0.5px'}}>Menu</span>
     </button>
     {isMenuExpanded && (
       <div className="submenu1">
-        <button className="HomeButton"><FaHome style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/> Home</button>
-        <button className="MostPopularButton"> <ImFire style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/>Most Popular</button>
+        <button className="HomeButton"><FaHome style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke'}}/> <span style={{color: 'white', letterSpacing: '0.5px'}}>Home</span></button>
+        <button className="MostPopularButton"> <ImFire style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke' }}/> <span style={{color: 'white', letterSpacing: '0.5px'}}>Most Popular</span> </button>
       </div>
     )}
     <button onClick={handleAccountClick} className="AccountButton">
-    <MdAccountCircle style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px' }}/>
-    Account
+    <MdAccountCircle style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke'}}/>
+    <span style={{color: 'white', letterSpacing: '0.5px'}}>Account</span>
     </button>
     {isAccountExpanded && (
       <div className="submenu2">
         <button className="ProfileButton">
-        <AiFillProfile style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
-          Profile</button>
+        <AiFillProfile style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
+        <span style={{color: 'white', letterSpacing: '0.5px'}}>Profile</span>
+          </button>
         <button className="MyFavoriteListButton">
-        <MdFavorite style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
-          My Favorite List</button>
+        <MdFavorite style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
+          <span style={{color: 'white', letterSpacing: '0.5px'}}>My Favorite List</span>
+          </button>
         <button className="SettingButton">
-        <AiTwotoneSetting style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px' }}/>
-          Settings</button>
+        <AiTwotoneSetting style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
+          <span style={{color: 'white', letterSpacing: '0.5px'}}>Settings</span>
+          </button>
       </div>
     )}
   </div>

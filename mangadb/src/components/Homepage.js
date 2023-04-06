@@ -4,9 +4,11 @@ import React, {useState, useEffect} from 'react';
 import MangaList from "../utility/MangaList";
 import MangaPage from "./MangaPage";
 import Menu from "./Menu";
+import HotCategories from "./HotCategories";
 
 const Homepage = () => {
   const [manga, setManga] = useState(null);
+  const [genre, setGenre] = useState('Adventure');
   useEffect( () => {
   }, [])
   const sessionID = localStorage.getItem('session_id');
@@ -20,14 +22,16 @@ const Homepage = () => {
   }
   return (
     <div className="grid-container">
-      <div className="item1">
-      <button onClick={handleLogout}>Logout</button>
-      Header</div>
-      <div className="item2">
+      <div className="item1" id="item_1">
+        <button onClick={handleLogout}>Logout</button>
+        Header</div>
+      <div className="item2" id="item_2">
         <Menu/>
       </div>
-      <div className="item3">Main</div>
-      <Cont_Read setManga={setManga}/>
+      <div className="item3" id="item_3">
+        <HotCategories setGenre={setGenre}/>
+        <Cont_Read setManga={setManga} genre={genre}/>  
+      </div>
     </div>
   );
 }
