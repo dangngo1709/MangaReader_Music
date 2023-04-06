@@ -1,4 +1,4 @@
-import Manga from "./manga";
+import MangaClass from "./Manga";
 import axios from "axios";
 export default class MangaList {
   constructor() {
@@ -74,7 +74,7 @@ export default class MangaList {
       },
     }).then( (resp) => {
       resp.data.data.map((manga) => {
-        const newManga = new Manga();
+        const newManga = new MangaClass();
         newManga.setID(manga.id);
         this.addManga(newManga);
       }); 
