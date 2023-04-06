@@ -4,8 +4,8 @@ const HotCategories = ({setGenre}) => {
   const genres = [
     "Adventure",
     "Shounen",
-    "Shojo",
-    "Kodomomuke",
+    "Medical",
+    "Comedy",
     "Isekai",
     "Action",
     "Adventure",

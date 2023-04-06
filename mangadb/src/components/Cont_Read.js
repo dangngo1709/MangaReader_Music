@@ -4,7 +4,6 @@ import MangaList from "../utility/MangaList";
 
 const Cont_Read = ({setManga, genre}) => {
   const [loading,setLoading] = useState(false);
-  /** How to fetch Manga */
   const [mangaList, setList] = useState([]);
   const handleMangaClick = async (manga, event) => {
     event.preventDefault();
@@ -15,11 +14,14 @@ const Cont_Read = ({setManga, genre}) => {
       setManga(manga);
     }, 700)
   };
+  /** How to fetch Manga */
   useEffect(() => {
     setLoading(false);
     const list = new MangaList();
     const includedTags = [genre];
     const excludedTags = ["Harem"];
+    const title = 'Fairy';
+    //list.setTitleSearch(title);
     const order = {
       followedCount: "desc",
     };
@@ -29,9 +31,7 @@ const Cont_Read = ({setManga, genre}) => {
       order: order
     };
     // Create filters above ^^ 
-    // If you like to search just for a title, add in the titleSearch 
-    // variable inside generateMangaList. If u want multiple filters add
-    // in a blank string '' as a parameter instead.
+    // If you like to search just for a title, add in the setTitleSearch 
     list.setFilter(filterObj).then( () => {
       list.generateMangaList().then( (res) => {
         setList(res);

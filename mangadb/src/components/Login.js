@@ -20,7 +20,6 @@ const Login = () => {
     })
     const data = await resp.json();
     if (data.user){
-        alert('login successful');
         localStorage.setItem('session_id', data.sessionID);
         login_bad_ref.current.style.display = 'none';
         login_missing_ref.current.style.display = 'none';
@@ -55,10 +54,6 @@ const Login = () => {
                         <ion-icon name="lock-closed-outline"></ion-icon>
                         <input type="password" id="user_password" required/>
                         <label for="user_password">Password</label>
-                    </div>
-                    <div class="forget">
-                        <label for=""><input type="checkbox"/>Remember Me  <a href="#">Forget Password</a></label>
-                      
                     </div>
                     <button type='submit'>Log in</button>
                     <div class="register">
