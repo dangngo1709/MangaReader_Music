@@ -1,8 +1,10 @@
+
 import { FaHome } from 'react-icons/fa';
 import {AiOutlineMenu, AiTwotoneSetting, AiFillProfile} from 'react-icons/ai';
 import {ImFire, ImMusic} from 'react-icons/im';
 import {MdAccountCircle, MdFavorite} from 'react-icons/md'
 import React, {useState, useEffect} from 'react';
+
 const Menu = () => {
       const [isMenuExpanded, setIsMenuExpanded] = useState(false);
       const [isAccountExpanded, setIsAccountExpanded] = useState(false);

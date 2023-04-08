@@ -2,6 +2,7 @@ import "../css/homepage.css";
 import Cont_Read from "./Cont_Read";
 import React, {useState, useEffect} from 'react';
 import MangaList from "../utility/MangaList";
+
 import MangaPage from "./MangaPage";
 import Menu from "./Menu";
 import HotCategories from "./HotCategories";
@@ -12,10 +13,10 @@ const Homepage = ({manga, setManga}) => {
   useEffect( () => {
   }, [])
   const sessionID = localStorage.getItem('session_id');
-  if (!sessionID) {
-    localStorage.setItem('login_missing', 'true');
-    window.location.href = '/login'
-  }
+  // if (!sessionID) {
+  //   localStorage.setItem('login_missing', 'true');
+  //   window.location.href = '/login'
+  // }
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = '/login';
