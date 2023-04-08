@@ -19,6 +19,17 @@
     overflow-x: auto;
     outline: none;
 }
+
+#orderSelect {
+  background-color: #10a7c2;
+  color: whitesmoke;
+  margin-left: 10px;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 200px;
+}
+
 #item_1{
   background-color: whitesmoke;
   border: 1px solid #1f1f1f;
@@ -86,6 +97,7 @@
   border: 2px solid rgb(32,32,32);
   border-radius: 8px;
   background-color: antiquewhite;
+  user-select: none;
 }
 
 .book-block > img{
@@ -96,7 +108,7 @@
 
 #rec_title{
   font-size: 20px;
-  background-color: #1B6FA8;
+  background-color: #10a7c2;
   height: 100px;
   overflow-x: hidden;
   white-space: nowrap;
@@ -192,3 +204,6 @@
   background-color: peru;
 }
 
+.MusicPlaylist{
+  background-color: none;
+}

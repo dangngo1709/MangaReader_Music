@@ -1,6 +1,6 @@
 import { FaHome } from 'react-icons/fa';
 import {AiOutlineMenu, AiTwotoneSetting, AiFillProfile} from 'react-icons/ai';
-import {ImFire} from  'react-icons/im';
+import {ImFire, ImMusic} from 'react-icons/im';
 import {MdAccountCircle, MdFavorite} from 'react-icons/md'
 import React, {useState, useEffect} from 'react';
 const Menu = () => {
@@ -38,6 +38,10 @@ const Menu = () => {
         <button className="MyFavoriteListButton">
         <MdFavorite style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
           <span style={{color: 'white', letterSpacing: '0.5px'}}>My Favorite List</span>
+          </button>
+        <button className="ProfileButton"> 
+        <ImMusic style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
+        <span style={{color: 'white', letterSpacing: '0.5px'}}>Music Playlist</span>
           </button>
         <button className="SettingButton">
         <AiTwotoneSetting style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
