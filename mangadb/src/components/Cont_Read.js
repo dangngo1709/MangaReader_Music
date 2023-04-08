@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import "../css/homepage.css";
 import MangaList from "../utility/MangaList";
 
-const Cont_Read = ({setManga, genre}) => {
+const Cont_Read = ({setManga, genre, mangaList, setList}) => {
   const [loading,setLoading] = useState(false);
-  const [mangaList, setList] = useState([]);
+  const [orderFilter, setOrder] = useState("Most Popular")
+  const navigate = useNavigate();
   const handleMangaClick = async (manga, event) => {
     event.preventDefault();
     const id = manga.id
@@ -12,9 +14,14 @@ const Cont_Read = ({setManga, genre}) => {
     setManga(manga);
     setTimeout( () => {
       setManga(manga);
+      navigate("/mangapage");
     }, 700)
   };
-  /** How to fetch Manga */
+  const handleOrderChange = (event) => {
+    event.preventDefault();
+    setOrder(event.target.value);
+  }
+  /** How to fetch Manga, need to import mangalist and useeffect */
   useEffect(() => {
     setLoading(false);
     const list = new MangaList();
@@ -22,9 +29,14 @@ const Cont_Read = ({setManga, genre}) => {
     const excludedTags = ["Harem"];
     const title = 'Fairy';
     //list.setTitleSearch(title);
-    const order = {
-      followedCount: "desc",
-    };
+    let order = {};
+    if(orderFilter === 'Most Popular'){
+      order.followedCount = 'desc'; 
+    } else if (orderFilter === 'Relevant'){
+      order.relevance = 'desc'; 
+    } else {
+      order.latestUploadedChapter = 'desc'
+    }
     const filterObj = {
       includedTags: includedTags,
       excludedTags: excludedTags,
@@ -41,11 +53,20 @@ const Cont_Read = ({setManga, genre}) => {
   setTimeout( () => {
     setLoading(true);
   }, 1200)
-  }, [genre]);
+  }, [genre, orderFilter]);
   return (
     <div className="cont_read_container">
       <div id="cont-read">
         Genre: <span id="reading">{genre} </span>
+        <span id="Filter">
+          <label>
+            <select name="Sort Order" id="orderSelect" onChange={handleOrderChange}>
+              <option value="Most Popular">Most Popular</option>
+              <option value="Relevant">Relevant</option>
+              <option value="Latest Uploaded Chapter">Latest Uploaded Chapter</option>
+            </select>
+          </label>
+        </span>
       </div>
       <div className="book-row">
         {loading ? 

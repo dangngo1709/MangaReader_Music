@@ -9,10 +9,12 @@ import { useState, useEffect } from 'react';
 import MangaList from "../utility/MangaList";
 import MangaCover from '../assets/MangaCover.jpeg'
 import Menu from './Menu';
-const MangaPage = () => {
+const MangaPage = ({manga}) => {
  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
  const [isAccountExpanded, setIsAccountExpanded] = useState(false);
-
+ useEffect( () => {
+  console.log(manga);
+ },[])
 
  const handleClick = (event) => {
    console.log('Button clicked!', event);

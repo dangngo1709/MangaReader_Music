@@ -6,9 +6,9 @@ import MangaPage from "./MangaPage";
 import Menu from "./Menu";
 import HotCategories from "./HotCategories";
 
-const Homepage = () => {
-  const [manga, setManga] = useState(null);
+const Homepage = ({manga, setManga}) => {
   const [genre, setGenre] = useState('Adventure');
+  const [mangaList, setList] = useState([]);
   useEffect( () => {
   }, [])
   const sessionID = localStorage.getItem('session_id');
@@ -30,7 +30,7 @@ const Homepage = () => {
       </div>
       <div className="item3" id="item_3">
         <HotCategories setGenre={setGenre}/>
-        <Cont_Read setManga={setManga} genre={genre}/>  
+        <Cont_Read setManga={setManga} setList={setList} mangaList={mangaList} genre={genre}/>  
       </div>
     </div>
   );
