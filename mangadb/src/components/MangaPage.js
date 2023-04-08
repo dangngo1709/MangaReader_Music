@@ -9,10 +9,13 @@ import { useState, useEffect } from 'react';
 import MangaList from "../utility/MangaList";
 import MangaCover from '../assets/MangaCover.jpeg'
 import Menu from './Menu';
-const MangaPage = () => {
+import Manga from '../utility/Manga';
+
+const MangaPage = ({manga}) => {
  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
  const [isAccountExpanded, setIsAccountExpanded] = useState(false);
- const [chList, setChList] = useState([]);
+ const [coverArt, setcoverArt] = useState("");
+ let mangaObj = JSON.parse(localStorage.getItem('manga'));
  function sortData(data) {
   //bubble sort
   for (var i = 0; i < data.length; i++) {
@@ -26,15 +29,20 @@ const MangaPage = () => {
   }
   return data;
 }
+let sortedChList;
+const [chList, setChList] = useState([]);
+const handleChapterClick = (event) => {
+  event.preventDefault()
+  console.log(event.target.value)
+}
  useEffect( () => {
   let mangaObj= JSON.parse(localStorage.getItem('manga'));
   let chList = mangaObj.chapter_list;
-  let sortedChList = sortData(chList);
+  sortedChList = sortData(chList);
   setChList(sortedChList);
- }, [])
- const handleClick = (event) => {
-   console.log('Button clicked!', event);
- }
+  setcoverArt(mangaObj.coverArt)
+ },[])
+
 
 
  const handleMenuClick = () => {
@@ -54,22 +62,31 @@ const MangaPage = () => {
      </div>
      <div className="item3">
        <div className="column">
-         <div style={{ display: 'flex' }}>
-           <img src={MangaCover} height={300} width={200} className="left-image" />
-           <div style={{ marginLeft: '20px' }}>
-             <h3>Title</h3>
-             <p style={{textAlign:"left"}}>Some description text goes here.</p>
-             <p style={{textAlign:"left"}}>Author</p>
-           </div>
-         </div>
-         <button className="ReadMangaButton" onClick={handleClick}>Read It!</button>
+       <img src={coverArt} height={350} width={200} className="left-image" />
+
+         <div style={{ display: 'flex', flexDirection: "column" }}>
+           
+            <p style={{textAlign:"left", fontSize: "30px", color: "purple"}}>{mangaObj.title}</p>
+             <p className = "description"><span style = {{fontWeight: "bold"}}>Description:</span> {mangaObj.description} </p>
+             <p style={{textAlign:"left", fontSize: "25px"}}>Author: {mangaObj.author}</p>
+             <p style={{textAlign:"left", fontSize: "25px"}}>Artist: {mangaObj.artist}</p>
+             <p  style = {{textAlign:"left", fontSize:"25px",width:"900px"}}>Genre: {mangaObj.genreList.map ( (genre,index) => (<span key = {index}> {genre},</span>))}</p>  
+
+         </div> 
        </div>
+       <div style={{textAlign:"left", marginLeft:"17px"}}>       
+        <label>
+            <select name="Sort Order" id="orderSelect" onChange={handleChapterClick}>
+            {chList.map((chapter,index)=> (<option value={chapter.chapter_num}>Chapter {chapter.chapter_num}</option> ))}
+            </select>
+          </label>
+      </div>
      </div>
    </div>
  );
 
 
 }
-
-
 export default MangaPage
+
+

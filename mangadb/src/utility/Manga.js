@@ -11,14 +11,14 @@ export default class Manga {
     this.base_url = "https://api.mangadex.org";
     this.img_url = "https://uploads.mangadex.org";
     this.description = '';
-    this.genreList = [];
-  }
-  addGenre(x){
-    this.genreList.push(x);
-  }
-  getGenreList(x){
-    return this.genreList;
-  }
+    this.genreList= [];
+    }
+    addGenre(x){
+      this.genreList.push(x);
+    }
+    getGenreList(x){
+      return this.genreList;
+    }
   setDescription(x){
     this.description = x;
   }
@@ -92,7 +92,6 @@ export default class Manga {
           const scanGroup = await resp.data.data.attributes?.name;
           this.chapter_list[i].setScanlationGroup(scanGroup);
         }
-        //this.sortData(this.chapter_list);
       })
     return this.chapter_list
   }

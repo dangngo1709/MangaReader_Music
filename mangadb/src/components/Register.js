@@ -9,6 +9,7 @@ const Register = () => {
     const user_email = event.target[1].value;
     const user_pass = event.target[2].value;
     const confirm_user_pass = event.target[3].value;
+
     const resp = await fetch(`${base_url}/mangadb/register`, {
       method: "POST",
       headers: {

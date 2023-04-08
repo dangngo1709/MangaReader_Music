@@ -18,6 +18,7 @@ function App() {
           <Route path="/" element={<Register/>}/>
           <Route path="/homepage" element={<Homepage manga={manga} setManga={setManga}/>}/>
           <Route path="/login" element={<Login/>}/>
+
           <Route path="/mangapage" element={<MangaPage manga={manga} />}/>
         </Routes>
       </BrowserRouter>
