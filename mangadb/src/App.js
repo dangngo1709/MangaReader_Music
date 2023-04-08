@@ -2,11 +2,11 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import { BrowserRouter, Routes, Route } from 'react-router-dom' 
 import Homepage from "./components/Homepage";
-import HotCategories from "./components/HotCategories/HotCategories";
 import MangaPage from "./components/MangaPage";
-
+import {useState} from 'react';
 
 function App() {
+  const [manga, setManga] = useState(null);
   return (
     //<HotCategories />
       <BrowserRouter>
@@ -16,10 +16,10 @@ function App() {
         <a href="/mangapage">MangaPage</a>
         <Routes>
           <Route path="/" element={<Register/>}/>
-          <Route path="/homepage" element={<Homepage/>}/>
+          <Route path="/homepage" element={<Homepage manga={manga} setManga={setManga}/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/mangapage" element={<MangaPage/>}/>
 
+          <Route path="/mangapage" element={<MangaPage manga={manga} />}/>
         </Routes>
       </BrowserRouter>
 

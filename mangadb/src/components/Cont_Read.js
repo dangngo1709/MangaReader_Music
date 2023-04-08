@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import "../css/homepage.css";
 import MangaList from "../utility/MangaList";
 
-const Cont_Read = ({setManga}) => {
+const Cont_Read = ({setManga, genre, mangaList, setList}) => {
   const [loading,setLoading] = useState(false);
-  /** How to fetch Manga */
-  const [mangaList, setList] = useState([]);
-  const [genre,setGenre] = useState('Genre');
+  const [orderFilter, setOrder] = useState("Most Popular")
+  const navigate = useNavigate();
   const handleMangaClick = async (manga, event) => {
     event.preventDefault();
     const id = manga.id
@@ -14,43 +14,63 @@ const Cont_Read = ({setManga}) => {
     setManga(manga);
     setTimeout( () => {
       setManga(manga);
+      navigate("/mangapage");
     }, 700)
   };
+  const handleOrderChange = (event) => {
+    event.preventDefault();
+    setOrder(event.target.value);
+  }
+  /** How to fetch Manga, need to import mangalist and useeffect */
   useEffect(() => {
-    if(mangaList.length == 0){
-      const list = new MangaList();
-      const includedTags = ["Isekai"];
-      setGenre(includedTags[0]);
-      const excludedTags = ["Harem"];
-      const order = {
-        updatedAt: "desc",
-      };
-      const filterObj = {
-        includedTags: includedTags,
-        excludedTags: excludedTags,
-      };
-      // Create filters above ^^ 
-      // If you like to search just for a title, add in the titleSearch 
-      // variable inside generateMangaList. If u want multiple filters add
-      // in a blank string '' as a parameter instead.
-      list.setFilter(filterObj).then( () => {
-        list.generateMangaList().then( (res) => {
-          setList([...mangaList, res]);
-        })
+    setLoading(false);
+    const list = new MangaList();
+    const includedTags = [genre];
+    const excludedTags = ["Harem"];
+    const title = 'Fairy';
+    //list.setTitleSearch(title);
+    let order = {};
+    if(orderFilter === 'Most Popular'){
+      order.followedCount = 'desc'; 
+    } else if (orderFilter === 'Relevant'){
+      order.relevance = 'desc'; 
+    } else {
+      order.latestUploadedChapter = 'desc'
+    }
+    const filterObj = {
+      includedTags: includedTags,
+      excludedTags: excludedTags,
+      order: order
+    };
+    // Create filters above ^^ 
+    // If you like to search just for a title, add in the setTitleSearch 
+    list.setFilter(filterObj).then( () => {
+      list.generateMangaList().then( (res) => {
+        setList(res);
       })
-    }//important, need to wait 1 second or else it wont render
-    setTimeout( () => {
-      setLoading(true);
-    }, 1200)
-  }, []);
+    })
+  //important, need to wait 1 second or else it wont render
+  setTimeout( () => {
+    setLoading(true);
+  }, 1200)
+  }, [genre, orderFilter]);
   return (
-    <div className="item3" id="item_3">
-      <h3 id="cont-read">
+    <div className="cont_read_container">
+      <div id="cont-read">
         Genre: <span id="reading">{genre} </span>
-      </h3>
+        <span id="Filter">
+          <label>
+            <select name="Sort Order" id="orderSelect" onChange={handleOrderChange}>
+              <option value="Most Popular">Most Popular</option>
+              <option value="Relevant">Relevant</option>
+              <option value="Latest Uploaded Chapter">Latest Uploaded Chapter</option>
+            </select>
+          </label>
+        </span>
+      </div>
       <div className="book-row">
         {loading ? 
-        mangaList[0].map( (manga,index) => 
+        mangaList.map( (manga,index) => 
             (
               <div
                 className="book-block"
@@ -65,6 +85,7 @@ const Cont_Read = ({setManga}) => {
                   <br />
                   <span id="rec_author">Artist: {manga.artist}</span>
                 </div>
+                <p id="description"><span style={{fontWeight: 'bold'}}>Description: </span>{manga.description}</p>
               </div>
             )
           ) : (

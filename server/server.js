@@ -7,7 +7,7 @@ dotenv.config();
 const pass = process.env.pass_key;
 const user = process.env.user_key;
 mongoose.connect(
-  `mongodb+srv://${user}:${pass}@cluster0.ad8mpnd.mongodb.net/test`
+  `mongodb+srv://${user}:${pass}@cluster0.wy1i4xn.mongodb.net/test`
 );
 
 const app = express();
