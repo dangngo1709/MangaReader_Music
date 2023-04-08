@@ -97,7 +97,15 @@ export default class MangaList {
     for (let i = 0; i < this.manga_list.length; i++) {
       let title, author, artist, cover_art_url,description;
       title = Object.values(list[i].attributes.title)[0];
-      description = Object.values(list[i].attributes.description)[0];
+      for (const [key, value] of Object.entries(list[i].attributes.description)) {
+        if(key === 'en'){
+          description = value;
+          break;
+        }
+      }
+      for (let k = 0; k < list[i].attributes.tags.length; k++){
+        this.manga_list[i].addGenre(list[i].attributes.tags[k].attributes.name.en);
+      }
       for (let j = 0; j < list[i].relationships.length; j++) {
         if (list[i].relationships[j].type == "author") {
           author = list[i].relationships[0].attributes.name;
