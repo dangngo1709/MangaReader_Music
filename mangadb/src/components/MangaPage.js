@@ -9,13 +9,29 @@ import { useState, useEffect } from 'react';
 import MangaList from "../utility/MangaList";
 import MangaCover from '../assets/MangaCover.jpeg'
 import Menu from './Menu';
-const MangaPage = ({manga}) => {
+const MangaPage = () => {
  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
  const [isAccountExpanded, setIsAccountExpanded] = useState(false);
+ const [chList, setChList] = useState([]);
+ function sortData(data) {
+  //bubble sort
+  for (var i = 0; i < data.length; i++) {
+    for (var j = 0; j < data.length - i - 1; j++) {
+      if (Number(data[j].chapter_num) > Number(data[j + 1].chapter_num)) {
+        var temp = data[j];
+        data[j] = data[j + 1];
+        data[j + 1] = temp;
+      }
+    }
+  }
+  return data;
+}
  useEffect( () => {
-  console.log(manga);
- },[])
-
+  let mangaObj= JSON.parse(localStorage.getItem('manga'));
+  let chList = mangaObj.chapter_list;
+  let sortedChList = sortData(chList);
+  setChList(sortedChList);
+ }, [])
  const handleClick = (event) => {
    console.log('Button clicked!', event);
  }
