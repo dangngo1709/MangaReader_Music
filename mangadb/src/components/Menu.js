@@ -19,7 +19,7 @@ const Menu = () => {
   return (
     <div className="menu">
     <button onClick={handleMenuClick} className="MenuButton">
-    <AiOutlineMenu style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/> <span style={{color: 'white', letterSpacing: '0.5px'}}>Menu</span>
+    <AiOutlineMenu style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/> <span style={{color: 'white', letterSpacing: '0.5px'}}>Menu </span>
     </button>
     {isMenuExpanded && (
       <div className="submenu1">

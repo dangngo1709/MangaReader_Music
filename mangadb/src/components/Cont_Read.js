@@ -95,6 +95,31 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
           <h1>Loading</h1>
         )}
       </div>
+
+      <div className="book-row">
+        {loading ? 
+        mangaList.map( (manga,index) => 
+            (
+              <div
+                className="book-block"
+                onClick={(e) => handleMangaClick(manga, e)}
+                key={index}
+              >
+                <img src={manga.coverArt} alt="img" />
+                <div id="rec_title">
+                  {manga.title}
+                  <br />
+                  <span id="rec_author">Author: {manga.author}</span>
+                  <br />
+                  <span id="rec_author">Artist: {manga.artist}</span>
+                </div>
+                <p id="description"><span style={{fontWeight: 'bold'}}>Description: </span>{manga.description}</p>
+              </div>
+            )
+          ) : (
+          <h1>Loading</h1>
+        )}
+      </div>
     </div>
   );
 };

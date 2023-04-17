@@ -21,6 +21,7 @@ const Homepage = ({manga, setManga}) => {
     localStorage.clear();
     window.location.href = '/login';
   }
+  
   return (
     <div className="grid-container">
       <div className="item1" id="item_1">

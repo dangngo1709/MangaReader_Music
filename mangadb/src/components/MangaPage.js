@@ -27,7 +27,6 @@ const MangaPage = ({manga}) => {
       }
     }
   }
-  
   return data;
 }
 let sortedChList;
@@ -56,12 +55,12 @@ const handleChapterClick = (event) => {
  };
  return (
    <div className="grid-container">
-     <div className="item1">
+     <div className="item1" id="item_1">
        Header</div>
-     <div className="item2">
+     <div className="item2" id="item_2">
         <Menu/>
      </div>
-     <div className="item3">
+     <div className="item3" id="item_3">
        <div className="column">
        <img src={coverArt} height={350} width={200} className="left-image" />
 
@@ -89,5 +88,3 @@ const handleChapterClick = (event) => {
 
 }
 export default MangaPage
-
-

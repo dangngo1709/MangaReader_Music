@@ -1,0 +1,25 @@
+#faveListPageContainer {
+    background-color:red;
+    height: 100px;
+
+    }
+    
+    
+    
+    #headerfaveList {
+        background-color: purple;
+        height: 100px;
+    }
+    
+    #menufaveList {
+        background-color:#10a7c2;
+    }
+    
+    #mainfaveList {
+    }
+
+    .main {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }

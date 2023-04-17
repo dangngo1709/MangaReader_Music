@@ -1,37 +1,39 @@
+    .column{
+    display: flex;
+    align-items: left;
+    padding: 20px;
+     width: 100%;
+    }
 
+   .menuMangaPage{
+    width: 250px;
+    }
 
-.column{
- display: flex;
-align-items: left;
- padding: 20px;
-}
-.left-image{
- float: left;
- margin-top: 50px;
- margin-left:20px;
- margin-right: 20px;
- flex-direction: column;
-}
-.ReadMangaButton{
- margin-top: 20px;
- max-width: 200px;
- max-height: 50px;
- margin-left: 20px;
-}
-.description{
-    font-size: 25px;
-    color: black;
-    text-overflow:ellipsis;
-    overflow:hidden;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    white-space: normal;
-    text-align: left;
-    width: 900px;
-}
-.genre{
-    font-size: 25px;
-    margin-right: 10px;
-    
-}
+   .left-image{
+    float: left;
+    margin-top: 50px;
+    margin-left:20px;
+    margin-right: 20px;
+    flex-direction: column;
+   }
+   .ReadMangaButton{
+    margin-top: 20px;
+    max-width: 200px;
+    max-height: 50px;
+    margin-left: 20px;
+   }
+   .description{
+       font-size: 25px;
+       color: black;
+       text-overflow:ellipsis;
+       overflow:hidden;
+       display: -webkit-box !important;
+       -webkit-line-clamp: 4;
+       -webkit-box-orient: vertical;
+       white-space: normal;
+       text-align: left;
+   }
+   .genre{
+       font-size: 25px;
+       margin-right: 10px;
+   }
