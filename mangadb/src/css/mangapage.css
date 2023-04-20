@@ -2,8 +2,9 @@
 
 .column{
  display: flex;
-align-items: left;
+ align-items: left;
  padding: 20px;
+  width: 100%;
 }
 .left-image{
  float: left;
@@ -28,10 +29,8 @@ align-items: left;
     -webkit-box-orient: vertical;
     white-space: normal;
     text-align: left;
-    width: 900px;
 }
 .genre{
     font-size: 25px;
-    margin-right: 10px;
-    
+    margin-right: 10px;   
 }
