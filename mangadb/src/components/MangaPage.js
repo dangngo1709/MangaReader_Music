@@ -27,7 +27,6 @@ const MangaPage = ({manga}) => {
       }
     }
   }
-  
   return data;
 }
 let sortedChList;
@@ -35,9 +34,17 @@ const [chList, setChList] = useState([]);
 const handleChapterClick = (event) => {
   event.preventDefault()
   console.log(event.target.value)
+  localStorage.setItem('chapter_num', event.target.value)
+  let chapterObj;
+  for(let i = 0; i < mangaObj.chapter_list.length; i++){
+    if(mangaObj.chapter_list[i].chapter_num == event.target.value){
+      chapterObj = mangaObj.chapter_list[i];
+    }
+  }
+  console.log(chapterObj);
+  chapterObj.generateChapterImgs();
 }
  useEffect( () => {
-  let mangaObj= JSON.parse(localStorage.getItem('manga'));
   let chList = mangaObj.chapter_list;
   sortedChList = sortData(chList);
   setChList(sortedChList);
@@ -56,22 +63,22 @@ const handleChapterClick = (event) => {
  };
  return (
    <div className="grid-container">
-     <div className="item1">
+     <div className="item1" id="item_1">
        Header</div>
-     <div className="item2">
+     <div className="item2" id="item_2">
         <Menu/>
      </div>
-     <div className="item3">
+     <div className="item3" id="item_3">
        <div className="column">
        <img src={coverArt} height={350} width={200} className="left-image" />
 
-         <div style={{ display: 'flex', flexDirection: "column" }}>
+         <div style={{ display: 'flex', flexDirection: "column",}}>
            
             <p style={{textAlign:"left", fontSize: "30px", color: "purple"}}>{mangaObj.title}</p>
-             <p className = "description"><span style = {{fontWeight: "bold"}}>Description:</span> {mangaObj.description} </p>
-             <p style={{textAlign:"left", fontSize: "25px"}}>Author: {mangaObj.author}</p>
-             <p style={{textAlign:"left", fontSize: "25px"}}>Artist: {mangaObj.artist}</p>
-             <p  style = {{textAlign:"left", fontSize:"25px",width:"900px"}}>Genre: {mangaObj.genreList.map ( (genre,index) => (<span key = {index}> {genre},</span>))}</p>  
+             <div className = "description"><span style = {{fontWeight: "bold"}}>Description:</span> {mangaObj.description} </div>
+             <p style={{textAlign:"left", fontSize: "25px", color: 'black'}}><span style = {{fontWeight: "bold"}}>Author:</span> {mangaObj.author}</p>
+             <p style={{textAlign:"left", fontSize: "25px", color: 'black'}}><span style = {{fontWeight: "bold"}}>Artist:</span> {mangaObj.artist}</p>
+             <p  style = {{textAlign:"left", fontSize:"25px", color: 'black'}}><span style = {{fontWeight: "bold"}}>Genre:</span> {mangaObj.genreList.map ( (genre,index) => (<span key = {index}> {genre},</span>))}</p>  
 
          </div> 
        </div>
