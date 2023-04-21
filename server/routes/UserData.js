@@ -9,6 +9,10 @@ const generateHash = async (plaintext) => {
     return hash;
 }
 
+router.get("", (res,req) => {
+    return req.json({status: 'mangadb'});
+})
+
 router.post("/mangadb/register", async (req,res) => {
     try {
         if(req.body){

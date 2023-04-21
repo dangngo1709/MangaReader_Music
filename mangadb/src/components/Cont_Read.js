@@ -14,10 +14,8 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
     setManga(manga);
     setTimeout( () => {
       setManga(manga);
-      setTimeout( () => {
-        localStorage.setItem('manga', JSON.stringify(manga));
-        navigate("/mangapage");
-      }, 700)
+      localStorage.setItem('manga', JSON.stringify(manga));
+      navigate("/mangapage");
     }, 700)
   };
   const handleOrderChange = (event) => {

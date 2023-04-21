@@ -13,12 +13,12 @@ export default class Manga {
     this.description = '';
     this.genreList= [];
     }
-    addGenre(x){
-      this.genreList.push(x);
-    }
-    getGenreList(x){
-      return this.genreList;
-    }
+  addGenre(x){
+    this.genreList.push(x);
+  }
+  getGenreList(x){
+    return this.genreList;
+  }
   setDescription(x){
     this.description = x;
   }
