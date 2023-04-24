@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react'
 
 const Login = () => {
-  const base_url = process.env.REACT_APP_SERVER_URL;
+  const base_url = 'http:/localhost:5001';
   const login_missing_ref = useRef(null);
   const login_bad_ref = useRef(null);
   const handleLoginSubmit = async (event) => {

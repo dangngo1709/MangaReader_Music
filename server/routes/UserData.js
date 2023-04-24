@@ -8,6 +8,14 @@ const generateHash = async (plaintext) => {
     const hash = await bcrypt.hash(plaintext, salt);
     return hash;
 }
+router.post("/mangadb/profileAboutMe", async(req,res) => {
+    try{
+        console.log(req.body)
+    }catch(err){
+        return res.json({ status: 'error'})
+    }
+})
+
 
 router.post("/mangadb/register", async (req,res) => {
     try {
