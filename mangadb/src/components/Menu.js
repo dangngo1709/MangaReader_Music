@@ -24,7 +24,6 @@ const Menu = () => {
     {isMenuExpanded && (
       <div className="submenu1">
         <button className="HomeButton"><FaHome style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke'}}/> <span style={{color: 'white', letterSpacing: '0.5px'}}>Home</span></button>
-        <button className="MostPopularButton"> <ImFire style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke' }}/> <span style={{color: 'white', letterSpacing: '0.5px'}}>Most Popular</span> </button>
       </div>
     )}
     <button onClick={handleAccountClick} className="AccountButton">
