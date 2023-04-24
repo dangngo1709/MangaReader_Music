@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 
 const Register = () => {
-  const base_url = 'http://localhost:5000';
   const register_bad = useRef(null);
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
@@ -10,7 +9,7 @@ const Register = () => {
     const user_pass = event.target[2].value;
     const confirm_user_pass = event.target[3].value;
 
-    const resp = await fetch(`${base_url}/mangadb/register`, {
+    const resp = await fetch(`/mangadb/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

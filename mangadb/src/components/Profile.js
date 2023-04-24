@@ -15,20 +15,23 @@ const Profile = () => {
     event.preventDefault();
     console.log('Text submitted: ' + text);
     console.log(localStorage.getItem('session_id'))
+    const email = localStorage.getItem('session_id');
     // Here you can save the text to a database or perform other actions
     setText('');
     /* make a post request*/
-    const resp = await fetch(`${base_url}/mangadb/profileAboutMe`, {
+    const resp = await fetch(`/mangadb/profileAboutMe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         text,
+        email
       })
     });
-    const data = await resp.json();
-    
+
+
+    /* Make a get request to retrieve data */
   }
   return (
     <div className="grid-container">
