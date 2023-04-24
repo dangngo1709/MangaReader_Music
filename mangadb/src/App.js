@@ -4,8 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Homepage from "./components/Homepage";
 import MangaPage from "./components/MangaPage";
 import {useState} from 'react';
-import ChapterPage from "./components/ChapterPage";
-
+import Profile from "./components/Profile";
 function App() {
   const [manga, setManga] = useState(null);
   return (
@@ -14,13 +13,15 @@ function App() {
         <a href="/">Register</a><br/>
         <a href="/login">Login</a><br/>
         <a href="/homepage">Homepage</a><br/>
-        <a href="/mangapage">MangaPage</a>
+        <a href="/mangapage">MangaPage</a><br/>
+        <a href="/profilepage">ProfilePage</a><br/>
         <Routes>
           <Route path="/" element={<Register/>}/>
           <Route path="/homepage" element={<Homepage manga={manga} setManga={setManga}/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/chapterpage" element={<ChapterPage manga={manga}/>}/>
           <Route path="/mangapage" element={<MangaPage manga={manga} />}/>
+          <Route path="/profilepage" element={<Profile/>}/>
         </Routes>
       </BrowserRouter>
 

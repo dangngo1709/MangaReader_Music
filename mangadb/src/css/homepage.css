@@ -152,13 +152,7 @@
 .HomeButton:hover{
   background-color: peru;
 }
-.MostPopularButton{
-  background-color: transparent;
-  border-radius: 5px;
-  text-align: left;
-  text-indent: 30px;
 
-}
 .MostPopularButton:hover{
   background-color: peru;
 }
