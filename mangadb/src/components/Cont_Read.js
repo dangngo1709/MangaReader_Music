@@ -28,20 +28,23 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
     const list = new MangaList();
     const includedTags = [genre];
     const excludedTags = ["Harem"];
-    const title = 'Fairy';
+    const title = 'Slime';
     //list.setTitleSearch(title);
     let order = {};
     if(orderFilter === 'Most Popular'){
       order.followedCount = 'desc'; 
     } else if (orderFilter === 'Relevant'){
       order.relevance = 'desc'; 
+    } else if (orderFilter === 'Year'){
+      order.year = 'desc';
     } else {
       order.latestUploadedChapter = 'desc'
     }
+    //list.setTitleSearch(title);
     const filterObj = {
       includedTags: includedTags,
       excludedTags: excludedTags,
-      order: order
+      order: order,
     };
     // Create filters above ^^ 
     // If you like to search just for a title, add in the setTitleSearch 
@@ -65,6 +68,7 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
               <option value="Most Popular">Most Popular</option>
               <option value="Relevant">Relevant</option>
               <option value="Latest Uploaded Chapter">Latest Uploaded Chapter</option>
+              <option value="Year">Year</option>
             </select>
           </label>
         </span>

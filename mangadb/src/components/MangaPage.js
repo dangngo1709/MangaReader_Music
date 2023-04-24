@@ -1,21 +1,17 @@
 import React from 'react'
 import "../css/mangapage.css";
-import { FaHome } from 'react-icons/fa';
-import { AiOutlineMenu, AiTwotoneSetting, AiFillProfile } from 'react-icons/ai';
-import { ImFire } from 'react-icons/im';
-import { MdAccountCircle, MdFavorite } from 'react-icons/md'
-import Cont_Read from "./Cont_Read";
-import { useState, useEffect } from 'react';
-import MangaList from "../utility/MangaList";
-import MangaCover from '../assets/MangaCover.jpeg'
+import { useState, useEffect, useRef } from 'react';
 import Menu from './Menu';
-import Manga from '../utility/Manga';
+import { Navigate, useNavigate } from "react-router-dom";
+//import Manga from '../utility/Manga';
 
 const MangaPage = ({manga}) => {
  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
  const [isAccountExpanded, setIsAccountExpanded] = useState(false);
  const [coverArt, setcoverArt] = useState("");
+ const selectRef = useRef(null);
  let mangaObj = JSON.parse(localStorage.getItem('manga'));
+ const navigate = useNavigate();
  function sortData(data) {
   //bubble sort
   for (var i = 0; i < data.length; i++) {
@@ -31,21 +27,25 @@ const MangaPage = ({manga}) => {
 }
 let sortedChList;
 const [chList, setChList] = useState([]);
-const handleChapterClick = (event) => {
+const handleChapterClick = async (event) => {
   event.preventDefault()
-  console.log(event.target.value)
-  localStorage.setItem('chapter_num', event.target.value)
-  let chapterObj;
-  for(let i = 0; i < mangaObj.chapter_list.length; i++){
-    if(mangaObj.chapter_list[i].chapter_num == event.target.value){
-      chapterObj = mangaObj.chapter_list[i];
+  localStorage.setItem('select_index', selectRef.current.selectedIndex);
+  let chapList = [];
+  let chapterImgs;
+  let done = false;
+  for(let i = 0; i < chList.length; i++){
+    chapList.push(chList[i].chapter_num);
+    if(chList[i].chapter_num == event.target.value && !done){
+      chapterImgs = await manga.generateChapterImgs(chList[i]);
+      done = true;
     }
   }
-  console.log(chapterObj);
-  chapterObj.generateChapterImgs();
+  localStorage.setItem('sortedChList', JSON.stringify(chapList));
+  localStorage.setItem('chapterImgs', JSON.stringify(chapterImgs));
+  navigate("/chapterpage");
 }
  useEffect( () => {
-  let chList = mangaObj.chapter_list;
+  let chList = manga.chapter_list;
   sortedChList = sortData(chList);
   setChList(sortedChList);
   setcoverArt(mangaObj.coverArt)
@@ -84,8 +84,8 @@ const handleChapterClick = (event) => {
        </div>
        <div style={{textAlign:"left", marginLeft:"17px"}}>       
         <label>
-            <select name="Sort Order" id="orderSelect" onChange={handleChapterClick}>
-            {chList.map((chapter,index)=> (<option value={chapter.chapter_num}>Chapter {chapter.chapter_num}</option> ))}
+            <select name="Sort Order" id="orderSelect" onChange={handleChapterClick} ref={selectRef}>
+            {chList.map((chapter,index)=> (<option key={index} value={chapter.chapter_num}>Chapter {chapter.chapter_num}</option> ))}
             </select>
           </label>
       </div>

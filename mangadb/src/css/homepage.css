@@ -4,6 +4,7 @@
 
 .grid-container {
     display: grid;
+    grid-template-columns: 250px auto;
     grid-template-areas:
       'header header header header header header'
       'menu main main main main main'
@@ -87,16 +88,15 @@
     width: 256px;
     height: 490px;
     margin-bottom: 5px;
-    border: 2px solid rgb(32,32,32);
     background-color: whitesmoke;
     overflow: hidden;
     border-radius: 8px;
+    margin: 5px 5px;
 }
 
 .book-block:hover{
-  border: 2px solid rgb(32,32,32);
   border-radius: 8px;
-  background-color: antiquewhite;
+  box-shadow: 0 0 1px 4px #10a7c2;
   user-select: none;
 }
 

@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(UserData)
-const port = 5000;
+const port = 5001;
 
 app.listen(port, () => {
   console.log("server starting");

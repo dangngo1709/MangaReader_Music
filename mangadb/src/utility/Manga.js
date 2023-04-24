@@ -96,23 +96,22 @@ export default class Manga {
     return this.chapter_list
   }
 
-  async generateChapterImgs(chList){
-    let dataSaver,chapterHash
-    const chID = chList[0].chapter_id;
-      const resp = await axios({
+  async generateChapterImgs(chapter){
+    const chapter_imgs = [];
+    const chID = chapter.chapter_id;
+    const resp = await axios({
         method: "GET",
         url: `${this.base_url}/at-home/server/${chID}`
-      })
-      chapterHash = await resp.data.chapter.hash;
-      dataSaver = await resp.data.chapter.dataSaver;
-      for(let j = 0; j < 2; j++){
+    })
+    const chapterHash = await resp.data.chapter.hash;
+    const dataSaver = await resp.data.chapter.dataSaver;
+    for(let j = 0; j < dataSaver.length; j++){
         const fileName = dataSaver[j];
         const link = `${this.img_url}/data-saver/${chapterHash}/${fileName}`;
-        chList[0].addChapterImg(link)
-      }
-      console.log(chList[0])
-    return this.chapter_list;
-  }
+        chapter_imgs.push(link);
+    }
+   return chapter_imgs; 
+}
 
   sortData(data) {
     //bubble sort
