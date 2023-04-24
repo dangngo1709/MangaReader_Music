@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 
 const Register = () => {
-  const base_url = process.env.REACT_APP_SERVER_URL;
+  const base_url = 'http://localhost:5000';
   const register_bad = useRef(null);
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();

@@ -89,6 +89,7 @@ export default class MangaList {
       });
       return response;
     });
+    console.log(Promise.all(promise))
     return Promise.all(promise);
   }
 

@@ -17,6 +17,10 @@ router.post("/mangadb/profileAboutMe", async(req,res) => {
 })
 
 
+router.get("", (res,req) => {
+    return req.json({status: 'mangadb'});
+})
+
 router.post("/mangadb/register", async (req,res) => {
     try {
         if(req.body){

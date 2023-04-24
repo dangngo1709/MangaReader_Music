@@ -13,10 +13,10 @@ const Homepage = ({manga, setManga}) => {
   useEffect( () => {
   }, [])
   const sessionID = localStorage.getItem('session_id');
-  // if (!sessionID) {
-  //   localStorage.setItem('login_missing', 'true');
-  //   window.location.href = '/login'
-  // }
+  /*if (!sessionID) {
+    localStorage.setItem('login_missing', 'true');
+    window.location.href = '/login'
+  }*/
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = '/login';
