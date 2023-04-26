@@ -1,7 +1,7 @@
 import React from 'react'
 import "../css/profile.css";
-import { useState } from 'react';
-import profilepicture from "/Users/dangngo/Desktop/project133/mangadb/src/assets/profilepicture.jpeg"
+import { useState, useEffect } from 'react';
+import profilepicture from "../assets/profilepicture.jpeg"
 import Menu from './Menu';
 
 const Profile = () => {
@@ -13,8 +13,6 @@ const Profile = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Text submitted: ' + text);
-    console.log(localStorage.getItem('session_id'))
     const email = localStorage.getItem('session_id');
     // Here you can save the text to a database or perform other actions
     setText('');
@@ -29,10 +27,22 @@ const Profile = () => {
         email
       })
     });
-
-
-    /* Make a get request to retrieve data */
   }
+  const getAboutMe = async() => {
+    const res = await fetch('/mangadb/getAboutMe', {
+      method: "GET"
+    })
+    const data = await res.json();
+    if(data.status === 'true'){
+      console.log(data.aboutMe);
+    } else {
+      console.log(data.reason);
+    }
+  }
+  useEffect( () => {
+    /* Make a get request to retrieve data */
+    getAboutMe();
+  }, [])
   return (
     <div className="grid-container">
       <div className="p1" id="p_1">

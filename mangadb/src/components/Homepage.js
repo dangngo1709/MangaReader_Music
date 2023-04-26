@@ -17,9 +17,14 @@ const Homepage = ({manga, setManga}) => {
     localStorage.setItem('login_missing', 'true');
     window.location.href = '/login'
   }*/
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.href = '/login';
+  const handleLogout = async() => {
+    console.log('here')
+    const resp = await fetch('/mangadb/logout', {
+      method: "GET"
+    }).then( () => {
+      localStorage.clear();
+      window.location.href = '/login';
+    })
   }
   return (
     <div className="grid-container">

@@ -2,31 +2,39 @@ import React, { useRef } from "react";
 
 const Register = () => {
   const register_bad = useRef(null);
+  const password_bad = useRef(null);
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
     const user_name = event.target[0].value;
     const user_email = event.target[1].value;
     const user_pass = event.target[2].value;
     const confirm_user_pass = event.target[3].value;
-
-    const resp = await fetch(`/mangadb/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_name,
-        user_email,
-        user_pass,
-      }),
-    });
-    const data = await resp.json();
-    if (data.user) {
-      register_bad.current.style.display = "none";
-      window.location.href = "/login";
+    if(user_pass === confirm_user_pass){
+      const resp = await fetch(`/mangadb/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_name,
+          user_email,
+          user_pass,
+        }),
+      });
+      const data = await resp.json();
+      if (data.user) {
+        register_bad.current.style.display = "none";
+        password_bad.current.style.display = "none"
+        window.location.href = "/login";
+      } else {
+        password_bad.current.style.display = "none"
+        register_bad.current.style.display = "block";
+      }
     } else {
-      register_bad.current.style.display = "block";
+      register_bad.current.style.display = "none";
+      password_bad.current.style.display = "block"
     }
+    
   };
 
   return (
@@ -64,6 +72,9 @@ const Register = () => {
               </div>
               <div class="error-msg" id="Register_Bad" ref={register_bad}>
                 Email or Username already used!
+              </div>
+              <div class="error-msg" id="Password_Bad" ref={password_bad}>
+                Passwords are not identical!
               </div>
             </form>
           </div>

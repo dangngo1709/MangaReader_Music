@@ -1,8 +1,10 @@
 import express from "express";
 import bcrypt from 'bcrypt'
 import User from '../model/User_model.js'
+import dotenv from "dotenv";
+dotenv.config();
 const router = express.Router();
-let userEmail;
+const app = express();
 const generateHash = async (plaintext) => {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(plaintext, salt);
@@ -10,8 +12,6 @@ const generateHash = async (plaintext) => {
 }
 router.post("/mangadb/profileAboutMe", async(req,res) => {
     try{
-        generateUser(req);
-        userEmail = req.body.email;
         const user = await User.updateOne({
             email: req.body.email
         }, {
@@ -19,21 +19,23 @@ router.post("/mangadb/profileAboutMe", async(req,res) => {
                 "aboutMe": req.body.text
             }
         })
-        console.log(req.body);
     }catch(err){
         return res.json({ status: 'error'})
     }
 })
 
 router.get("/mangadb/getAboutMe", async(req,res) => {
-    const user = await User.findOneAndDelete({
-        email: userEmail
+    const user = await User.findOne({
+        email: req.session.userEmail
     })
-    console.log(user)
-    res.json({aboutMe: userEmail})
+    if(user){
+        res.json({status: 'true', aboutMe: user.aboutMe})
+    } else {
+        res.json({status: 'error', reason: 'User not logged in'})
+    }
 })
 
-router.get("", async (res,req) => {
+router.get("", async (req,res) => {
     return req.json({status: 'mangadb'});
 })
 
@@ -63,6 +65,7 @@ router.post("/mangadb/login", async (req,res) => {
         })
         const match = await bcrypt.compare(req.body.user_pass, user.password);
         const id = user.email;
+        req.session.userEmail = req.body.user_email;
         if (match) {
             return res.json( {status: "ok", user: true, sessionID: id} )
         } else {
@@ -71,5 +74,9 @@ router.post("/mangadb/login", async (req,res) => {
     }catch(err){
         res.json({ status: "error"})
     }
+})
+router.get("/mangadb/logout", (req,res) => {
+    req.session.destroy();
+    res.send({status: 'success'})
 })
 export default router;

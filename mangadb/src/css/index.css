@@ -132,6 +132,6 @@ button{
     text-align: center;
 }
 
-#Login_Missing, #Login_Bad, #Username_Bad, #Email_Bad, #Register_Bad {
+#Login_Missing, #Login_Bad, #Username_Bad, #Email_Bad, #Register_Bad, #Password_Bad {
     display: none;
 }

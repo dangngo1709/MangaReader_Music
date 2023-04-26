@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Homepage from "./components/Homepage";
 import MangaPage from "./components/MangaPage";
 import {useState} from 'react';
-import Profile from "./components/Profile";
+import Profile from "./components/Profile.js";
+import ChapterPage from "./components/ChapterPage"
 function App() {
   const [manga, setManga] = useState(null);
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/" element={<Register/>}/>
           <Route path="/homepage" element={<Homepage manga={manga} setManga={setManga}/>}/>
           <Route path="/login" element={<Login/>}/>
-
+          <Route path="/chapterpage" element={<ChapterPage manga={manga}/>}/>
           <Route path="/mangapage" element={<MangaPage manga={manga} />}/>
           <Route path="/profilepage" element={<Profile/>}/>
         </Routes>
