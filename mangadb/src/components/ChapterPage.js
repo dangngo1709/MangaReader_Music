@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import { Navigate, useNavigate } from "react-router-dom";
 import {AiOutlineArrowLeft} from "react-icons/ai"
 import {AiOutlineArrowRight} from "react-icons/ai"
+import axios from "axios";
 
 const ChapterPage = ({manga}) => {
   const [chImgs, setChImgs] = useState([]);
@@ -14,7 +15,8 @@ const ChapterPage = ({manga}) => {
   const selectRef = useRef(null);
   const chapNavbarRef = useRef(null);
   let chList = JSON.parse(localStorage.getItem('sortedChList'));
-
+  const base_url = "https://api.mangadex.org";
+  const img_url = "https://uploads.mangadex.org";
   function sortData(data) {
     //bubble sort
     for (var i = 0; i < data.length; i++) {
@@ -32,37 +34,57 @@ const ChapterPage = ({manga}) => {
     selectRef.current.selectedIndex = localStorage.getItem('select_index');
     setChImgs(JSON.parse(localStorage.getItem('chapterImgs')));
   },[])
+  async function generateChapterImgs(chapter){
+    const chapter_imgs = [];
+    const chID = chapter.chapter_id;
+    const resp = await axios({
+        method: "GET",
+        url: `${base_url}/at-home/server/${chID}`
+    })
+    const chapterHash = await resp.data.chapter.hash;
+    const dataSaver = await resp.data.chapter.dataSaver;
+    for(let j = 0; j < dataSaver.length; j++){
+        const fileName = dataSaver[j];
+        const link = `${img_url}/data-saver/${chapterHash}/${fileName}`;
+        chapter_imgs.push(link);
+    }
+   return chapter_imgs; 
+  }
   
   const handlePrev = async (event) => {
+    let mangaObj = JSON.parse(localStorage.getItem('manga'));
     event.preventDefault();
     if(selectRef.current.selectedIndex - 1 > 0){
       let chapterImgs;
       selectRef.current.selectedIndex = localStorage.getItem('select_index') - 1;
       localStorage.setItem('select_index', selectRef.current.selectedIndex);
-      let sortChapList = sortData(manga.chapter_list);
-      chapterImgs = await manga.generateChapterImgs(sortChapList[selectRef.current.selectedIndex])
+      let sortChapList = sortData(mangaObj.chapter_list);
+      chapterImgs = await generateChapterImgs(sortChapList[selectRef.current.selectedIndex])
       setChImgs(chapterImgs);
       setLoading(true);
       window.scrollTo(0, 0);
       setTimeout(() => {
         setLoading(false);
+        setPage(0);
       },700)
     }
   }
 
   const handleNext = async (event) => {
+    let mangaObj = JSON.parse(localStorage.getItem('manga'));
     event.preventDefault();
-    if(selectRef.current.selectedIndex + 1 < manga.chapter_list.length){
+    if(selectRef.current.selectedIndex + 1 < mangaObj.chapter_list.length){
       let chapterImgs;
         selectRef.current.selectedIndex = Number(localStorage.getItem('select_index')) + 1;
         localStorage.setItem('select_index', selectRef.current.selectedIndex);
-        let sortChapList = sortData(manga.chapter_list);
-        chapterImgs = await manga.generateChapterImgs(sortChapList[selectRef.current.selectedIndex])
+        let sortChapList = sortData(mangaObj.chapter_list);
+        chapterImgs = await generateChapterImgs(sortChapList[selectRef.current.selectedIndex])
         setChImgs(chapterImgs);
         setLoading(true);
         window.scrollTo(0, 0);
         setTimeout(() => {
           setLoading(false);
+          setPage(0);
         }, 700)
     }
     
@@ -70,22 +92,35 @@ const ChapterPage = ({manga}) => {
  
   const handleChapterClick = async (event) => {
     event.preventDefault()
+    let mangaObj = JSON.parse(localStorage.getItem('manga'));
     let chapterImgs;
     localStorage.setItem('select_index', selectRef.current.selectedIndex);
-    let sortChapList = sortData(manga.chapter_list);
-    chapterImgs = await manga.generateChapterImgs(sortChapList[selectRef.current.selectedIndex])
+    let sortChapList = sortData(mangaObj.chapter_list);
+    chapterImgs = await generateChapterImgs(sortChapList[selectRef.current.selectedIndex])
     setChImgs(chapterImgs);
     setLoading(true);
     localStorage.setItem('chapterImgs', JSON.stringify(chapterImgs));
     setChImgs(JSON.parse(localStorage.getItem('chapterImgs')))
     setTimeout(() => {
       setLoading(false);
+      setPage(0);
     }, 700)
   }
 
   const handleView = (event) => {
     setView(event.target.value);
-    if(view === 'Horizontal'){
+  }
+
+  const handleNextPage = (event) => {
+    if(pageIndex < chImgs.length - 1){
+      const page = pageIndex + 1;
+      setPage(page);
+    }
+  }
+  const handlePrevPage = (event) => {
+    if(pageIndex > 0){
+      const page = pageIndex - 1;
+      setPage(page);
     }
   }
   return (
@@ -116,9 +151,11 @@ const ChapterPage = ({manga}) => {
               {view == 'Vertical' ? (chImgs.map( (url, index) => (<span><img key={index} id="chapter-img" src={url} alt="img"/></span>))) : 
               (<>
               <img id="chapter-img-hori" src={chImgs[pageIndex]} alt="img"/><div className="page-tools">
-                <button style={{backgroundColor: 'rgb(32,32,32)'}}><AiOutlineArrowLeft style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke'}}/>
-                </button>{pageIndex}/{chImgs.length}
-                <button style={{backgroundColor: 'rgb(32,32,32)', marginLeft: '6px'}}><AiOutlineArrowRight style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke'}}/></button></div></>)}
+                <button onClick={handlePrevPage} style={{backgroundColor: 'rgb(32,32,32)'}}>
+                  <AiOutlineArrowLeft style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke'}}/>
+                </button>{pageIndex}/{chImgs.length - 1}
+                <button  onClick={handleNextPage} style={{backgroundColor: 'rgb(32,32,32)', marginLeft: '6px'}}>
+                  <AiOutlineArrowRight style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke'}}/></button></div></>)}
             </div>)}
             <div className="chapter-navbar">
               <button id="prev" onClick={handlePrev}> Prev Chapter</button>

@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Homepage from "./components/Homepage";
 import MangaPage from "./components/MangaPage";
 import {useState} from 'react';
-import Profile from "./components/Profile";
+import Profile from "./components/Profile.js";
+import ChapterPage from "./components/ChapterPage"
 function App() {
   const [manga, setManga] = useState(null);
   return (

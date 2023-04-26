@@ -20,17 +20,6 @@
     overflow-x: auto;
     outline: none;
 }
-
-#orderSelect {
-  background-color: #10a7c2;
-  color: whitesmoke;
-  margin-left: 10px;
-  padding: 5px;
-  font-size: 20px;
-  border-radius: 5px;
-  width: 200px;
-}
-
 #item_1{
   background-color: whitesmoke;
   border: 1px solid #1f1f1f;

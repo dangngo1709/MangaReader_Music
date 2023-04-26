@@ -3,14 +3,17 @@ import "../css/mangapage.css";
 import { useState, useEffect, useRef } from 'react';
 import Menu from './Menu';
 import { Navigate, useNavigate } from "react-router-dom";
-//import Manga from '../utility/Manga';
+import axios from "axios";
 
 const MangaPage = ({manga}) => {
  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
  const [isAccountExpanded, setIsAccountExpanded] = useState(false);
  const [coverArt, setcoverArt] = useState("");
+ const [scanGroups, setGroup] = useState(null);
  const selectRef = useRef(null);
  let mangaObj = JSON.parse(localStorage.getItem('manga'));
+ const base_url = "https://api.mangadex.org";
+ const img_url = "https://uploads.mangadex.org";
  const navigate = useNavigate();
  function sortData(data) {
   //bubble sort
@@ -25,6 +28,22 @@ const MangaPage = ({manga}) => {
   }
   return data;
 }
+async function generateChapterImgs(chapter){
+  const chapter_imgs = [];
+  const chID = chapter.chapter_id;
+  const resp = await axios({
+      method: "GET",
+      url: `${base_url}/at-home/server/${chID}`
+  })
+  const chapterHash = await resp.data.chapter.hash;
+  const dataSaver = await resp.data.chapter.dataSaver;
+  for(let j = 0; j < dataSaver.length; j++){
+      const fileName = dataSaver[j];
+      const link = `${img_url}/data-saver/${chapterHash}/${fileName}`;
+      chapter_imgs.push(link);
+  }
+ return chapter_imgs; 
+}
 let sortedChList;
 const [chList, setChList] = useState([]);
 const handleChapterClick = async (event) => {
@@ -36,7 +55,7 @@ const handleChapterClick = async (event) => {
   for(let i = 0; i < chList.length; i++){
     chapList.push(chList[i].chapter_num);
     if(chList[i].chapter_num == event.target.value && !done){
-      chapterImgs = await manga.generateChapterImgs(chList[i]);
+      chapterImgs = await generateChapterImgs(chList[i]);
       done = true;
     }
   }
@@ -44,23 +63,43 @@ const handleChapterClick = async (event) => {
   localStorage.setItem('chapterImgs', JSON.stringify(chapterImgs));
   navigate("/chapterpage");
 }
+function createScanGroups(){
+  let scanGroups = ['Mangadex']
+  for(let i = 0; i < mangaObj.chapter_list.length; i++){
+    if(mangaObj.chapter_list[i].scanlation_group){
+      let group = mangaObj.chapter_list[i].scanlation_group
+      if(group.length > 0 && scanGroups.includes(group) == false){
+        scanGroups.push(group);
+      }
+    }
+  }
+  return scanGroups;
+}
  useEffect( () => {
-  let chList = manga.chapter_list;
+  localStorage.setItem("groupList", JSON.stringify(createScanGroups()));
+  setGroup(JSON.parse(localStorage.getItem("groupList")));
+  setTimeout( () => {
+  },200)
+  let chList = mangaObj.chapter_list;
   sortedChList = sortData(chList);
   setChList(sortedChList);
   setcoverArt(mangaObj.coverArt)
  },[])
 
-
-
- const handleMenuClick = () => {
-   setIsMenuExpanded(!isMenuExpanded);
- };
-
-
- const handleAccountClick = () => {
-   setIsAccountExpanded(!isAccountExpanded);
- };
+ const handleFirstPage = async(event) => {
+  event.preventDefault()
+  localStorage.setItem('select_index', 0);
+  let chapList = [];
+  let chapterImgs;
+  let done = false;
+  for(let i = 0; i < chList.length; i++){
+    chapList.push(chList[i].chapter_num);
+  }
+  chapterImgs = await generateChapterImgs(chList[0]);
+  localStorage.setItem('sortedChList', JSON.stringify(chapList));
+  localStorage.setItem('chapterImgs', JSON.stringify(chapterImgs));
+  navigate("/chapterpage");
+ }
  return (
    <div className="grid-container">
      <div className="item1" id="item_1">
@@ -79,15 +118,19 @@ const handleChapterClick = async (event) => {
              <p style={{textAlign:"left", fontSize: "25px", color: 'black'}}><span style = {{fontWeight: "bold"}}>Author:</span> {mangaObj.author}</p>
              <p style={{textAlign:"left", fontSize: "25px", color: 'black'}}><span style = {{fontWeight: "bold"}}>Artist:</span> {mangaObj.artist}</p>
              <p  style = {{textAlign:"left", fontSize:"25px", color: 'black'}}><span style = {{fontWeight: "bold"}}>Genre:</span> {mangaObj.genreList.map ( (genre,index) => (<span key = {index}> {genre},</span>))}</p>  
-
+             <p  style = {{textAlign:"left", fontSize:"25px", color: 'black'}}>
+              <span style = {{fontWeight: "bold"}}>Scan Groups: </span>
+                {scanGroups?.map ( (group,index) => (<span key={index}> {group},</span>))}
+             </p>
          </div> 
        </div>
-       <div style={{textAlign:"left", marginLeft:"17px"}}>       
+       <div style={{display: 'flex', justifyContent: 'left', marginLeft:"28px"}}>       
         <label>
             <select name="Sort Order" id="orderSelect" onChange={handleChapterClick} ref={selectRef}>
             {chList.map((chapter,index)=> (<option key={index} value={chapter.chapter_num}>Chapter {chapter.chapter_num}</option> ))}
             </select>
-          </label>
+        </label>
+        <button id="firstPage" onClick={handleFirstPage}> First Page </button>
       </div>
      </div>
    </div>

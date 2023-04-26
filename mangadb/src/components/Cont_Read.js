@@ -6,12 +6,12 @@ import MangaList from "../utility/MangaList";
 const Cont_Read = ({setManga, genre, mangaList, setList}) => {
   const [loading,setLoading] = useState(false);
   const [orderFilter, setOrder] = useState("Most Popular")
+  const [scanGroups, setGroup] = useState(null);
   const navigate = useNavigate();
   const handleMangaClick = async (manga, event) => {
     event.preventDefault();
     const id = manga.id
-    const resp = await manga.generateChapters(id)
-    setManga(manga);
+    manga.generateChapters(id)
     setTimeout( () => {
       setManga(manga);
       localStorage.setItem('manga', JSON.stringify(manga));
@@ -35,8 +35,6 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
       order.followedCount = 'desc'; 
     } else if (orderFilter === 'Relevant'){
       order.relevance = 'desc'; 
-    } else if (orderFilter === 'Year'){
-      order.year = 'desc';
     } else {
       order.latestUploadedChapter = 'desc'
     }
@@ -68,7 +66,6 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
               <option value="Most Popular">Most Popular</option>
               <option value="Relevant">Relevant</option>
               <option value="Latest Uploaded Chapter">Latest Uploaded Chapter</option>
-              <option value="Year">Year</option>
             </select>
           </label>
         </span>

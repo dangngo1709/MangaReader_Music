@@ -60,6 +60,10 @@ export default class Manga {
     const resp = await axios({
       method: "GET",
       url: `${this.base_url}/manga/${manga_id}/feed`,
+      params: {
+        translatedLanguage: ['en'],
+        limit: 200,
+      }
     }).catch(err => {
       console.log(err)
     })
@@ -68,31 +72,31 @@ export default class Manga {
 
   async generateChapters(manga_id) {
     this.getlistChapters(manga_id)
-      .then((res) => {
-        res.data.data.map( (chapter) => {
-          const newChapter = new Chapter();
-          newChapter.setChapterID(chapter.id);
-          newChapter.setChapterNum(chapter.attributes?.chapter);
-          newChapter.setNumPgs(chapter.attributes?.pages);
-          chapter.relationships.forEach((res) => {
-            if (res.type == "scanlation_group") {
-              newChapter.setScanID(res.id);
-            }
-          });
-          this.addChapterList(newChapter);
+    .then((res) => {
+      res.data.data.map( (chapter) => {
+        const newChapter = new Chapter();
+        newChapter.setChapterID(chapter.id);
+        newChapter.setChapterNum(chapter.attributes?.chapter);
+        newChapter.setNumPgs(chapter.attributes?.pages);
+        chapter.relationships.forEach((res) => {
+          if (res.type == "scanlation_group") {
+            newChapter.setScanID(res.id);
+          }
         });
-      })//get scanlation group
-      .then(async () => {
-        for (let i = 0; i < this.chapter_list.length; i++) {
-          const scanID = this.chapter_list[i].scanlationID;
-          const resp = await axios({
-            method: "GET",
-            url: `${this.base_url}/group/${scanID}`,
-          });
-          const scanGroup = await resp.data.data.attributes?.name;
-          this.chapter_list[i].setScanlationGroup(scanGroup);
-        }
-      })
+        this.addChapterList(newChapter);
+      });
+    })//get scanlation group
+    .then(async () => {
+      for (let i = 0; i < this.chapter_list.length; i++) {
+        const scanID = this.chapter_list[i].scanlationID;
+        const resp = await axios({
+          method: "GET",
+          url: `${this.base_url}/group/${scanID}`,
+        });
+        const scanGroup = await resp.data.data.attributes?.name;
+        this.chapter_list[i].setScanlationGroup(scanGroup);
+      }
+    })
     return this.chapter_list
   }
 
@@ -104,7 +108,7 @@ export default class Manga {
         url: `${this.base_url}/at-home/server/${chID}`
     })
     const chapterHash = await resp.data.chapter.hash;
-    const dataSaver = await resp.data.chapter.dataSaver;
+    const dataSaver = await resp.data.chapter.data;
     for(let j = 0; j < dataSaver.length; j++){
         const fileName = dataSaver[j];
         const link = `${this.img_url}/data-saver/${chapterHash}/${fileName}`;
