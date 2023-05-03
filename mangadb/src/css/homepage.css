@@ -10,6 +10,7 @@
       'menu main main main main main';
     background-color: #1B6FA8;
     min-height: 90vh;
+    grid-template-columns: 250px auto;
 }
 
 .grid-container > div {

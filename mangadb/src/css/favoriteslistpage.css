@@ -3,7 +3,10 @@
     height: 100px;
 
     }
-    
+    ::-webkit-scrollbar{
+        width:  10px;
+        height: 10px;
+    }
     
     
     #headerfaveList {
@@ -15,11 +18,15 @@
         background-color:#10a7c2;
     }
     
-    #mainfaveList {
-    }
 
     .main {
         display: flex;
         align-items: center;
         width: 100%;
     }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 10px;
+    }
+
+    

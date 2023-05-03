@@ -34,7 +34,10 @@ const FavoritesListPage = ({manga, setManga}) => {
 
         <div className="item3" id="item_3">
           <div className="main">
-          <FavoritesListComponent />
+            <FavoritesListComponent 
+              setManga={setManga} 
+              setList={setList} 
+              mangaList={mangaList}  />
           </div>
         </div>
 

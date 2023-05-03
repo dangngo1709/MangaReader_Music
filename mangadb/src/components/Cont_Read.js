@@ -28,6 +28,7 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
     const list = new MangaList();
     const includedTags = [genre];
     const excludedTags = ["Harem"];
+    
     const title = 'Fairy';
     //list.setTitleSearch(title);
     let order = {};
@@ -41,7 +42,10 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
     const filterObj = {
       includedTags: includedTags,
       excludedTags: excludedTags,
-      order: order
+      order: order,
+
+      //for fav list 
+      
     };
     // Create filters above ^^ 
     // If you like to search just for a title, add in the setTitleSearch 
@@ -94,30 +98,6 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
         )}
       </div>
 
-      <div className="book-row">
-        {loading ? 
-        mangaList.map( (manga,index) => 
-            (
-              <div
-                className="book-block"
-                onClick={(e) => handleMangaClick(manga, e)}
-                key={index}
-              >
-                <img src={manga.coverArt} alt="img" />
-                <div id="rec_title">
-                  {manga.title}
-                  <br />
-                  <span id="rec_author">Author: {manga.author}</span>
-                  <br />
-                  <span id="rec_author">Artist: {manga.artist}</span>
-                </div>
-                <p id="description"><span style={{fontWeight: 'bold'}}>Description: </span>{manga.description}</p>
-              </div>
-            )
-          ) : (
-          <h1>Loading</h1>
-        )}
-      </div>
     </div>
   );
 };

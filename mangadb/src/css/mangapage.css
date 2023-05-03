@@ -43,3 +43,13 @@
     font-size: 25px;
     margin-right: 10px;   
 }
+
+#AddtoFL {
+    background-color: #10a7c2;
+    color: whitesmoke;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
+    width: 200px;
+    
+}

@@ -30,7 +30,63 @@
     padding-left: 5px;
 }
 
-input::placeholder {
-
+.FLfilters {
+    flex: auto;
+    padding-top: 20px;
+    padding-right: 50px;
 }
 
+
+.FLmain {
+    display: block;
+    gap: 150px;
+    margin: 20px;
+}
+
+.FLbookblock {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 256px;
+    height: 490px;
+    margin: 20px;
+    border: 2px solid rgb(32,32,32);
+    background-color: whitesmoke;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.FLbookblock:hover {
+  border: 2px solid rgb(32,32,32);
+  border-radius: 8px;
+  background-color: antiquewhite;
+  user-select: none;
+}
+
+.FLbookblock > img {
+  width: 256px;
+  height: 256px;
+  object-fit: cover;
+}
+
+#FLmangatitle {
+  font-size: 20px;
+  background-color: #10a7c2;
+  height: 100px;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+#FLdescription {
+  font-size: 20px;
+  color: black;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.FLFilters {
+  vertical-align: middle;
+}
