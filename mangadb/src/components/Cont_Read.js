@@ -59,6 +59,12 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
     setLoading(true);
   }, 1200)
   }, [genre, orderFilter]);
+
+  //for adding to favorites list/page
+  const handleAddToFaves = async(event) => {
+  
+  }
+  
   return (
     <div className="cont_read_container">
       <div id="cont-read">

@@ -1,55 +1,76 @@
-    .column{
+.column{
     display: flex;
     align-items: left;
     padding: 20px;
      width: 100%;
-    }
+   }
+   .left-image{
+    float: left;
+    margin-top: 50px;
+    margin-left:20px;
+    margin-right: 20px;
+    flex-direction: column;
+   }
+   .ReadMangaButton{
+    margin-top: 20px;
+    max-width: 200px;
+    max-height: 50px;
+    margin-left: 20px;
+   }
+   .description{
+       font-size: 25px;
+       color: black;
+       text-overflow:ellipsis;
+       overflow:hidden;
+       display: -webkit-box !important;
+       -webkit-line-clamp: 4;
+       -webkit-box-orient: vertical;
+       white-space: normal;
+       text-align: left;
+   }
+   .genre{
+       font-size: 25px;
+       margin-right: 10px;
+   }
+   #orderSelect {
+       background-color: #10a7c2;
+       color: whitesmoke;
+       margin-left: 10px;
+       padding: 5px;
+       font-size: 20px;
+       border-radius: 5px;
+       width: 200px;
+   }
+   
+   #firstPage{
+       margin: 0px;
+       background-color: #10a7c2;
+       color: white;
+       margin-top: 5px;
+       margin-left: 10px;
+       font-size: 25px;
+       border-radius: 5px;
+       width: 200px;
+       font-weight: normal;
+       height: 42px;
+   }
+   #firstPage:hover{
+       background-color: peru;
+   }
 
-   .menuMangaPage{
-    width: 250px;
-    }
 
-.column{
- display: flex;
- align-items: left;
- padding: 20px;
-  width: 100%;
-}
-.left-image{
- float: left;
- margin-top: 50px;
- margin-left:20px;
- margin-right: 20px;
- flex-direction: column;
-}
-.ReadMangaButton{
- margin-top: 20px;
- max-width: 200px;
- max-height: 50px;
- margin-left: 20px;
-}
-.description{
-    font-size: 25px;
-    color: black;
-    text-overflow:ellipsis;
-    overflow:hidden;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    white-space: normal;
-    text-align: left;
-}
-.genre{
-    font-size: 25px;
-    margin-right: 10px;   
-}
-
-#AddtoFL {
+   #addToFavesButton {
+    margin: 0px;
     background-color: #10a7c2;
-    color: whitesmoke;
-    padding: 5px;
-    font-size: 15px;
+    color: white;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 25px;
     border-radius: 5px;
-    width: 200px;
-    
+    width: 250px;
+    font-weight: normal;
+    height: 42px;
+}
+#addToFavesButton:hover {
+    background-color: peru;
 }

@@ -100,6 +100,12 @@ function createScanGroups(){
   localStorage.setItem('chapterImgs', JSON.stringify(chapterImgs));
   navigate("/chapterpage");
  }
+
+
+ const handleAddToFaves = async(event) => {
+  
+ }
+ 
  return (
    <div className="grid-container">
      <div className="item1" id="item_1">
@@ -131,6 +137,7 @@ function createScanGroups(){
             </select>
         </label>
         <button id="firstPage" onClick={handleFirstPage}> First Page </button>
+        <button id="addToFavesButton" onClick={handleAddToFaves}> Add To Favorites</button>
       </div>
      </div>
    </div>

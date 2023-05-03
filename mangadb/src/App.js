@@ -14,16 +14,13 @@ function App() {
 
 
     <BrowserRouter>
-        <a href="/">Register</a><br/>
-        <a href="/login">Login</a><br/>
-        <a href="/homepage">Homepage</a><br/>
-        <a href="/mangapage">MangaPage</a>
         <Routes>
           <Route path="/" element={<Register/>}/>
           <Route path="/homepage" element={<Homepage manga={manga} setManga={setManga}/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/chapterpage" element={<ChapterPage manga={manga}/>}/>
           <Route path="/mangapage" element={<MangaPage manga={manga} />}/>
+          <Route path="/favoritepage" element={<FavoritesListPage manga={manga} setManga={setManga}/>}/>
         </Routes>
       </BrowserRouter>
 

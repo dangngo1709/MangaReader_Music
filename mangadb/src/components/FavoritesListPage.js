@@ -14,9 +14,14 @@ const FavoritesListPage = ({manga, setManga}) => {
     }, [])
 
 
-    const handleLogout = () => {
+    const handleLogin = () => {
       localStorage.clear();
       window.location.href = '/login';
+    }
+
+    const handleRegister = () => {
+      localStorage.clear();
+      window.location.href = '/';
     }
 
 
@@ -24,8 +29,11 @@ const FavoritesListPage = ({manga, setManga}) => {
       <div className="grid-container" >
         
         <div className="item1" id="item_1">
-          <button onClick={handleLogout}>Logout</button>
-          Header here :3
+          <div className="tempUserValidation">
+            <button id="UserValidationButtons" onClick={handleLogin}>Login</button>
+            <button id="UserValidationButtons" onClick={handleRegister}>Register</button>
+            Header here :3
+          </div>
         </div>
 
         <div className="item2" id="item_2">

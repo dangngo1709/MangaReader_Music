@@ -36,10 +36,10 @@ const Menu = () => {
         <AiFillProfile style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
         <span style={{color: 'white', letterSpacing: '0.5px'}}>Profile</span>
           </button></a>
-        <button className="MyFavoriteListButton">
+        <a href='/favoritepage'><button className="MyFavoriteListButton">
         <MdFavorite style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
           <span style={{color: 'white', letterSpacing: '0.5px'}}>My Favorite List</span>
-          </button>
+          </button></a>
         <button className="ProfileButton"> 
         <ImMusic style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
         <span style={{color: 'white', letterSpacing: '0.5px'}}>Music Playlist</span>

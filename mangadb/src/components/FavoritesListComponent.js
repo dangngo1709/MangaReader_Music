@@ -7,13 +7,19 @@ import { BsFilterSquare } from "react-icons/bs";
 
 const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
 
+    const navigate = useNavigate();
+
     //for ensuring manga blocks render correctly 
-    const [loading,setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     //for sorting the mangas
     const [orderFilter, setOrder] = useState("Most Popular")
 
-    const navigate = useNavigate();
+    const handleOrderChange = (event) => {
+      event.preventDefault();
+      setOrder(event.target.value);
+    }
+
 
     //for redirecting to manga page 
     const handleMangaClick = async (manga, event) => {
@@ -30,10 +36,6 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
       }, 700)
     };
 
-    const handleOrderChange = (event) => {
-      event.preventDefault();
-      setOrder(event.target.value);
-    }
 
 
     //for removing manga off of the favorites list page
@@ -41,6 +43,7 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
 
     }
 
+    //for searching favorites list
     const [searchFLManga, setsearchFLManga] = useState("");
 
     const handlesearchFLManga = (event) => {
@@ -51,6 +54,7 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
 
     /** How to fetch Manga, need to import mangalist and useeffect */
     useEffect(() => {
+
       //for ensuring manga blocks render correctly 
       setLoading(false);
 
@@ -97,20 +101,24 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
             
             <div className="FLheader">
                 <p id="FLtitle">My Favorite Mangas :3</p>
-                <input type="search" name="FLsearchbar" 
+
+
+                <input type="search" id="FLsearchbar" 
                     placeholder="Search favorite mangas here " 
                     onChange={handlesearchFLManga}>
                 </input>
-                <span id="FLFilters">
-                    <label>
-                        <select name="Sort manga order" id="FLorderSelect" 
-                            onChange={handleOrderChange}>
 
-                        <option value="Most Popular">Most Popular</option>
-                        <option value="Latest Uploaded Chapter">Latest Uploaded Chapter</option>
-                        </select>
-                    </label>
-                </span>
+
+                  <span>
+                      <label>
+                          <select name="Sort manga order" id= "FLorderSelect" 
+                              onChange={handleOrderChange}>
+
+                          <option value="Most Popular">Most Popular</option>
+                          <option value="Latest Uploaded Chapter">Latest Uploaded Chapter</option>
+                          </select>
+                      </label>
+                  </span>
 
             </div>
 
@@ -140,6 +148,8 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
                 <h1>Loading</h1>
                 )}
             </div>
+
+            
         </div>
     )
 

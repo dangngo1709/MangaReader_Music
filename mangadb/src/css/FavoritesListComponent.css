@@ -6,36 +6,38 @@
 }
 
 .FLheader {
-    display: flex;
+  text-align: left;
+  font-weight: 10;
+  display: flex;
 }
 
 #FLtitle {
     font-size: 24px;
     font-weight: 800;
     text-align: left;
-    padding: 20px;
+    padding: 30px;
+    padding-left: 190px;
     width: 20%;
     color: white;
 }
 
-.FLsearchbar {
-
-}
-
-.FLheader input {
+#FLsearchbar {
     width: 600px;
     border-radius: 5px;
     height: 40px;
-    margin: auto;
-    padding-left: 5px;
+    margin: 30px;
+    padding-left: 15px;
 }
 
-.FLfilters {
-    flex: auto;
-    padding-top: 20px;
-    padding-right: 50px;
+#FLorderSelect {
+  background-color: #10a7c2;
+  color: whitesmoke;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 200px;
+  margin: 30px;
 }
-
 
 .FLmain {
     display: block;
@@ -85,8 +87,4 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   white-space: normal;
-}
-
-.FLFilters {
-  vertical-align: middle;
 }
