@@ -70,7 +70,7 @@ export default class MangaList {
         includedTags: this.includedTagNames,
         excludedTags: this.excludedTagNames,
         title: this.getTitleSearch(),
-        limit: '20',
+        limit: 15,
         ...this.order,
       },
     }).then( (resp) => {
@@ -90,7 +90,7 @@ export default class MangaList {
       });
       return response;
     });
-    console.log(Promise.all(promise))
+    //console.log(Promise.all(promise))
     return Promise.all(promise);
   }
 

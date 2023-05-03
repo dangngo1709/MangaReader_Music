@@ -4,6 +4,7 @@
 
 .grid-container {
     display: grid;
+    grid-template-columns: 250px auto;
     grid-template-areas:
       'header header header header header header'
       'menu main main main main main'
@@ -20,17 +21,6 @@
     overflow-x: auto;
     outline: none;
 }
-
-#orderSelect {
-  background-color: #10a7c2;
-  color: whitesmoke;
-  margin-left: 10px;
-  padding: 5px;
-  font-size: 20px;
-  border-radius: 5px;
-  width: 200px;
-}
-
 #item_1{
   background-color: whitesmoke;
   border: 1px solid #1f1f1f;
@@ -88,16 +78,15 @@
     width: 256px;
     height: 490px;
     margin-bottom: 5px;
-    border: 2px solid rgb(32,32,32);
     background-color: whitesmoke;
     overflow: hidden;
     border-radius: 8px;
+    margin: 5px 5px;
 }
 
 .book-block:hover{
-  border: 2px solid rgb(32,32,32);
   border-radius: 8px;
-  background-color: antiquewhite;
+  box-shadow: 0 0 1px 4px #10a7c2;
   user-select: none;
 }
 
@@ -153,13 +142,7 @@
 .HomeButton:hover{
   background-color: peru;
 }
-.MostPopularButton{
-  background-color: transparent;
-  border-radius: 5px;
-  text-align: left;
-  text-indent: 30px;
 
-}
 .MostPopularButton:hover{
   background-color: peru;
 }

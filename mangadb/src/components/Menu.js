@@ -23,8 +23,7 @@ const Menu = () => {
     </button>
     {isMenuExpanded && (
       <div className="submenu1">
-        <button className="HomeButton"><FaHome style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke'}}/> <span style={{color: 'white', letterSpacing: '0.5px'}}>Home</span></button>
-        <button className="MostPopularButton"> <ImFire style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke' }}/> <span style={{color: 'white', letterSpacing: '0.5px'}}>Most Popular</span> </button>
+        <a href="/homepage"><button className="HomeButton"><FaHome style={{ display: 'inline-block', verticalAlign:'middle', marginRight: '10px', color: 'whitesmoke'}}/> <span style={{color: 'white', letterSpacing: '0.5px'}}>Home</span></button></a>
       </div>
     )}
     <button onClick={handleAccountClick} className="AccountButton">
@@ -33,10 +32,10 @@ const Menu = () => {
     </button>
     {isAccountExpanded && (
       <div className="submenu2">
-        <button className="ProfileButton">
+        <a href="/profilepage"><button className="ProfileButton" >
         <AiFillProfile style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
         <span style={{color: 'white', letterSpacing: '0.5px'}}>Profile</span>
-          </button>
+          </button></a>
         <button className="MyFavoriteListButton">
         <MdFavorite style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '10px', color: 'whitesmoke' }}/>
           <span style={{color: 'white', letterSpacing: '0.5px'}}>My Favorite List</span>

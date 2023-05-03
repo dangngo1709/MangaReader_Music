@@ -12,19 +12,6 @@ export default class Chapter {
         this.base_url = "https://api.mangadex.org";
         this.img_url = "https://uploads.mangadex.org";
     }
-    async generateChapterImgs(){
-        const resp = await axios({
-            method: "GET",
-            url: `${this.base_url}/at-home/server/${this.chapter_id}`
-        })
-        const chapterHash = await resp.data.chapter.hash;
-        const dataSaver = await resp.data.chapter.dataSaver;
-        for(let j = 0; j < 2; j++){
-            const fileName = dataSaver[j];
-            const link = `${this.img_url}/data-saver/${chapterHash}/${fileName}`;
-            this.addChapterImg(link);
-        }
-    }
     setChapterHash(x){
         this.chapter_hash = x;
     }
