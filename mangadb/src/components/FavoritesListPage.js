@@ -32,7 +32,6 @@ const FavoritesListPage = ({manga, setManga}) => {
           <div className="tempUserValidation">
             <button id="UserValidationButtons" onClick={handleLogin}>Login</button>
             <button id="UserValidationButtons" onClick={handleRegister}>Register</button>
-            Header here :3
           </div>
         </div>
 

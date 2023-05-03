@@ -105,11 +105,25 @@ function createScanGroups(){
  const handleAddToFaves = async(event) => {
   
  }
+
+ const handleLogin = () => {
+  localStorage.clear();
+  window.location.href = '/login';
+}
+
+const handleRegister = () => {
+  localStorage.clear();
+  window.location.href = '/';
+}
  
  return (
    <div className="grid-container">
      <div className="item1" id="item_1">
-       Header</div>
+          <div className="tempUserValidation">
+            <button id="UserValidationButtons" onClick={handleLogin}>Login</button>
+            <button id="UserValidationButtons" onClick={handleRegister}>Register</button>
+          </div>
+     </div>
      <div className="item2" id="item_2">
         <Menu/>
      </div>

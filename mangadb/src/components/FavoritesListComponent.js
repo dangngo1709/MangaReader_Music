@@ -60,10 +60,7 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
 
 
       const list = new MangaList();
-      const includedTags = [genre];
-      const excludedTags = ["Harem"];
-      const title = 'Fairy';
-      list.setTitleSearch();
+      //list.setTitleSearch();
       
       
 
@@ -75,8 +72,6 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
       }
 
       const filterObj = {
-        includedTags: includedTags,
-        excludedTags: excludedTags,
         order: order
       };
 

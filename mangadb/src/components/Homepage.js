@@ -30,8 +30,11 @@ const Homepage = ({manga, setManga}) => {
   return (
     <div className="grid-container">
       <div className="item1" id="item_1">
-        <button onClick={handleLogout}>Logout</button>
-        Header</div>
+        <div className="tempUserValidation">
+          <button id="UserValidationButtons" onClick={handleLogout}>logout</button>
+          <button id="UserValidationButtons" onClick={handleLogout}>Register</button>
+        </div>
+      </div>
       <div className="item2" id="item_2">
         <Menu/>
       </div>
