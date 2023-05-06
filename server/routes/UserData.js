@@ -1,5 +1,4 @@
 import express from "express";
-import User from "../model/User_model.js";
 import bcrypt from "bcrypt";
 import User from "../model/User_model.js";
 import MangaPage from "../model/MangaPage_model.js";
