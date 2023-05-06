@@ -20,7 +20,7 @@ app.use(
     cookie: {
       secure: false,
       httpOnly: true,
-      expires: 600000000,
+      expires: 6000000000,
     },
   })
 );

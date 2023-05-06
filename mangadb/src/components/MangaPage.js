@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Menu from './Menu';
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Comment from './Comment';
 const MangaPage = ({manga}) => {
  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
  const [isAccountExpanded, setIsAccountExpanded] = useState(false);
@@ -131,6 +131,9 @@ function createScanGroups(){
             </select>
         </label>
         <button id="firstPage" onClick={handleFirstPage}> First Page </button>
+      </div>
+      <div>
+      <Comment/>
       </div>
      </div>
    </div>

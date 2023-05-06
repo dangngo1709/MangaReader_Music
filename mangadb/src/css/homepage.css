@@ -27,6 +27,8 @@
 #item_2{
   background-color:#10a7c2;
   width: 250px;
+  position: fixed;
+  height: 100%
 }
 
 #item_3{
