@@ -14,11 +14,12 @@ const secret_key = process.env.secret;
 const app = express();
 app.use(session({
   secret: secret_key,
-  resave: false,
-  saveUninitialized: false,
+  resave: true,
+  saveUninitialized: true,
   cookie: {
     secure: false,
     httpOnly: true,
+    expires: 6000000000,
   }
 }))
 app.use(express.json());
