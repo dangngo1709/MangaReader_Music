@@ -6,6 +6,7 @@ import MangaPage from "./components/MangaPage";
 import {useState} from 'react';
 import Profile from "./components/Profile.js";
 import ChapterPage from "./components/ChapterPage"
+import MusicPlaylist from "./components/MusicPlaylist";
 function App() {
   const [manga, setManga] = useState(null);
   return (
@@ -16,6 +17,7 @@ function App() {
         <a href="/homepage">Homepage</a><br/>
         <a href="/mangapage">MangaPage</a><br/>
         <a href="/profilepage">ProfilePage</a><br/>
+        <a href="/musicplaylist">MusicPlaylist</a><br/>
         <Routes>
           <Route path="/" element={<Register/>}/>
           <Route path="/homepage" element={<Homepage manga={manga} setManga={setManga}/>}/>
@@ -23,6 +25,7 @@ function App() {
           <Route path="/chapterpage" element={<ChapterPage manga={manga}/>}/>
           <Route path="/mangapage" element={<MangaPage manga={manga} />}/>
           <Route path="/profilepage" element={<Profile/>}/>
+          <Route path="/musicplaylist" element={<MusicPlaylist/>}/>
         </Routes>
       </BrowserRouter>
 

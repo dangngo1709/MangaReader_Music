@@ -40,7 +40,6 @@
     text-align: center;
 }
 #chapter-img-hori{
-    height: 800px;
     object-fit: cover;
     display: flex;
     justify-content: center;

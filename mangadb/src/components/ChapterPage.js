@@ -115,12 +115,14 @@ const ChapterPage = ({manga}) => {
     if(pageIndex < chImgs.length - 1){
       const page = pageIndex + 1;
       setPage(page);
+      window.scrollTo(0, 0);
     }
   }
   const handlePrevPage = (event) => {
     if(pageIndex > 0){
       const page = pageIndex - 1;
       setPage(page);
+      window.scrollTo(0, 0);
     }
   }
   return (
