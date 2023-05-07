@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useRef } from "react"
-import "/Users/dangngo/Desktop/project133/mangadb/src/css/comment.css"
+import "../css/comment.css"
 import commentObj from '../utility/CommentClass'
 import { v4 as uuidv4 } from 'uuid';
 const Comment = () => {

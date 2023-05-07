@@ -3,6 +3,7 @@ export default class CommentClass{
         this.username = ''
         this.comment = ''
         this.id ='';
-    
+        this.date = new Date().toISOString();
+
     }   
 }
