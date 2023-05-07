@@ -11,7 +11,31 @@ const generateHash = async (plaintext) => {
     const hash = await bcrypt.hash(plaintext, salt);
     return hash;
 }
-
+router.post("/mangadb/updateComment", async (req, res) => {
+    const { id, comment, mangaPageId } = req.body;
+    const modify = await MangaPage.updateOne(
+        {
+            manga_id: mangaPageId,
+            "comments.id": id,
+        },
+        {
+          $set: { 
+            "comments.$.comment": comment
+          },
+        }
+      );
+      console.log(modify)
+      console.log(id)
+      console.log(mangaPageId)
+    if(modify){
+        res.json({status: 'true',})
+    } else {
+        res.json({status: 'error'})
+    }
+  });
+  
+  
+  
   router.post("/mangadb/createMangaPage", async(req,res) => {
     try {
         if(req.body){
