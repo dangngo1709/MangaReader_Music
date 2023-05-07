@@ -5,7 +5,8 @@ const User = new mongoose.Schema(
     name: { type: String, required: true, unique: true},
     email: { type: String, required: true, unique: true},
     password: { type: String, required: true },
-    aboutMe: { type: String}
+    aboutMe: { type: String},
+    comments: { type: Array}
   },
   {collection: "user-data"}
 );

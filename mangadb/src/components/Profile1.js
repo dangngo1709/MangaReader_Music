@@ -82,21 +82,6 @@ const Profile = () => {
         <Menu />
       </div>
       <div className="p3" id="p_3">
-        <div className ='Card-Area'>
-          <div className ='Card'>
-          <div className = 'upper-container'>
-            <div className= 'image-container'>
-              <img src = {profilepicture}  alt ='' height = "100px" width = "100px"/>
-            </div>
-
-          </div>
-          <div className = "lower-container">
-            <h3 style={{color:'black', fontWeight: '700',fontSize:'3.0rem'}}>{username}</h3>;
-            <p  style={{color:'black', flex:1, flexWrap: 'wrap', flexDirection:'row'}}>{text}</p>
-            <button onClick={deleteAccount} style={{textAlign: 'center', width: 350, alignContent: 'center'}} className= "deletebutton" type="delete"> Delete Account</button>
-          </div>
-        </div>
-        </div>
         <div className="profilepic">
           <img className="pic" src={profilepicture} alt="Profile Picture" />
           </div>
@@ -109,7 +94,7 @@ const Profile = () => {
           <div>
             
          <div style ={{ alignItems: 'left'}}>
-            <textarea maxLength ={300} type="text" class="introduce-input" placeholder='Type something...' value={text} onChange={handleTextChange} />
+            <textarea type="text" class="introduce-input" placeholder='Type something...' value={text} onChange={handleTextChange} />
             </div>
           <button className='savebutton' type="submit">Save</button>
           </div>

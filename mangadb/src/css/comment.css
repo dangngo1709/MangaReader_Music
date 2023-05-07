@@ -1,0 +1,82 @@
+.comment-area {
+  margin: 0;
+  padding: 0;
+ height: 100%;
+  background-color: #ececec;
+  align-content: left;}
+
+.main-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  overflow-y: auto;
+
+
+}
+
+.comment-flexbox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 500px;
+}
+
+.comment-text {
+  margin: 12px 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: black;
+}
+
+.input-box {
+  height: 75px;
+  width: 850px;
+  background-color: #ffffff;
+}
+
+.comment-button {
+  height: 40px;
+  width: 80px;
+  background-color: #1b0fff;
+  color: white;
+  font-size: 1.05rem;
+  margin-top: 10px;
+  border-radius: 5px;
+  border-style: none;
+  cursor: pointer;
+}
+
+.comment-container {
+  height: auto;
+  width: 850px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin: 10px 0;
+  word-break: break-all;
+  /* width: 500px;
+  height: 40px; */
+  color: black;
+  font-size: 15px ;
+ justify-content: center;
+  align-items: center;
+  text-align: left;
+  text-indent:5px;
+  white-space: pre-wrap;
+}
+.pagination{
+  display: flex;
+  padding: 10px;
+}
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button.active-page {
+  background-color: #ccc;
+}
