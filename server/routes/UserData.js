@@ -141,9 +141,6 @@ router.post("/mangadb/deleteComment", async (req, res) => {
       },
     }
   );
-  console.log(modify);
-  console.log(id);
-  console.log(mangaPageId);
   if (modify) {
     res.json({ status: "true" });
   } else {
