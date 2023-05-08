@@ -7,7 +7,28 @@ const Comment = () => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState(null);
   const [name, setName] = useState("");
+  const [selectedCommentId, setSelectedCommentId] = useState(null);
+
   const submitButtonRef = useRef(null);
+
+  const updateComment = async (id, comment) => {
+    const mangaObj = JSON.parse(localStorage.getItem("manga"));
+    const mangaPageId = mangaObj.id;
+    const resp = await fetch(`/mangadb/updateComment`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+        comment,
+        mangaPageId,
+      }),
+    });
+    const data = await resp.json();
+    console.log(data);
+    fetchMangaPage();
+  };
 
   const onDeleteHandler = async (id) => {
     const mangaObj = JSON.parse(localStorage.getItem("manga"));
@@ -141,15 +162,53 @@ const Comment = () => {
         <div style={{ overflowY: "scroll" }}>
           {comments?.map((text, index) => (
             <div className="comment-container" key={index}>
-              <span
-                style={{ color: "blue", fontWeight: "bold", fontSize: "18px" }}
-              >
-                {text.username}
-              </span>{" "}
-              <br />
-              <span style={{ marginLeft: "5px" }}>{text.comment}</span>
-              {text.username === name && (
-                <button onClick={() => onDeleteHandler(text.id)}>Delete</button>
+              {selectedCommentId === text.id ? (
+                <>
+                  <input
+                    type="text"
+                    value={text.comment}
+                    onChange={(e) => {
+                      const updatedComments = comments.slice();
+                      updatedComments[index].comment = e.target.value;
+                      setComments(updatedComments);
+                    }}
+                  />
+                  <button
+                    onClick={() => {
+                      updateComment(text.id, text.comment);
+                      setSelectedCommentId(null);
+                    }}
+                  >
+                    Save
+                  </button>
+                  <button onClick={() => setSelectedCommentId(null)}>
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <>
+                  <span
+                    style={{
+                      color: "blue",
+                      fontWeight: "bold",
+                      fontSize: "18px",
+                    }}
+                  >
+                    {text.username}
+                  </span>{" "}
+                  <br />
+                  <span style={{ marginLeft: "5px" }}>{text.comment}</span>
+                  {text.username === name && (
+                    <>
+                      <button onClick={() => setSelectedCommentId(text.id)}>
+                        Edit
+                      </button>
+                      <button onClick={() => onDeleteHandler(text.id)}>
+                        Delete
+                      </button>
+                    </>
+                  )}
+                </>
               )}
             </div>
           ))}

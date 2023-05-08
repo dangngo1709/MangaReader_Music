@@ -11,6 +11,56 @@ const generateHash = async (plaintext) => {
   const hash = await bcrypt.hash(plaintext, salt);
   return hash;
 };
+router.post("/mangadb/updateComment", async (req, res) => {
+  const { id, comment, mangaPageId } = req.body;
+  const modify = await MangaPage.updateOne(
+    {
+      manga_id: mangaPageId,
+      "comments.id": id,
+    },
+    {
+      $set: {
+        "comments.$.comment": comment,
+      },
+    }
+  );
+  console.log(modify);
+  console.log(id);
+  console.log(mangaPageId);
+  if (modify) {
+    res.json({ status: "true" });
+  } else {
+    res.json({ status: "error" });
+  }
+});
+
+router.post("/mangadb/createMangaPage", async (req, res) => {
+  try {
+    if (req.body) {
+      const page = await MangaPage.create({
+        manga_id: req.body.id,
+        comments: [],
+      });
+      if (body) {
+        return res.json({ status: "ok", user: true });
+      } else {
+        return res.json({ status: "ok", user: false });
+      }
+    }
+  } catch (err) {
+    res.json({ status: "error" });
+  }
+});
+router.post("/mangadb/getMangaPage", async (req, res) => {
+  const page = await MangaPage.findOne({
+    manga_id: req.body.id,
+  });
+  if (page) {
+    res.json({ status: "true", mangapage: page });
+  } else {
+    res.json({ status: "error" });
+  }
+});
 router.post("/mangadb/profileAboutMe", async (req, res) => {
   try {
     const user = await User.updateOne(
@@ -26,6 +76,23 @@ router.post("/mangadb/profileAboutMe", async (req, res) => {
   } catch (err) {
     return res.json({ status: "error" });
   }
+});
+
+router.get("/mangadb/getUser", async (req, res) => {
+  const user = await User.findOne({
+    email: req.session.userEmail,
+  });
+  if (user) {
+    res.json({ status: "true", user: user });
+  } else {
+    res.json({ status: "error" });
+  }
+});
+router.post("/mangadb/deleteComment", async (req, res) => {
+  const { id, mangaPageId } = req.body;
+  const modify = await MangaPage.updateOne({
+    manga_id: mangaPageId,
+  });
 });
 
 router.post("/mangadb/addNewPlaylist", async (req, res) => {
