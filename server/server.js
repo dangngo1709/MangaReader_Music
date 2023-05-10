@@ -2,8 +2,9 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import UserData from "./routes/UserData.js";
-import session from "express-session";
+import UserData from './routes/UserData.js'
+import FavoriteList from './routes/FavoriteList.js'
+import session from "express-session"
 dotenv.config();
 const pass = process.env.pass_key;
 const user = process.env.user_key;
@@ -26,7 +27,8 @@ app.use(
 );
 app.use(express.json());
 app.use(cors());
-app.use(UserData);
+app.use(UserData)
+app.use(FavoriteList)
 const port = 5001;
 
 app.listen(port, () => {

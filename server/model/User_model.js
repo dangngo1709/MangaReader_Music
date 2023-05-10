@@ -7,6 +7,7 @@ const User = new mongoose.Schema(
     password: { type: String, required: true },
     aboutMe: { type: String },
     playlists: { type: Array },
+    favoriteList: { type: Array },
   },
   { collection: "user-data" }
 );

@@ -102,8 +102,25 @@ function createScanGroups(){
  }
 
 
- const handleAddToFaves = async(event) => {
-  
+ const handleFaves = async(event) => {
+  const res = await fetch("/mangadb/addMangaToFavoriteList", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      mangaObj,
+    }),
+  });
+  const data = await res.json();
+  if (data.status === "success") {
+    alert("Added manga to favorite list");
+  } else {
+    alert("Cannot add duplicate manga to favorite list!");
+  } 
+
+  alert(manga.title + " has been added to the favorites list!");
+  navigate("/FavoritesListPage");
  }
 
  const handleLogin = () => {
@@ -151,7 +168,7 @@ const handleRegister = () => {
             </select>
         </label>
         <button id="firstPage" onClick={handleFirstPage}> First Page </button>
-        <button id="addToFavesButton" onClick={handleAddToFaves}> Add To Favorites</button>
+        <button id="addToFavesButton" onClick={handleFaves}> Add To Favorites</button>
       </div>
       <div>
       <Comment/>

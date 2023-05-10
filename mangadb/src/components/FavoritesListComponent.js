@@ -2,10 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import "../css/FavoritesListComponent.css";
 import MangaList from "../utility/MangaList";
-import { BsFilterSquare } from "react-icons/bs";
 
 
-const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
+const FavoritesListComponent = ({setManga, favoriteList, setfavoriteList, setfavorited}) => {
 
     const navigate = useNavigate();
 
@@ -13,7 +12,7 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
     const [loading, setLoading] = useState(false);
 
     //for sorting the mangas
-    const [orderFilter, setOrder] = useState("Most Popular")
+    const [orderFilter, setOrder] = useState("Most Popular");
 
     const handleOrderChange = (event) => {
       event.preventDefault();
@@ -25,8 +24,8 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
     const handleMangaClick = async (manga, event) => {
       event.preventDefault();
 
-      const id = manga.id
-      const resp = await manga.generateChapters(id)
+      const id = manga.id;
+      const resp = await manga.generateChapters(id);
       setManga(manga);
 
       setTimeout( () => {
@@ -58,12 +57,24 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
       //for ensuring manga blocks render correctly 
       setLoading(false);
 
+      const currentFavesList = new MangaList();
 
-      const list = new MangaList();
-      //list.setTitleSearch();
+      const response = fetch("/mangadb/getUser",{
+        method: "GET"
+      }).then(async (res) => {
+        const data = await res.json()
+        console.log(data.user)
+      })  
+
+
+      //filter tags
+      const includedTags = [];
+      const excludedTags = [];
+
       
       
 
+      //for changing manga list order
       let order = {};
       if(orderFilter === 'Most Popular'){
         order.followedCount = 'desc'; 
@@ -72,14 +83,16 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
       }
 
       const filterObj = {
+        includedTags: includedTags,
+        excludedTags: excludedTags,
         order: order
       };
 
       // Create filters above ^^ 
       // If you like to search just for a title, add in the setTitleSearch 
-      list.setFilter(filterObj).then( () => {
-        list.generateMangaList().then( (res) => {
-          setList(res);
+      currentFavesList.setFilter(filterObj).then( () => {
+        currentFavesList.generateMangaList().then( (res) => {
+          setfavoriteList(res);
         })
       })
 
@@ -87,7 +100,7 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
       setTimeout( () => {
         setLoading(true);
       }, 1200)
-    }, [genre, orderFilter]);
+    }, [orderFilter]);
 
     
     return (
@@ -120,13 +133,12 @@ const FavoritesListComponent = ({setManga, genre, mangaList, setList}) => {
 
             <div className="FLmain">
                 {loading ? 
-                mangaList.map( (manga,index) => 
+                favoriteList.map( (manga,index) => 
                     (
                     <div
                         className="FLbookblock"
                         onClick={(e) => handleMangaClick(manga, e)}
-                        key={index}
-                    >
+                        key={index}>
                         <img src={manga.coverArt} alt="img" />
                         <div id="FLmangatitle">
                         {manga.title}
