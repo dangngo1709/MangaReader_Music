@@ -6,7 +6,7 @@ import MusicPlaylistPage from "./MusicPlaylistPage";
 const MusicPlaylist = () => {
   const searchPageRef = useRef();
   const playlistPageRef = useRef();
-  const [isSearchPage, setIsSearchPage] = useState(true);
+  const [isSearchPage, setIsSearchPage] = useState(false);
 
   const handlePlaylistPage = () => {
     searchPageRef.current.style.color = "white";
@@ -35,7 +35,7 @@ const MusicPlaylist = () => {
             <span
               style={{
                 marginRight: "10px",
-                color: "#10a7c2",
+                color: "white",
                 userSelect: "none",
               }}
               ref={searchPageRef}
@@ -46,7 +46,7 @@ const MusicPlaylist = () => {
             <span style={{ marginRight: "10px" }}>| </span>
             <span
               onClick={handlePlaylistPage}
-              style={{ userSelect: "none" }}
+              style={{ userSelect: "none", color: "#10a7c2" }}
               ref={playlistPageRef}
             >
               {" "}
