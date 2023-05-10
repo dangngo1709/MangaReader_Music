@@ -1,6 +1,12 @@
-.item1 { grid-area: header; }
-.item2 { grid-area: menu; }
-.item3 { grid-area: main; }
+.item1 {
+  grid-area: header;
+}
+.item2 {
+  grid-area: menu;
+}
+.item3 {
+  grid-area: main;
+}
 
 .grid-container {
     display: grid;
@@ -15,52 +21,52 @@
 }
 
 .grid-container > div {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    font-size: 30px;
-    overflow-x: auto;
-    outline: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-size: 30px;
+  overflow-x: auto;
+  outline: none;
 }
-#item_1{
+#item_1 {
   background-color: whitesmoke;
   border: 1px solid #1f1f1f;
 }
-#item_2{
-  background-color:#10a7c2;
+#item_2 {
+  background-color: #10a7c2;
   width: 250px;
   position: fixed;
-  height: 100%
+  height: 100%;
 }
 
-#item_3{
+#item_3 {
   color: whitesmoke;
   overflow-y: hidden;
 }
 
-#cont-read{
-    text-align: left;
-    margin-left: 20px;
-    font-weight: 10;
+#cont-read {
+  text-align: left;
+  margin-left: 20px;
+  font-weight: 10;
 }
 
-.cont_read_container{
-  background-color:rgb(32,32,32);
+.cont_read_container {
+  background-color: rgb(32, 32, 32);
   height: 100%;
 }
 
-#reading{
-    color: #ff0080;
+#reading {
+  color: #ff0080;
 }
 
-.book-row{
-    display: flex;
-    overflow-x: auto;
-    gap: 50px;
-    margin: 20px;
+.book-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 50px;
+  margin: 20px;
 }
 
-::-webkit-scrollbar{
-  width:  10px;
+::-webkit-scrollbar {
+  width: 10px;
   height: 10px;
 }
 
@@ -75,27 +81,28 @@
   width: 10px;
 }
 
-.book-block{
-    flex-shrink: 0;
-    width: 256px;
-    height: 490px;
-    margin-bottom: 5px;
-    background-color: whitesmoke;
-    overflow: hidden;
-    border-radius: 8px;
-    margin: 5px 5px;
+.book-block {
+  flex-shrink: 0;
+  width: 256px;
+  height: 490px;
+  margin-bottom: 5px;
+  background-color: whitesmoke;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 5px 5px;
 }
 
-.book-block:hover{
+.book-block:hover {
   border-radius: 8px;
   box-shadow: 0 0 1px 4px #10a7c2;
   user-select: none;
 }
 
-.book-block > img{
+.book-block > img {
   width: 256px;
   height: 256px;
   object-fit: cover;
+  border: none;
 }
 
 #rec_title {
@@ -106,11 +113,11 @@
   white-space: nowrap;
 }
 
-#description{
+#description {
   font-size: 20px;
   color: black;
-  text-overflow:ellipsis;
-  overflow:hidden;
+  text-overflow: ellipsis;
+  overflow: hidden;
   display: -webkit-box !important;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -125,81 +132,67 @@
   color: whitesmoke;
 }
 
-.MenuButton{
+.MenuButton {
   background-color: transparent;
   border-radius: 1px;
   text-align: left;
   text-indent: 10px;
 }
-.MenuButton:hover{
+.MenuButton:hover {
   background: gray;
 }
-.HomeButton{
+.HomeButton {
   background-color: transparent;
   border-radius: 5px;
   text-align: left;
   text-indent: 30px;
-
 }
-.HomeButton:hover{
+.HomeButton:hover {
   background-color: peru;
 }
 
-.MostPopularButton:hover{
+.MostPopularButton:hover {
   background-color: peru;
 }
 
-.AccountButton{
+.AccountButton {
   margin-top: 50px;
   background-color: transparent;
   border-radius: 1px;
   text-align: left;
   text-indent: 10px;
 }
-.AccountButton:hover{
+.AccountButton:hover {
   background: gray;
 }
-.ProfileButton{
+.ProfileButton {
   background-color: transparent;
   border-radius: 5px;
   text-align: left;
   text-indent: 30px;
-  
 }
-.ProfileButton:hover{
+.ProfileButton:hover {
   background-color: peru;
 }
-.MyFavoriteListButton{
+.MyFavoriteListButton {
   background-color: transparent;
   border-radius: 5px;
   text-align: left;
   text-indent: 30px;
- 
 }
-.MyFavoriteListButton:hover{
+.MyFavoriteListButton:hover {
   background-color: peru;
 }
-.SettingButton{
+.SettingButton {
   background-color: transparent;
   border-radius: 5px;
   text-align: left;
   text-indent: 30px;
-  
 }
-.SettingButton:hover{
+.SettingButton:hover {
   background-color: peru;
 }
 
-.MusicPlaylist{
+.MusicPlaylist {
   background-color: none;
-}
-
-
-#UserValidationButtons {
-  width: 100px;
-  font-size: 18px;
-  background-color: #10a7c2;
-  color: white;
-  margin: 20px;
-  float: right;
 }
