@@ -8,7 +8,7 @@ import {
   ImPrevious,
   ImNext,
 } from "react-icons/im";
-const MusicPlayer = ({ songTitle, url }) => {
+const MusicPlayer = ({ songTitle, url, currentIndex, setIndex, songList }) => {
   const [fractionPlayed, setFractionPlayed] = useState(0);
   const [secondsPlayed, setSecondsPlayed] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -37,6 +37,27 @@ const MusicPlayer = ({ songTitle, url }) => {
     }
     return `${min}:${lessThan10Seconds ? 0 : ""}${remainderSeconds}`;
   };
+  const prevSong = () => {
+    let prevIndex = currentIndex - 1;
+    if (prevIndex >= 0) {
+      setIndex(prevIndex);
+    }
+  };
+
+  const nextSong = () => {
+    let nextIndex = currentIndex + 1;
+    if (nextIndex < songList?.length) {
+      setIndex(nextIndex);
+    }
+  };
+  const handleEndOfSong = () => {
+    if (currentIndex + 1 >= songList?.length) {
+      let i = 0;
+      setIndex(i);
+    } else {
+      nextSong();
+    }
+  };
   return (
     <>
       <ReactPlayer
@@ -45,6 +66,7 @@ const MusicPlayer = ({ songTitle, url }) => {
         url={url}
         volume={volume}
         onProgress={handleProgress}
+        onEnded={handleEndOfSong}
         width="0px"
         height="0px"
       />
@@ -60,8 +82,9 @@ const MusicPlayer = ({ songTitle, url }) => {
             display: "inline-block",
             verticalAlign: "middle",
             marginRight: "10px",
-            color: "#10a7c2",
+            color: "white",
           }}
+          onClick={prevSong}
         />
         {playing ? (
           <ImPause
@@ -70,7 +93,7 @@ const MusicPlayer = ({ songTitle, url }) => {
               display: "inline-block",
               verticalAlign: "middle",
               marginRight: "10px",
-              color: "#10a7c2",
+              color: "white",
             }}
           />
         ) : (
@@ -80,7 +103,7 @@ const MusicPlayer = ({ songTitle, url }) => {
               display: "inline-block",
               verticalAlign: "middle",
               marginRight: "10px",
-              color: "#10a7c2",
+              color: "white",
             }}
           />
         )}
@@ -89,8 +112,9 @@ const MusicPlayer = ({ songTitle, url }) => {
             display: "inline-block",
             verticalAlign: "middle",
             marginRight: "10px",
-            color: "#10a7c2",
+            color: "white",
           }}
+          onClick={nextSong}
         />
       </div>
       <ImVolumeHigh
@@ -99,7 +123,7 @@ const MusicPlayer = ({ songTitle, url }) => {
           display: "inline-block",
           verticalAlign: "middle",
           marginRight: "10px",
-          color: "#10a7c2",
+          color: "white",
         }}
       />
       <input

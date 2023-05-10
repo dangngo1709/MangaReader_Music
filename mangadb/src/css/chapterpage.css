@@ -1,50 +1,51 @@
-.chapter-container{
-    background-color:rgb(32,32,32);
-    color: whitesmoke;
-    height: 100%;
+.chapter-container {
+  background-color: rgb(32, 32, 32);
+  color: whitesmoke;
+  height: 100%;
 }
 
-.chapter-navbar{
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    align-items: center;
+.chapter-navbar {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
 }
 
-#chap-sorter{
-    padding: 5px;
-    width: 150px;
-    height: 40px;
-    font-size: 20px;
+#chap-sorter {
+  padding: 5px;
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
 }
 
-#prev{
-    border-radius: 2px;
-    width: 150px;
-    height: 40px;
-    font-size: 20px;
-    font-weight: normal;
+#prev {
+  border-radius: 2px;
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: normal;
 }
 
-.chapter-display{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
+.chapter-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
 }
-#chapter-img{
-    width: 700px;
-    object-fit: cover;
-    text-align: center;
+#chapter-img {
+  width: 700px;
+  object-fit: cover;
+  text-align: center;
+  border: none;
 }
-#chapter-img-hori{
-    object-fit: cover;
-    display: flex;
-    justify-content: center;
+#chapter-img-hori {
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
 }
-.page-tools{
-    display: flex;
-    padding-top: 15px;
+.page-tools {
+  display: flex;
+  padding-top: 15px;
 }
