@@ -3,7 +3,7 @@ import axios from "axios";
 export default class MangaList {
   constructor() {
     this.manga_list = [];
-    this.titleSearch = '';
+    this.titleSearch = "";
     this.order = "";
     this.filters = "";
     this.includedTagNames = "";
@@ -12,10 +12,10 @@ export default class MangaList {
     this.include =
       "?includes[]=author&includes[]=artist&includes[]=cover_art&includes[]=tag&includes[]=leader&includes[]=member";
   }
-  setTitleSearch(x){
+  setTitleSearch(x) {
     this.titleSearch = x;
   }
-  getTitleSearch(x){
+  getTitleSearch(x) {
     return this.titleSearch;
   }
   setIncludedTag(x) {
@@ -70,16 +70,16 @@ export default class MangaList {
         includedTags: this.includedTagNames,
         excludedTags: this.excludedTagNames,
         title: this.getTitleSearch(),
-        limit: 15,
+        limit: 10,
         ...this.order,
       },
-    }).then( (resp) => {
+    }).then((resp) => {
       resp.data.data.map((manga) => {
         const newManga = new MangaClass();
         newManga.setID(manga.id);
         this.addManga(newManga);
-      }); 
-    })
+      });
+    });
   }
 
   async fetchMangaFromID() {
@@ -97,16 +97,20 @@ export default class MangaList {
   generateMangaInfo(res) {
     const list = res.map((data) => data.data.data);
     for (let i = 0; i < this.manga_list.length; i++) {
-      let title, author, artist, cover_art_url,description;
+      let title, author, artist, cover_art_url, description;
       title = Object.values(list[i].attributes.title)[0];
-      for (const [key, value] of Object.entries(list[i].attributes.description)) {
-        if(key === 'en'){
+      for (const [key, value] of Object.entries(
+        list[i].attributes.description
+      )) {
+        if (key === "en") {
           description = value;
           break;
         }
       }
-      for (let k = 0; k < list[i].attributes.tags.length; k++){
-        this.manga_list[i].addGenre(list[i].attributes.tags[k].attributes.name.en);
+      for (let k = 0; k < list[i].attributes.tags.length; k++) {
+        this.manga_list[i].addGenre(
+          list[i].attributes.tags[k].attributes.name.en
+        );
       }
       for (let j = 0; j < list[i].relationships.length; j++) {
         if (list[i].relationships[j].type == "author") {
@@ -137,5 +141,4 @@ export default class MangaList {
     });
     return this.manga_list;
   }
-
 }

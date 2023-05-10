@@ -1,27 +1,27 @@
 import "../css/HotCategories.css";
-import React, {useState,useEffect} from "react";
-const HotCategories = ({setGenre}) => {
+import React, { useState, useEffect } from "react";
+const HotCategories = ({ setGenre }) => {
   const genres = [
     "Adventure",
-    "Shounen",
+    "Sports",
     "Medical",
     "Comedy",
     "Isekai",
     "Action",
-    "Adventure",
+    "Thriller",
     "Fantasy",
     "Drama",
     "Romance",
     "Horror",
     "Mystery",
   ];
-  const [genreList,setGenreList] = useState([]);
-  useEffect( () => {
+  const [genreList, setGenreList] = useState([]);
+  useEffect(() => {
     setGenreList(genres);
-  }, [])
+  }, []);
   const handleGenreClick = (genre, e) => {
     setGenre(genre);
-  }
+  };
   return (
     <div className="categories">
       <div className="categories-header">
@@ -29,8 +29,12 @@ const HotCategories = ({setGenre}) => {
       </div>
       <div className="hotcategories">
         <div className="frame">
-          {genreList.map( (genre,index) => (
-            <div className="genres" key={index} onClick={(e) => (handleGenreClick(genre, e))}>
+          {genreList.map((genre, index) => (
+            <div
+              className="genres"
+              key={index}
+              onClick={(e) => handleGenreClick(genre, e)}
+            >
               {genre}
             </div>
           ))}

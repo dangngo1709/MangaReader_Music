@@ -1,0 +1,24 @@
+.musicplaypage {
+  background-color: rgb(32, 32, 32);
+  height: 100%;
+}
+.i1 {
+  grid-area: playlist;
+}
+.i2 {
+  grid-area: display;
+}
+
+.playlist-container {
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-areas:
+    "playlist display display"
+    "playlist display display"
+    "playlist display display";
+  font-size: 28px;
+}
+#addPlaylistBtn:hover {
+  color: #10a7c2;
+  user-select: none;
+}
