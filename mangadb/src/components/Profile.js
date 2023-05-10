@@ -130,31 +130,6 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="profilepic">
-          <img className="pic" src={profilepicture} alt="Profile Picture" />
-        </div>
-        <div style={{ color: "Purple" }} className="username">
-          {username}
-        </div>
-        <div style={{ color: "black" }} className="AboutMe">
-          {" "}
-          {text}
-        </div>
-
-        <button
-          onClick={deleteAccount}
-          style={{
-            textAlign: "center",
-            width: 350,
-            alignContent: "center",
-            marginTop: 20,
-          }}
-          className="deletebutton"
-          type="delete"
-        >
-          {" "}
-          Delete Account
-        </button>
 
         <form onSubmit={handleSubmit}>
           <div>

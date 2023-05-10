@@ -77,15 +77,19 @@ const MusicPlayer = ({ songTitle, url, currentIndex, setIndex, songList }) => {
         <div className="time-box">{convertSecondsToMinutes(secondsPlayed)}</div>
       </div>
       <div className="music-player-container">
-        <ImPrevious
-          style={{
-            display: "inline-block",
-            verticalAlign: "middle",
-            marginRight: "10px",
-            color: "white",
-          }}
-          onClick={prevSong}
-        />
+        {songList?.length > 0 ? (
+          <ImPrevious
+            style={{
+              display: "inline-block",
+              verticalAlign: "middle",
+              marginRight: "10px",
+              color: "white",
+            }}
+            onClick={prevSong}
+          />
+        ) : (
+          <></>
+        )}
         {playing ? (
           <ImPause
             onClick={handlePause}
@@ -107,15 +111,19 @@ const MusicPlayer = ({ songTitle, url, currentIndex, setIndex, songList }) => {
             }}
           />
         )}
-        <ImNext
-          style={{
-            display: "inline-block",
-            verticalAlign: "middle",
-            marginRight: "10px",
-            color: "white",
-          }}
-          onClick={nextSong}
-        />
+        {songList?.length > 0 ? (
+          <ImNext
+            style={{
+              display: "inline-block",
+              verticalAlign: "middle",
+              marginRight: "10px",
+              color: "white",
+            }}
+            onClick={nextSong}
+          />
+        ) : (
+          <></>
+        )}
       </div>
       <ImVolumeHigh
         onClick={handlePlay}

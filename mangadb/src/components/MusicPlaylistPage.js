@@ -51,6 +51,7 @@ const MusicPlaylistPage = () => {
         alert(data.msg);
       } else {
         alert(`succussfully deleted playlist[${name}]`);
+        window.location.reload();
       }
     } else {
       alert("Please click on the name of a playlist first");
