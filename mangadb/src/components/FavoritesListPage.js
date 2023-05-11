@@ -5,18 +5,6 @@ import Menu from "./Menu";
 import FavoritesListComponent from "./FavoritesListComponent";
 
 const FavoritesListPage = ({manga, setManga}) => {
-  const [favorited, setfavorited] = useState(false);
-
-  //test 
-    const [favoriteList, setfavoriteList] = useState([
-      {
-        id: "4d32cc48-9f00-4cca-9b5a-a839f0764984"
-      },
-      
-      {
-        id: "b9af3a63-f058-46de-a9a0-e0c13906197a"
-      },
-    ]);
     useEffect( () => {
     }, [])
 
@@ -59,10 +47,7 @@ const FavoritesListPage = ({manga, setManga}) => {
         <div className="item3" id="item_3">
           <div className="main">
             <FavoritesListComponent 
-              setfavorited={setfavorited}
-              setManga={setManga} 
-              setfavoriteList={setfavoriteList} 
-              favoriteList={favoriteList}  />
+              setManga={setManga}  />
           </div>
         </div>
 

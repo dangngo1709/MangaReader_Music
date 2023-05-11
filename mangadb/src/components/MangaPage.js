@@ -101,8 +101,13 @@ function createScanGroups(){
   navigate("/chapterpage");
  }
 
+ const [faveslist, setfaveslist] = useState([]);
 
- const handleFaves = async(event) => {
+ const handleFaves = async(mangaObj, event) => {
+  const newfaveslist = faveslist.concat(mangaObj);
+
+  setfaveslist([...newfaveslist, mangaObj]);
+
   const res = await fetch("/mangadb/addMangaToFavoriteList", {
     method: "POST",
     headers: {
@@ -120,7 +125,6 @@ function createScanGroups(){
   } 
 
   alert(manga.title + " has been added to the favorites list!");
-  navigate("/FavoritesListPage");
  }
 
  const handleLogin = () => {

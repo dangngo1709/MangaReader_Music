@@ -2,23 +2,24 @@ import React, { useEffect, useState, useRef } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import "../css/FavoritesListComponent.css";
 import MangaList from "../utility/MangaList";
+import { FaTrash } from "react-icons/fa";
 
 
-const FavoritesListComponent = ({setManga, favoriteList, setfavoriteList, setfavorited}) => {
+const FavoritesListComponent = ({setManga}) => {
 
     const navigate = useNavigate();
 
-    //for ensuring manga blocks render correctly 
-    const [loading, setLoading] = useState(false);
 
-    //for sorting the mangas
-    const [orderFilter, setOrder] = useState("Most Popular");
-
-    const handleOrderChange = (event) => {
-      event.preventDefault();
-      setOrder(event.target.value);
-    }
-
+    const [favoriteList, setfavoriteList] = useState([
+      {
+        title: "swag manga",
+        id: "4d32cc48-9f00-4cca-9b5a-a839f0764984"
+      },
+      
+      {
+        id: "b9af3a63-f058-46de-a9a0-e0c13906197a"
+      },
+    ]);
 
     //for redirecting to manga page 
     const handleMangaClick = async (manga, event) => {
@@ -51,58 +52,14 @@ const FavoritesListComponent = ({setManga, favoriteList, setfavoriteList, setfav
 
     }
 
-    /** How to fetch Manga, need to import mangalist and useeffect */
-    useEffect(() => {
-
-      //for ensuring manga blocks render correctly 
-      setLoading(false);
-
-      const currentFavesList = new MangaList();
-
-      const response = fetch("/mangadb/getUser",{
-        method: "GET"
-      }).then(async (res) => {
-        const data = await res.json()
-        console.log(data.user)
-      })  
+    const response = fetch("/mangadb/getUser",{
+      method: "GET"
+    }).then(async (res) => {
+      const data = await res.json()
+      console.log(data.user)
+    })  
 
 
-      //filter tags
-      const includedTags = [];
-      const excludedTags = [];
-
-      
-      
-
-      //for changing manga list order
-      let order = {};
-      if(orderFilter === 'Most Popular'){
-        order.followedCount = 'desc'; 
-      } else {
-        order.latestUploadedChapter = 'desc'
-      }
-
-      const filterObj = {
-        includedTags: includedTags,
-        excludedTags: excludedTags,
-        order: order
-      };
-
-      // Create filters above ^^ 
-      // If you like to search just for a title, add in the setTitleSearch 
-      currentFavesList.setFilter(filterObj).then( () => {
-        currentFavesList.generateMangaList().then( (res) => {
-          setfavoriteList(res);
-        })
-      })
-
-      //important, need to wait 1 second or else it wont render
-      setTimeout( () => {
-        setLoading(true);
-      }, 1200)
-    }, [orderFilter]);
-
-    
     return (
 
         <div className="FavoritesListContainer">
@@ -110,50 +67,34 @@ const FavoritesListComponent = ({setManga, favoriteList, setfavoriteList, setfav
             <div className="FLheader">
                 <p id="FLtitle">My Favorite Mangas :3</p>
 
-
-                <input type="search" id="FLsearchbar" 
-                    placeholder="Search favorite mangas here " 
-                    onChange={handlesearchFLManga}>
-                </input>
-
-
-                  <span>
-                      <label>
-                          <select name="Sort manga order" id= "FLorderSelect" 
-                              onChange={handleOrderChange}>
-
-                          <option value="Most Popular">Most Popular</option>
-                          <option value="Latest Uploaded Chapter">Latest Uploaded Chapter</option>
-                          </select>
-                      </label>
-                  </span>
-
             </div>
 
-
             <div className="FLmain">
-                {loading ? 
-                favoriteList.map( (manga,index) => 
+                { 
+                favoriteList.map( (mangaObj,index) => 
                     (
-                    <div
-                        className="FLbookblock"
-                        onClick={(e) => handleMangaClick(manga, e)}
-                        key={index}>
-                        <img src={manga.coverArt} alt="img" />
-                        <div id="FLmangatitle">
-                        {manga.title}
-                        <br />
-                        <span id="FLauthor">Author: {manga.author}</span>
-                        <br />
-                        <span id="FLauthor">Artist: {manga.artist}</span>
+                    <div className="FLbookblock">
+                      <div
+                          className="FLinnerblock"
+                          onClick={(e) => handleMangaClick(mangaObj, e)}
+                          key={index}>
+                          <img src={favoriteList.coverArt} alt="img" />
+                          <div id="FLmangatitle">
+                          {mangaObj.title}
+                          <br />
+                          <span id="FLauthor">Author: {mangaObj.author}</span>
+                          <br />
+                          <span id="FLauthor">Artist: {mangaObj.artist}</span>
+                          </div>
+                          <p id="FLdescription"><span style={{fontWeight: 'bold'}}>
+                              Description: </span>{mangaObj.description}</p>
+                      </div>
+                      <div id="remove">
+                          <button id="trashbutton"><FaTrash/></button>
                         </div>
-                        <p id="FLdescription"><span style={{fontWeight: 'bold'}}>
-                            Description: </span>{manga.description}</p>
                     </div>
                     )
-                ) : (
-                <h1>Loading</h1>
-                )}
+                ) }
             </div>
 
             
