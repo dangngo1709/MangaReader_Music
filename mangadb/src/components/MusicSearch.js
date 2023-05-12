@@ -8,7 +8,7 @@ import { MdOutlineAddCircleOutline } from "react-icons/md";
 
 const MusicSearch = () => {
   const [url, setUrl] = useState("");
-  const [term, setTerm] = useState("Coldplay");
+  const [term, setTerm] = useState("");
   const [songList, setSongList] = useState(null);
   const [songID, setSongID] = useState(null);
   const [searchSubmit, setSearchSubmit] = useState(false);
