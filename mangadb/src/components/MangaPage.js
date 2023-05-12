@@ -101,6 +101,36 @@ const MangaPage = ({ manga, setManga }) => {
     navigate("/chapterpage");
   };
 
+ 
+
+ const handleFaves = async() => {
+  const res = await fetch("/mangadb/addMangaToFavoriteList", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      mangaObj,
+  }),
+  });
+  const data = await res.json();
+  if (data.status === "success") {
+    alert("manga has been added to the favorites list!");
+  } else {
+    alert("Cannot add duplicate manga to favorite list!");
+  } 
+ }
+
+ const handleLogin = () => {
+  localStorage.clear();
+  window.location.href = '/login';
+}
+
+const handleRegister = () => {
+  localStorage.clear();
+  window.location.href = '/';
+}
+
   return (
     <div className="grid-container">
       <div className="item1" id="item_1">
@@ -163,17 +193,16 @@ const MangaPage = ({ manga, setManga }) => {
                 </option>
               ))}
             </select>
-          </label>
-          <button id="firstPage" onClick={handleFirstPage}>
-            {" "}
-            First Page{" "}
-          </button>
-        </div>
-        <div>
-          <Comment />
-        </div>
+        </label>
+        <button id="firstPage" onClick={handleFirstPage}> First Page </button>
+        <button id="addToFavesButton" onClick={handleFaves}> Add To Favorites</button>
       </div>
-    </div>
-  );
-};
-export default MangaPage;
+      <div>
+      <Comment/>
+      </div>
+     </div>
+   </div>
+ );
+              }
+
+export default MangaPage

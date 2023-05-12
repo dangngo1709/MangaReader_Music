@@ -1,0 +1,102 @@
+.FavoritesListContainer {
+    width: 100%;
+    height: 100%;
+    background-color: #1F1F1F;
+    color: white;
+}
+
+.FLheader {
+  text-align: left;
+  font-weight: 10;
+  display: flex;
+}
+
+#FLtitle {
+    font-size: 24px;
+    font-weight: 800;
+    text-align: left;
+    padding: 30px;
+    padding-left: 100px;
+    width: 20%;
+    color: white;
+}
+
+#FLsearchbar {
+    width: 600px;
+    border-radius: 5px;
+    height: 40px;
+    margin: 30px;
+    padding-left: 15px;
+}
+
+#FLorderSelect {
+  background-color: #10a7c2;
+  color: whitesmoke;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 200px;
+  margin: 30px;
+}
+
+.FLmain {
+    display: block;
+    gap: 150px;
+    margin: 20px;
+}
+
+.FLbookblock {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 256px;
+    height: 550px;
+    margin: 20px;
+    border: 2px solid rgb(32,32,32);
+    background-color: whitesmoke;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.FLbookblock:hover {
+  border: 2px solid rgb(32,32,32);
+  border-radius: 8px;
+  background-color: antiquewhite;
+  user-select: none;
+}
+
+.FLbookblock > img {
+  width: 256px;
+  height: 256px;
+  object-fit: cover;
+}
+
+#FLmangatitle {
+  font-size: 20px;
+  background-color: #10a7c2;
+  height: 100px;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+#FLdescription {
+  font-size: 20px;
+  color: black;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+#remove {
+  background-color: #10a7c2;
+  padding: 10px;
+  height: 40px;
+  margin: auto;
+}
+
+#trashbutton {
+  width: 30px;
+  margin: 0;
+}

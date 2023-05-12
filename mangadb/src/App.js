@@ -3,6 +3,7 @@ import Register from "./components/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import MangaPage from "./components/MangaPage";
+import FavoritesListPage from "./components/FavoritesListPage";
 import { useEffect, useState } from "react";
 import Profile from "./components/Profile.js";
 import ChapterPage from "./components/ChapterPage";
@@ -11,7 +12,6 @@ function App() {
   const [manga, setManga] = useState(null);
 
   return (
-    //<HotCategories />
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Register />} />
@@ -32,6 +32,10 @@ function App() {
         <Route
           path="/musicplaylist"
           element={<MusicPlaylist setManga={setManga} />}
+        />
+        <Route
+          path="/FavoritesListPage"
+          element={<FavoritesListPage manga={manga} />}
         />
       </Routes>
     </BrowserRouter>

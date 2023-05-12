@@ -43,6 +43,9 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
       includedTags: includedTags,
       excludedTags: excludedTags,
       order: order,
+
+      //for fav list 
+      
     };
     // Create filters above ^^ 
     // If you like to search just for a title, add in the setTitleSearch 
@@ -56,6 +59,12 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
     setLoading(true);
   }, 1200)
   }, [genre, orderFilter]);
+
+  //for adding to favorites list/page
+  const handleAddToFaves = async(event) => {
+  
+  }
+  
   return (
     <div className="cont_read_container">
       <div id="cont-read">
@@ -94,6 +103,7 @@ const Cont_Read = ({setManga, genre, mangaList, setList}) => {
           <h1>Loading</h1>
         )}
       </div>
+
     </div>
   );
 };

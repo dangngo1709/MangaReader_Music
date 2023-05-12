@@ -111,6 +111,7 @@ const Menu = () => {
               </span>
             </button>
           </a>
+          <a href="/FavoritesListPage">
           <button className="MyFavoriteListButton">
             <MdFavorite
               style={{
@@ -124,6 +125,7 @@ const Menu = () => {
               My Favorite List
             </span>
           </button>
+          </a>
           <a href="/musicplaylist">
             <button className="ProfileButton">
               <ImMusic
