@@ -14,7 +14,6 @@ const Menu = () => {
   const [playlists, setPlaylists] = useState(null);
   const [currPlaylistName, setPlaylistName] = useState(null);
   const [songList, setSongList] = useState(null);
-
   const handleMenuClick = () => {
     setIsMenuExpanded(!isMenuExpanded);
   };
@@ -23,21 +22,25 @@ const Menu = () => {
     setIsAccountExpanded(!isAccountExpanded);
   };
 
-  const selectPlaylist = (event) => {
-    setPlaylistName(event.target.value);
+  const adjustCurrentSong = (index) => {
+    setSongTitle(songList[index].name);
+    setUrl(`https://www.youtube.com/watch?v=${songList[index].videoID}`);
   };
 
-  const adjustCurrentSong = (index) => {
-    if (songList?.length > 0) {
-      setSongTitle(songList[index].name);
-      setUrl(`https://www.youtube.com/watch?v=${songList[index].videoID}`);
-    } else {
-      setSongTitle("");
-      setUrl("");
+  const selectPlaylist = (event) => {
+    setPlaylistName(event.target.value);
+    for (let i = 0; i < playlists.length; i++) {
+      if (event.target.value == playlists[i].name) {
+        setSongList(playlists[i].songs);
+        setSongTitle(playlists[i].songs[0].name);
+        setUrl(
+          `https://www.youtube.com/watch?v=${playlists[i].songs[0].videoID}`
+        );
+      }
     }
   };
 
-  useEffect(() => {
+  const setUpMusicPlayer = () => {
     const resp = fetch(`/mangadb/getAllPlaylists`, {
       method: "GET",
     }).then(async (res) => {
@@ -50,7 +53,10 @@ const Menu = () => {
       }
       adjustCurrentSong(currentIndex);
     });
-    setTimeout(() => {}, 400);
+  };
+
+  useEffect(() => {
+    setUpMusicPlayer();
   }, [selectPlaylist, currentIndex]);
   return (
     <div className="menu">

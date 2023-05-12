@@ -110,6 +110,11 @@ const Header = ({ setManga }) => {
           localStorage.setItem("loggedIn", false);
           setLoggedIn("false");
           localStorage.setItem("session_id", "");
+          localStorage.removeItem("playlists");
+          localStorage.removeItem("playlistName");
+          localStorage.removeItem("songList");
+          localStorage.removeItem("url");
+          localStorage.removeItem("songTitle");
           setTimeout(() => {
             navigate("/login");
           }, 400);

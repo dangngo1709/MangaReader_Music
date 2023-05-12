@@ -12,6 +12,21 @@ const MusicPlaylistPage = () => {
   const [songList, setSongList] = useState(null);
   const [songTitle, setSongTitle] = useState("");
   const [songUrl, setSongUrl] = useState("");
+
+  const fetchPlaylists = async () => {
+    const resp = fetch(`/mangadb/getAllPlaylists`, {
+      method: "GET",
+    }).then(async (res) => {
+      const data = await res.json();
+      setPlaylists(data.playlists);
+      for (let i = 0; i < playlists?.length; i++) {
+        if (playlists[i].name === currentName) {
+          setSongList(playlists[i].songs);
+        }
+      }
+    });
+  };
+
   const handleAddPlaylist = async () => {
     if (playlistNewName) {
       const playlistObj = new PlaylistClass();
@@ -29,6 +44,7 @@ const MusicPlaylistPage = () => {
       if (data.status === "error") {
         alert(data.msg);
       }
+      window.location.reload();
     } else {
       alert("Please Enter a playlist name!");
     }
@@ -70,33 +86,28 @@ const MusicPlaylistPage = () => {
     const data = await resp.json();
     if (data.status === "success") {
       alert(`Successfully deleted song: ${song.name}`);
-
-      const resp = fetch(`/mangadb/getAllPlaylists`, {
-        method: "GET",
-      }).then(async (res) => {
-        const data = await res.json();
-        setPlaylists(data.playlists);
-      });
+      const songListArr = songList.slice();
+      const filteredArray = songListArr.filter(
+        (item) => item.name !== song.name
+      );
+      setSongList(filteredArray);
+      fetchPlaylists();
     } else {
       alert(`Failed to delete song: ${song.name}`);
     }
   };
   const handlePlaylistClick = (name) => {
     setCurrentName(name);
-  };
-  useEffect(() => {
-    const resp = fetch(`/mangadb/getAllPlaylists`, {
-      method: "GET",
-    }).then(async (res) => {
-      const data = await res.json();
-      setPlaylists(data.playlists);
-      for (let i = 0; i < playlists?.length; i++) {
-        if (playlists[i].name === currentName) {
-          setSongList(playlists[i].songs);
-        }
+    for (let i = 0; i < playlists.length; i++) {
+      if (playlists[i].name == name) {
+        setSongList(playlists[i].songs);
       }
-    });
-  }, [handleAddPlaylist, deleteSong, handlePlaylistClick]);
+    }
+  };
+
+  useEffect(() => {
+    fetchPlaylists();
+  }, []);
   const fetchAPI = async () => {
     const resp = await axios({
       method: "GET",
