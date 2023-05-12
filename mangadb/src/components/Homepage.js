@@ -20,7 +20,7 @@ const Homepage = ({ manga, setManga }) => {
       <div className="item1" id="item_1">
         <Header setManga={setManga} />
       </div>
-      <div className="item2" id="item_2">
+      <div  className="item2" id="item_2">
         <Menu />
       </div>
       <div className="item3" id="item_3">
