@@ -81,7 +81,7 @@ const Profile = ({ setManga }) => {
     getUserName();
   }, []);
   return (
-    <div className="grid-container"
+    <div className="grid-container">
       <div className="p1" id="item_1">
         <Header setManga={setManga} />
       </div>
