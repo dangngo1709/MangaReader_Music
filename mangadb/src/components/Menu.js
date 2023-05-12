@@ -43,7 +43,7 @@ const Menu = () => {
     }).then(async (res) => {
       const data = await res.json();
       setPlaylists(data.playlists);
-      for (let i = 0; i < playlists.length; i++) {
+      for (let i = 0; i < playlists?.length; i++) {
         if (playlists[i].name === currPlaylistName) {
           setSongList(playlists[i].songs);
         }

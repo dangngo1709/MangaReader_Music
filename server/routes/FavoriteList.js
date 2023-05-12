@@ -24,7 +24,6 @@ router.post("/mangadb/addMangaToFavoriteList", async (req, res) => {
         $push: { favoriteList: mangaObj },
       }
     );
-    console.log(modify);
     if (modify) {
       res.json({ status: "success" });
     } else {
@@ -32,7 +31,6 @@ router.post("/mangadb/addMangaToFavoriteList", async (req, res) => {
     }
   }
 });
-
 
 router.post("/mangadb/deleteMangaFromPlaylist", async (req, res) => {
   const mangaObj = req.body.mangaObj;

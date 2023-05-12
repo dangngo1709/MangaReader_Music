@@ -34,17 +34,16 @@
   margin-right: 20px;
   margin-top: 10px;
 }
-.categories{
+.categories {
   background-color: whitesmoke;
-  border: 1px solid #1f1f1f;
 }
-.categories-header{
+.categories-header {
   text-align: left;
   margin-left: 20px;
   font-weight: 10;
-  color:  #303030;
+  color: #303030;
 }
-#hot{
-  color: #ff0080
+#hot {
+  color: #ff0080;
 }
 /* The rule below is implemented in most browsers by now */

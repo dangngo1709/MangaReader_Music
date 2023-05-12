@@ -8,16 +8,87 @@
   grid-area: main;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+#loginButton,
+#logoutBtn {
+  background-color: #10a7c2;
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 8px;
+  margin-right: 10px;
+  font-size: 25px;
+  user-select: none;
+  width: 100px;
+  height: 50px;
+  font-weight: normal;
+}
+#loginButton:hover {
+  background-color: peru;
+}
+#logoutBtn:hover {
+  background-color: peru;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: white;
+  overflow-y: auto;
+  width: 200px;
+}
+
+.dropdown > p {
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-width: 1px;
+}
+
+.dropdown > p:hover {
+  color: white;
+  background-color: #1b6fa8;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a,
+  .topnav input[type="text"],
+  .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type="text"] {
+    border: 1px solid #ccc;
+  }
+}
+
 .grid-container {
-    display: grid;
-    grid-template-columns: 250px auto;
-    grid-template-areas:
-      'header header header header header header'
-      'menu main main main main main'
-      'menu main main main main main';
-    background-color: #1B6FA8;
-    min-height: 90vh;
-    grid-template-columns: 250px auto;
+  display: grid;
+  grid-template-columns: 250px auto;
+  grid-template-rows: 70px auto;
+  grid-template-areas:
+    "header header header header header header"
+    "menu main main main main main"
+    "menu main main main main main";
+  background-color: #1b6fa8;
+  min-height: 90vh;
 }
 
 .grid-container > div {
