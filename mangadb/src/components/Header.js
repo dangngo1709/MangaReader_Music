@@ -184,16 +184,15 @@ const Header = ({ setManga }) => {
             )}
           </div>
         </div>
-        <a
-          class="active"
-          id="loginButton"
-          href={loggedIn === "true" ? "/login" : "/"}
-        >
-          {loggedIn === "true" ? "Login" : "Signup"}
-        </a>
-        <button onClick={handleLogout} id="logoutBtn">
-          {loggedIn === "true" ? "Logout" : "Login"}
-        </button>
+        {loggedIn ? (
+          <button onClick={handleLogout} id="logoutBtn">
+            {loggedIn === "true" ? "Logout" : "Login"}
+          </button>
+        ) : (
+          <a class="active" id="loginButton" href={"/login"}>
+            Login
+          </a>
+        )}
       </div>
     </div>
   );

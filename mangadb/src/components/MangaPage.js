@@ -101,35 +101,34 @@ const MangaPage = ({ manga, setManga }) => {
     navigate("/chapterpage");
   };
 
- 
+  const handleFaves = async () => {
+    const res = await fetch("/mangadb/addMangaToFavoriteList", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        mangaObj,
+      }),
+    });
+    console.log(res);
+    const data = await res.json();
+    if (data.status === "success") {
+      alert("manga has been added to the favorites list!");
+    } else {
+      alert("Cannot add duplicate manga to favorite list!");
+    }
+  };
 
- const handleFaves = async() => {
-  const res = await fetch("/mangadb/addMangaToFavoriteList", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      mangaObj,
-  }),
-  });
-  const data = await res.json();
-  if (data.status === "success") {
-    alert("manga has been added to the favorites list!");
-  } else {
-    alert("Cannot add duplicate manga to favorite list!");
-  } 
- }
+  const handleLogin = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
 
- const handleLogin = () => {
-  localStorage.clear();
-  window.location.href = '/login';
-}
-
-const handleRegister = () => {
-  localStorage.clear();
-  window.location.href = '/';
-}
+  const handleRegister = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
 
   return (
     <div className="grid-container">
@@ -193,16 +192,22 @@ const handleRegister = () => {
                 </option>
               ))}
             </select>
-        </label>
-        <button id="firstPage" onClick={handleFirstPage}> First Page </button>
-        <button id="addToFavesButton" onClick={handleFaves}> Add To Favorites</button>
+          </label>
+          <button id="firstPage" onClick={handleFirstPage}>
+            {" "}
+            First Page{" "}
+          </button>
+          <button id="addToFavesButton" onClick={handleFaves}>
+            {" "}
+            Add To Favorites
+          </button>
+        </div>
+        <div>
+          <Comment />
+        </div>
       </div>
-      <div>
-      <Comment/>
-      </div>
-     </div>
-   </div>
- );
-              }
+    </div>
+  );
+};
 
-export default MangaPage
+export default MangaPage;
