@@ -133,9 +133,8 @@
 }
 
 .book-row {
-  display: flex;
-  overflow-x: auto;
-  gap: 50px;
+  display: block;
+  gap: 150px;
   margin: 20px;
 }
 
@@ -156,14 +155,15 @@
 }
 
 .book-block {
+  display: inline-block;
   flex-shrink: 0;
   width: 256px;
-  height: 490px;
-  margin-bottom: 5px;
+  height: 550px;
+  margin: 20px;
+  border: 2px solid rgb(32, 32, 32);
   background-color: whitesmoke;
   overflow: hidden;
   border-radius: 8px;
-  margin: 5px 5px;
 }
 
 .book-block:hover {

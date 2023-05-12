@@ -48,12 +48,10 @@ const Login = ({}) => {
             <form onSubmit={handleLoginSubmit}>
               <h2>Login</h2>
               <div class="inputbox">
-                <ion-icon name="mail-outline"></ion-icon>
                 <input type="email" id="user_email" required />
                 <label for="user_email">Email</label>
               </div>
               <div class="inputbox">
-                <ion-icon name="lock-closed-outline"></ion-icon>
                 <input type="password" id="user_password" required />
                 <label for="user_password">Password</label>
               </div>

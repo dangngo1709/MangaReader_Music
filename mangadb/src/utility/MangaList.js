@@ -70,7 +70,7 @@ export default class MangaList {
         includedTags: this.includedTagNames,
         excludedTags: this.excludedTagNames,
         title: this.getTitleSearch(),
-        limit: 10,
+        limit: 12,
         ...this.order,
       },
     }).then((resp) => {
