@@ -9,6 +9,7 @@ import ChapterPage from "./components/ChapterPage";
 import MusicPlaylist from "./components/MusicPlaylist";
 function App() {
   const [manga, setManga] = useState(null);
+
   return (
     //<HotCategories />
     <BrowserRouter>
@@ -31,10 +32,19 @@ function App() {
           element={<Homepage manga={manga} setManga={setManga} />}
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/chapterpage" element={<ChapterPage manga={manga} />} />
-        <Route path="/mangapage" element={<MangaPage manga={manga} />} />
-        <Route path="/profilepage" element={<Profile />} />
-        <Route path="/musicplaylist" element={<MusicPlaylist />} />
+        <Route
+          path="/chapterpage"
+          element={<ChapterPage manga={manga} setManga={setManga} />}
+        />
+        <Route
+          path="/mangapage"
+          element={<MangaPage manga={manga} setManga={setManga} />}
+        />
+        <Route path="/profilepage" element={<Profile setManga={setManga} />} />
+        <Route
+          path="/musicplaylist"
+          element={<MusicPlaylist setManga={setManga} />}
+        />
       </Routes>
     </BrowserRouter>
   );

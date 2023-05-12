@@ -3,8 +3,9 @@ import "../css/profile.css";
 import { useState, useEffect } from "react";
 import profilepicture from "../assets/profilepicture.jpeg";
 import Menu from "./Menu";
+import Header from "./Header";
 
-const Profile = () => {
+const Profile = ({ setManga }) => {
   const [text, setText] = useState("");
   const [username, setUserName] = useState("");
   const base_url = "http://localhost:5001";
@@ -81,8 +82,10 @@ const Profile = () => {
   }, []);
   return (
     <div className="grid-container">
-      <div className="p1" id="p_1"></div>
-      <div className="p2" id="p_2">
+      <div className="p1" id="item_1">
+        <Header setManga={setManga} />
+      </div>
+      <div className="p2" id="item_2">
         <Menu />
       </div>
       <div className="p3" id="p_3">

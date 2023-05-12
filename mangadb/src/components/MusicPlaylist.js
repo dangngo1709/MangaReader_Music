@@ -3,7 +3,8 @@ import Menu from "./Menu";
 import "../css/musicplaylist.css";
 import MusicSearch from "./MusicSearch";
 import MusicPlaylistPage from "./MusicPlaylistPage";
-const MusicPlaylist = () => {
+import Header from "./Header";
+const MusicPlaylist = ({ setManga }) => {
   const searchPageRef = useRef();
   const playlistPageRef = useRef();
   const [isSearchPage, setIsSearchPage] = useState(false);
@@ -22,7 +23,7 @@ const MusicPlaylist = () => {
   return (
     <div className="grid-container">
       <div className="item1" id="item_1">
-        Header
+        <Header setManga={setManga} />
       </div>
       <div className="item2" id="item_2">
         <Menu />
@@ -41,7 +42,7 @@ const MusicPlaylist = () => {
               ref={searchPageRef}
               onClick={handleSearchPage}
             >
-              Search Playlist
+              Search Music
             </span>
             <span style={{ marginRight: "10px" }}>| </span>
             <span
