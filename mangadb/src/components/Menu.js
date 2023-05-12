@@ -50,6 +50,7 @@ const Menu = () => {
       }
       adjustCurrentSong(currentIndex);
     });
+    setTimeout(() => {}, 400);
   }, [selectPlaylist, currentIndex]);
   return (
     <div className="menu">
@@ -112,19 +113,19 @@ const Menu = () => {
             </button>
           </a>
           <a href="/FavoritesListPage">
-          <button className="MyFavoriteListButton">
-            <MdFavorite
-              style={{
-                display: "inline-block",
-                verticalAlign: "middle",
-                marginRight: "10px",
-                color: "whitesmoke",
-              }}
-            />
-            <span style={{ color: "white", letterSpacing: "0.5px" }}>
-              My Favorite List
-            </span>
-          </button>
+            <button className="MyFavoriteListButton">
+              <MdFavorite
+                style={{
+                  display: "inline-block",
+                  verticalAlign: "middle",
+                  marginRight: "10px",
+                  color: "whitesmoke",
+                }}
+              />
+              <span style={{ color: "white", letterSpacing: "0.5px" }}>
+                My Favorite List
+              </span>
+            </button>
           </a>
           <a href="/musicplaylist">
             <button className="ProfileButton">

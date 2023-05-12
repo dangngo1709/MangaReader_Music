@@ -91,11 +91,11 @@ const Header = ({ setManga }) => {
           setSearchRes(res);
         });
       });
+      setTimeout(() => {
+        setLoading(false);
+      }, 1200);
       setUpdate(false);
     }
-    setTimeout(() => {
-      setLoading(false);
-    }, 1200);
     fetchSessionID();
     fetchUser();
   }, [updateSearch, searchRes, onSearch]);
@@ -143,34 +143,11 @@ const Header = ({ setManga }) => {
             placeholder="Search.."
             id="searchInputText"
           ></input>
-          <BiHide
-            style={{
-              display: "inline-block",
-              verticalAlign: "middle",
-              marginRight: "10px",
-              color: "#10a7c2",
-              padding: "5px",
-              marginTop: "10px",
-            }}
-            onClick={hide}
-          />
-          <ImSearch
-            style={{
-              display: "inline-block",
-              verticalAlign: "middle",
-              marginRight: "10px",
-              color: "#10a7c2",
-              padding: "5px",
-              marginTop: "10px",
-              marginRight: "20px",
-            }}
-            onClick={() => onSearch(title)}
-          />
+          <BiHide id="hideBtn" onClick={hide} />
+          <ImSearch id="searchIcon" onClick={() => onSearch(title)} />
           <div className="dropdown" ref={searchBoxRef}>
             {loading ? (
               <div>Loading</div>
-            ) : displaySearchBox ? (
-              <div></div>
             ) : (
               searchRes?.map((manga, index) => (
                 <p onClick={(e) => handleMangaClick(manga, e)} key={index}>
@@ -189,7 +166,7 @@ const Header = ({ setManga }) => {
             Login
           </a>
         )}
-        <h3 style={{ marginLeft: "10px", fontSize: "30px" }}>{username}</h3>
+        <h3 style={{ margin: "12px", fontSize: "30px" }}>{username}</h3>
       </div>
     </div>
   );

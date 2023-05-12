@@ -1,8 +1,8 @@
 .FavoritesListContainer {
-    width: 100%;
-    height: 100%;
-    background-image:linear-gradient(to right, #16222a, #3a6073);
-    color: white;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, #16222a, #3a6073);
+  color: white;
 }
 
 .FLheader {
@@ -12,21 +12,20 @@
 }
 
 #FLtitle {
-    font-size: 24px;
-    font-weight: 800;
-    text-align: left;
-    padding: 30px;
-    padding-left: 100px;
-    width: 20%;
-    color: white;
+  font-size: 24px;
+  font-weight: 800;
+  text-align: left;
+  padding: 30px;
+  padding-left: 100px;
+  color: white;
 }
 
 #FLsearchbar {
-    width: 600px;
-    border-radius: 5px;
-    height: 40px;
-    margin: 30px;
-    padding-left: 15px;
+  width: 600px;
+  border-radius: 5px;
+  height: 40px;
+  margin: 30px;
+  padding-left: 15px;
 }
 
 #FLorderSelect {
@@ -40,25 +39,25 @@
 }
 
 .FLmain {
-    display: block;
-    gap: 150px;
-    margin: 20px;
+  display: block;
+  gap: 150px;
+  margin: 20px;
 }
 
 .FLbookblock {
-    display: inline-block;
-    flex-shrink: 0;
-    width: 256px;
-    height: 565px;
-    margin: 20px;
-    border: 2px solid rgb(32,32,32);
-    background-color: whitesmoke;
-    overflow: hidden;
-    border-radius: 8px;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 256px;
+  height: 565px;
+  margin: 20px;
+  border: 2px solid rgb(32, 32, 32);
+  background-color: whitesmoke;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .FLbookblock:hover {
-  border: 2px solid rgb(32,32,32);
+  border: 2px solid rgb(32, 32, 32);
   border-radius: 8px;
   background-color: antiquewhite;
   user-select: none;
@@ -81,8 +80,8 @@
 #FLdescription {
   font-size: 20px;
   color: black;
-  text-overflow:ellipsis;
-  overflow:hidden;
+  text-overflow: ellipsis;
+  overflow: hidden;
   display: -webkit-box !important;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -94,15 +93,18 @@
   /* padding: 10px; */
   height: 45px;
   margin-top: 6px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 #trashbutton {
   width: 200px;
-
 }
-#trashbutton:hover{
-  background-image: linear-gradient(to right, rgb(239, 68, 68), rgb(153, 27, 27));
+#trashbutton:hover {
+  background-image: linear-gradient(
+    to right,
+    rgb(239, 68, 68),
+    rgb(153, 27, 27)
+  );
   transform: scale(1.2);
   border: none;
   color: white;
