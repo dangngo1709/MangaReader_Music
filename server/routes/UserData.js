@@ -333,7 +333,6 @@ router.post("/mangadb/delete", async (req, res) => {
 
 router.get("/mangadb/getSessionID", async (req, res) => {
   const sessionID = req.session.userEmail;
-  console.log(sessionID)
   if (sessionID) {
     return res.json({ status: "true" });
   } else {
