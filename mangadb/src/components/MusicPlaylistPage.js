@@ -90,7 +90,7 @@ const MusicPlaylistPage = () => {
     }).then(async (res) => {
       const data = await res.json();
       setPlaylists(data.playlists);
-      for (let i = 0; i < playlists.length; i++) {
+      for (let i = 0; i < playlists?.length; i++) {
         if (playlists[i].name === currentName) {
           setSongList(playlists[i].songs);
         }
@@ -121,8 +121,7 @@ const MusicPlaylistPage = () => {
         <div
           className="i1"
           style={{
-            borderBottom: "2px solid white",
-            borderRight: "2px solid white",
+            border: "2px solid white",
           }}
         >
           <p>Music Playlist</p>
@@ -161,28 +160,39 @@ const MusicPlaylistPage = () => {
             borderBottom: "2px solid white",
           }}
         >
-          <p style={{ borderBottom: "1px solid white" }}>
-            Current Playlist: {currentName}
-          </p>
-          {songList?.map((song, index) => (
+          <div style={{ borderRight: "2px solid white" }}>
             <p
-              key={index}
-              style={{ borderBottom: "1px solid white", userSelect: "none" }}
-              onClick={() => clickSong(song)}
+              style={{
+                borderBottom: "1px solid white",
+                borderTop: "2px solid white",
+              }}
             >
-              {song.name}
-              <RiDeleteBinLine
-                style={{
-                  display: "inline-block",
-                  verticalAlign: "middle",
-                  color: "white",
-                  padding: "5px",
-                }}
-                onClick={() => deleteSong(song)}
-              />
+              Current Playlist: {currentName}
             </p>
-          ))}
-          <MusicPlayer songTitle={songTitle} url={songUrl} />
+            {songList?.map((song, index) => (
+              <p
+                key={index}
+                style={{
+                  borderBottom: "1px solid white",
+                  userSelect: "none",
+                  borderRight: "2px solid white",
+                }}
+                onClick={() => clickSong(song)}
+              >
+                {song.name}
+                <RiDeleteBinLine
+                  style={{
+                    display: "inline-block",
+                    verticalAlign: "middle",
+                    color: "white",
+                    padding: "5px",
+                  }}
+                  onClick={() => deleteSong(song)}
+                />
+              </p>
+            ))}
+            <MusicPlayer songTitle={songTitle} url={songUrl} />
+          </div>
         </div>
       </div>
     </>

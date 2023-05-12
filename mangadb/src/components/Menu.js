@@ -43,7 +43,7 @@ const Menu = () => {
     }).then(async (res) => {
       const data = await res.json();
       setPlaylists(data.playlists);
-      for (let i = 0; i < playlists.length; i++) {
+      for (let i = 0; i < playlists?.length; i++) {
         if (playlists[i].name === currPlaylistName) {
           setSongList(playlists[i].songs);
         }
@@ -111,6 +111,7 @@ const Menu = () => {
               </span>
             </button>
           </a>
+          <a href="/FavoritesListPage">
           <button className="MyFavoriteListButton">
             <MdFavorite
               style={{
@@ -124,6 +125,7 @@ const Menu = () => {
               My Favorite List
             </span>
           </button>
+          </a>
           <a href="/musicplaylist">
             <button className="ProfileButton">
               <ImMusic
