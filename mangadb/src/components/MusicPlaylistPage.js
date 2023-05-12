@@ -86,12 +86,7 @@ const MusicPlaylistPage = () => {
     const data = await resp.json();
     if (data.status === "success") {
       alert(`Successfully deleted song: ${song.name}`);
-      const songListArr = songList.slice();
-      const filteredArray = songListArr.filter(
-        (item) => item.name !== song.name
-      );
-      setSongList(filteredArray);
-      fetchPlaylists();
+      window.location.reload()
     } else {
       alert(`Failed to delete song: ${song.name}`);
     }
