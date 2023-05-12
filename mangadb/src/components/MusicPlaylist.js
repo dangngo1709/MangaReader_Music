@@ -29,7 +29,7 @@ const MusicPlaylist = ({ setManga }) => {
         <Menu />
       </div>
       <div className="item3" id="item_3">
-        <div className="musicplaypage">
+        <div  className="musicplaypage">
           {isSearchPage ? <MusicSearch /> : <MusicPlaylistPage />}
           <br />
           <div className="music-player-container" style={{}}>

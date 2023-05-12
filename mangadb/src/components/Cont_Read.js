@@ -66,9 +66,9 @@ const Cont_Read = ({ setManga, genre, mangaList, setList }) => {
     <div className="cont_read_container">
       <div id="cont-read">
         Genre: <span id="reading">{genre} </span>
-        <span id="Filter">
+        <span  id="Filter">
           <label>
-            <select
+            <select style ={{backgroundImage:'linear-gradient(to right, #16222a, #3a6073)'}}
               name="Sort Order"
               id="orderSelect"
               onChange={handleOrderChange}

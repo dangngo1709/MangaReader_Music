@@ -1,6 +1,9 @@
 #music-player {
 }
+.musicplaypage{
+  background-image:linear-gradient(to right, #16222a, #3a6073);
 
+}
 .music-player-container {
   display: flex;
   justify-content: center;
