@@ -13,6 +13,7 @@ router.post("/mangadb/addMangaToFavoriteList", async (req, res) => {
     email: req.session.userEmail,
     "favoriteList.id": mangaObj.id,
   });
+  console.log(mangaObj);
   if (checkMangaDuplicate) {
     res.json({ status: "error", msg: "Duplicate Playlist Name" });
   } else {
