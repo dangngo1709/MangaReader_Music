@@ -13,18 +13,6 @@ function App() {
   return (
     //<HotCategories />
     <BrowserRouter>
-      <a href="/">Register</a>
-      <br />
-      <a href="/login">Login</a>
-      <br />
-      <a href="/homepage">Homepage</a>
-      <br />
-      <a href="/mangapage">MangaPage</a>
-      <br />
-      <a href="/profilepage">ProfilePage</a>
-      <br />
-      <a href="/musicplaylist">MusicPlaylist</a>
-      <br />
       <Routes>
         <Route path="/" element={<Register />} />
         <Route
