@@ -88,7 +88,6 @@
     "menu main main main main main"
     "menu main main main main main";
   background-color: #1b6fa8;
-  min-height: 90vh;
 }
 
 .grid-container > div {
@@ -97,10 +96,11 @@
   font-size: 30px;
   overflow-x: auto;
   outline: none;
+  min-height: 95vh;
 }
 #item_1 {
   background-color: whitesmoke;
-  border: 1px solid #1f1f1f;
+  border-top: 1px solid #1f1f1f;
 }
 #item_2 {
   background-color: #10a7c2;
@@ -112,6 +112,7 @@
 #item_3 {
   color: whitesmoke;
   overflow-y: hidden;
+  border-top: 1px solid #1f1f1f;
 }
 
 #cont-read {
