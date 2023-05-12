@@ -2,6 +2,7 @@ import "../css/homepage.css";
 import React, {useState, useEffect} from 'react';
 import MangaList from "../utility/MangaList";
 import Menu from "./Menu";
+import Header from "./Header";
 import FavoritesListComponent from "./FavoritesListComponent";
 
 const FavoritesListPage = ({manga, setManga}) => {
@@ -34,10 +35,7 @@ const FavoritesListPage = ({manga, setManga}) => {
       <div className="grid-container" >
         
         <div className="item1" id="item_1">
-          <div className="tempUserValidation">
-            <button id="UserValidationButtons" onClick={handleLogin}>Login</button>
-            <button id="UserValidationButtons" onClick={handleRegister}>Register</button>
-          </div>
+          <Header setManga={setManga} />
         </div>
 
         <div className="item2" id="item_2">

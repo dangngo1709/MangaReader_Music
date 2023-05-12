@@ -3,7 +3,6 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import UserData from './routes/UserData.js'
-import FavoriteList from './routes/FavoriteList.js'
 import session from "express-session"
 import FavoriteList from "./routes/FavoriteList.js";
 dotenv.config();
