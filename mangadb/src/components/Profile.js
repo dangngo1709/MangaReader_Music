@@ -82,7 +82,7 @@ const Profile = () => {
   return (
     <div className="grid-container">
       <div className="p1" id="p_1"></div>
-      <div className="p2" id="p_2">
+      <div  className="p2" id="item_2">
         <Menu />
       </div>
       <div className="p3" id="p_3">

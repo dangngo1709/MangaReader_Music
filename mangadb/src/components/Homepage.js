@@ -42,7 +42,7 @@ const Homepage = ({ manga, setManga }) => {
         <button onClick={handleLogout}>Logout</button>
         Header
       </div>
-      <div className="item2" id="item_2">
+      <div  className="item2" id="item_2">
         <Menu />
       </div>
       <div className="item3" id="item_3">
