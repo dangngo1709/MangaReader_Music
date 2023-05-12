@@ -6,6 +6,8 @@
 }
 .p3 {
   grid-area: main;
+  background-image:linear-gradient(to right, #16222a, #3a6073);
+
 }
 
 .grid-container {
@@ -71,7 +73,7 @@
 }
 .upper-container {
   height: 150px;
-  background: linear-gradient(to left, #2d00f7, #ff0291);
+  background: linear-gradient(to right, rgb(251, 113, 133), rgb(217, 70, 239), rgb(99, 102, 241));
 }
 .image-container img {
   background: white;

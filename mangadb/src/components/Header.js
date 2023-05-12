@@ -127,7 +127,7 @@ const Header = ({ setManga }) => {
           <input
             style={{
               marginRight: "5px",
-              width: "200px",
+              width: "700px",
               height: "35px",
               fontSize: "20px",
             }}
@@ -170,12 +170,14 @@ const Header = ({ setManga }) => {
                   onClick={(e) => handleMangaClick(manga, e)}
                   key={index}
                   style={{
-                    width: "200px",
+                    width: "700px",
+                    height: "50px",
                     fontSize: "13px",
                     marginRight: "auto",
                     marginLeft: "auto",
                     overflowX: "hidden",
                     userSelect: "none",
+                    justifyContent: 'center'
                   }}
                 >
                   {manga.title}

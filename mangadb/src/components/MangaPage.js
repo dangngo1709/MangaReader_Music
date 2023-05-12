@@ -143,29 +143,29 @@ const MangaPage = ({ manga, setManga }) => {
           <img src={coverArt} height={350} width={200} className="left-image" />
 
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <p style={{ textAlign: "left", fontSize: "30px", color: "purple" }}>
+            <p style={{ textAlign: "left", fontSize: "30px", color: 'wheat' }}>
               {mangaObj.title}
             </p>
             <div className="description">
               <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
               {mangaObj.description}{" "}
             </div>
-            <p style={{ textAlign: "left", fontSize: "25px", color: "black" }}>
+            <p style={{ textAlign: "left", fontSize: "25px", color: "white" }}>
               <span style={{ fontWeight: "bold" }}>Author:</span>{" "}
               {mangaObj.author}
             </p>
-            <p style={{ textAlign: "left", fontSize: "25px", color: "black" }}>
+            <p style={{ textAlign: "left", fontSize: "25px", color: "white" }}>
               <span style={{ fontWeight: "bold" }}>Artist:</span>{" "}
               {mangaObj.artist}
             </p>
-            <p style={{ textAlign: "left", fontSize: "25px", color: "black" }}>
+            <p style={{ textAlign: "left", fontSize: "25px", color: "white" }}>
               <span style={{ fontWeight: "bold" }}>Genre:</span>{" "}
               {mangaObj.genreList.map((genre, index) => (
                 <span key={index}> {genre},</span>
               ))}
             </p>
-            <p style={{ textAlign: "left", fontSize: "25px", color: "black" }}>
-              <span style={{ fontWeight: "bold" }}>Scan Groups: </span>
+            <p style={{ textAlign: "left", fontSize: "25px", color: "white" }}>
+              <span style={{ fontWeight: "bold", color: 'white' }}>Scan Groups: </span>
               {scanGroups?.map((group, index) => (
                 <span key={index}> {group},</span>
               ))}
@@ -176,11 +176,12 @@ const MangaPage = ({ manga, setManga }) => {
           style={{
             display: "flex",
             justifyContent: "left",
-            marginLeft: "28px",
+            backgroundImage:'linear-gradient(to right, #16222a, #3a6073)'
+            
           }}
         >
           <label>
-            <select
+            <select style ={{marginLeft: '40px'}}
               name="Sort Order"
               id="orderSelect"
               onChange={handleChapterClick}
@@ -202,7 +203,7 @@ const MangaPage = ({ manga, setManga }) => {
             Add To Favorites
           </button>
         </div>
-        <div>
+        <div style={{backgroundImage: 'linear-gradient(to right, #16222a, #3a6073)'}}>
           <Comment />
         </div>
       </div>
