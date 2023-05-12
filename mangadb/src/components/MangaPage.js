@@ -101,13 +101,8 @@ function createScanGroups(){
   navigate("/chapterpage");
  }
 
- const [faveslist, setfaveslist] = useState([]);
 
- const handleFaves = async(mangaObj, event) => {
-  const newfaveslist = faveslist.concat(mangaObj);
-
-  setfaveslist([...newfaveslist, mangaObj]);
-
+ const handleFaves = async() => {
   const res = await fetch("/mangadb/addMangaToFavoriteList", {
     method: "POST",
     headers: {
@@ -115,16 +110,14 @@ function createScanGroups(){
     },
     body: JSON.stringify({
       mangaObj,
-    }),
+  }),
   });
   const data = await res.json();
   if (data.status === "success") {
-    alert("Added manga to favorite list");
+    alert("manga has been added to the favorites list!");
   } else {
     alert("Cannot add duplicate manga to favorite list!");
   } 
-
-  alert(manga.title + " has been added to the favorites list!");
  }
 
  const handleLogin = () => {

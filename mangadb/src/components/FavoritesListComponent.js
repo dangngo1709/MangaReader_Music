@@ -7,19 +7,48 @@ import { FaTrash } from "react-icons/fa";
 
 const FavoritesListComponent = ({setManga}) => {
 
-    const navigate = useNavigate();
+
+  let mangaObj = JSON.parse(localStorage.getItem('manga'));
+
+      //for removing manga off of the favorites list page
+      const handleRemoveManga = async (mangaObj) => {
+
+        const res = await fetch("/mangadb/deleteMangaFromPlaylist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            mangaObj,
+        }),
+        });
+  
+        console.log(mangaObj)
+  
+  
+        const data = await res.json();
+        if (data.status === "success") {
+          alert("manga has been deleted from the favorites list!");
+        } else {
+          alert("error! manga could not be deleted from the favorites list!");
+        } 
+      }
+
+  const response =() => { fetch("/mangadb/getUser", {
+    method: "GET"
+  }).then(async (res) => {
+    const data = await res.json()
+    setfavoriteList(data.user.favoriteList)
+    console.log(data.user)
+  })}  
+
+  useEffect( () => {
+    response();
+  }, [handleRemoveManga])
 
 
-    const [favoriteList, setfavoriteList] = useState([
-      {
-        title: "swag manga",
-        id: "4d32cc48-9f00-4cca-9b5a-a839f0764984"
-      },
-      
-      {
-        id: "b9af3a63-f058-46de-a9a0-e0c13906197a"
-      },
-    ]);
+    const [favoriteList, setfavoriteList] = useState(null);
+    
 
     //for redirecting to manga page 
     const handleMangaClick = async (manga, event) => {
@@ -32,32 +61,14 @@ const FavoritesListComponent = ({setManga}) => {
       setTimeout( () => {
         setManga(manga);
         localStorage.setItem('manga', JSON.stringify(manga));
-        navigate("/mangapage");
       }, 700)
     };
 
 
 
-    //for removing manga off of the favorites list page
-    const handleRemoveManga = async (manga, event) => {
 
-    }
 
-    //for searching favorites list
-    const [searchFLManga, setsearchFLManga] = useState("");
 
-    const handlesearchFLManga = (event) => {
-        event.preventDefault();
-        setsearchFLManga(event.target.value);
-
-    }
-
-    const response = fetch("/mangadb/getUser",{
-      method: "GET"
-    }).then(async (res) => {
-      const data = await res.json()
-      console.log(data.user)
-    })  
 
 
     return (
@@ -71,14 +82,17 @@ const FavoritesListComponent = ({setManga}) => {
 
             <div className="FLmain">
                 { 
-                favoriteList.map( (mangaObj,index) => 
+                favoriteList?.map( (mangaObj, index) => 
                     (
                     <div className="FLbookblock">
                       <div
                           className="FLinnerblock"
-                          onClick={(e) => handleMangaClick(mangaObj, e)}
                           key={index}>
-                          <img src={favoriteList.coverArt} alt="img" />
+                          <img src={mangaObj.coverArt} 
+                          height="256px"
+                          width="auto"
+                          alt="img" 
+                          onClick={(e) => handleMangaClick(mangaObj, e)}/>
                           <div id="FLmangatitle">
                           {mangaObj.title}
                           <br />
@@ -90,7 +104,10 @@ const FavoritesListComponent = ({setManga}) => {
                               Description: </span>{mangaObj.description}</p>
                       </div>
                       <div id="remove">
-                          <button id="trashbutton"><FaTrash/></button>
+                          <button 
+                          onClick={(e) => handleRemoveManga(mangaObj, e)}
+                          id="trashbutton">
+                            <FaTrash/></button>
                         </div>
                     </div>
                     )

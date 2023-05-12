@@ -33,4 +33,26 @@ router.post("/mangadb/addMangaToFavoriteList", async (req, res) => {
   }
 });
 
+
+router.post("/mangadb/deleteMangaFromPlaylist", async (req, res) => {
+  const mangaObj = req.body.mangaObj;
+  const findMangaToDelete = await User.updateOne(
+    {
+      email: req.session.userEmail,
+    },
+    {
+      $pull: {
+        favoriteList: {
+          id: mangaObj.id,
+        },
+      },
+    }
+  );
+  if (findMangaToDelete) {
+    return res.json({ status: "success" });
+  } else {
+    return res.json({ status: "error" });
+  }
+});
+
 export default router;
