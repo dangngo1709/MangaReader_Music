@@ -88,7 +88,7 @@ const Profile = ({ setManga }) => {
       <div className="p2" id="item_2">
         <Menu />
       </div>
-      <div className="p3" id="p_3">
+      <div className="p3" id="item_3">
         <div className="Card-Area">
           <div className="Card">
             <div className="upper-container">
