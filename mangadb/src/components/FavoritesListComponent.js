@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import "../css/FavoritesListComponent.css";
 import MangaList from "../utility/MangaList";
 import { FaTrash } from "react-icons/fa";
+import {MdDeleteForever} from "react-icons/md"
 
 const FavoritesListComponent = ({ setManga }) => {
   let mangaObj = JSON.parse(localStorage.getItem("manga"));
@@ -61,7 +62,7 @@ const FavoritesListComponent = ({ setManga }) => {
   return (
     <div className="FavoritesListContainer">
       <div className="FLheader">
-        <p id="FLtitle">My Favorite Mangas :3</p>
+        <p id="FLtitle">My Favorite List</p>
       </div>
 
       <div className="FLmain">
@@ -70,8 +71,8 @@ const FavoritesListComponent = ({ setManga }) => {
             <div className="FLinnerblock" key={index}>
               <img
                 src={mangaObj.coverArt}
-                height="256px"
-                width="auto"
+                height="300px"
+                width="256px"
                 alt="img"
                 onClick={(e) => handleMangaClick(mangaObj, e)}
               />
@@ -92,7 +93,7 @@ const FavoritesListComponent = ({ setManga }) => {
                 onClick={(e) => handleRemoveManga(mangaObj, e)}
                 id="trashbutton"
               >
-                <FaTrash />
+                <MdDeleteForever /> Delete
               </button>
             </div>
           </div>

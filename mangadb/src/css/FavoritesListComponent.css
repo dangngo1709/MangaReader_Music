@@ -49,7 +49,7 @@
     display: inline-block;
     flex-shrink: 0;
     width: 256px;
-    height: 550px;
+    height: 565px;
     margin: 20px;
     border: 2px solid rgb(32,32,32);
     background-color: whitesmoke;
@@ -90,13 +90,20 @@
 }
 
 #remove {
-  background-color: #10a7c2;
-  padding: 10px;
-  height: 40px;
-  margin: auto;
+  background-color: transparent;
+  /* padding: 10px; */
+  height: 45px;
+  margin-top: 6px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;
 }
 
 #trashbutton {
-  width: 30px;
-  margin: 0;
+  width: 200px;
+
+}
+#trashbutton:hover{
+  background-image: linear-gradient(to right, rgb(239, 68, 68), rgb(153, 27, 27));
+  transform: scale(1.2);
+  border: none;
+  color: white;
 }
