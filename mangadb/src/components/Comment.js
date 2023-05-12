@@ -135,22 +135,21 @@ const Comment = () => {
     fetchUsername();
     createMangaPageInBackend();
     fetchMangaPage(); // Fetch the initial comments
-
-    const interval = setInterval(fetchMangaPage, 5000); // Fetch the updated comments every 5 seconds
-
-    return () => clearInterval(interval);
   }, []);
   return (
     <div style={{ marginLeft: 40 }} classname="comment-area">
       <div className="comment-flexbox">
-        <h3 className="comment-text" style={{color:'white'}}>Comment</h3>
+        <h3 className="comment-text" style={{ color: "white" }}>
+          Comment
+        </h3>
         <textarea
           value={comment}
           onChange={onChangeHandler}
           onKeyPress={handleKeyPress}
           className="input-box"
         />
-        <button style={{backgroundColor: "#7558b1"}}
+        <button
+          style={{ backgroundColor: "#7558b1" }}
           onClick={onClickHandler}
           className="comment-button"
         >
@@ -170,6 +169,9 @@ const Comment = () => {
                       const updatedComments = comments.slice();
                       updatedComments[index].comment = e.target.value;
                       setComments(updatedComments);
+                    }}
+                    style={{
+                      width: "840px",
                     }}
                   />
                   <button

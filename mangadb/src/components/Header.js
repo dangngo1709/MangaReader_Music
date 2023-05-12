@@ -18,6 +18,7 @@ const Header = ({ setManga }) => {
   const [updateSearch, setUpdate] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [loggedIn, setLoggedIn] = useState("false");
+  const [username, setUsername] = useState("");
   const hide = () => {
     setHidden(!hidden);
     if (hidden === true) {
@@ -61,6 +62,16 @@ const Header = ({ setManga }) => {
     searchBoxRef.current.style.height = "500px";
   };
 
+  const fetchUser = async () => {
+    const resp = await fetch(`/mangadb/getUser`, {
+      method: "GET",
+    });
+    const data = await resp.json();
+    if (data.status === "true") {
+      setUsername(data.user.name);
+    }
+  };
+
   useEffect(() => {
     if (title?.length > 0 && updateSearch == true) {
       const list = new MangaListClass();
@@ -80,12 +91,13 @@ const Header = ({ setManga }) => {
           setSearchRes(res);
         });
       });
+      setTimeout(() => {
+        setLoading(false);
+      }, 1200);
       setUpdate(false);
     }
-    setTimeout(() => {
-      setLoading(false);
-    }, 700);
     fetchSessionID();
+    fetchUser();
   }, [updateSearch, searchRes, onSearch]);
 
   const handleLogout = async () => {
@@ -125,61 +137,20 @@ const Header = ({ setManga }) => {
       >
         <div class="search-container">
           <input
-            style={{
-              marginRight: "5px",
-              width: "700px",
-              height: "35px",
-              fontSize: "20px",
-            }}
             type="text"
             value={title}
             onChange={onChange}
             placeholder="Search.."
+            id="searchInputText"
           ></input>
-          <BiHide
-            style={{
-              display: "inline-block",
-              verticalAlign: "middle",
-              marginRight: "10px",
-              color: "#10a7c2",
-              padding: "5px",
-              marginTop: "10px",
-            }}
-            onClick={hide}
-          />
-          <ImSearch
-            style={{
-              display: "inline-block",
-              verticalAlign: "middle",
-              marginRight: "10px",
-              color: "#10a7c2",
-              padding: "5px",
-              marginTop: "10px",
-              marginRight: "20px",
-            }}
-            onClick={() => onSearch(title)}
-          />
+          <BiHide id="hideBtn" onClick={hide} />
+          <ImSearch id="searchIcon" onClick={() => onSearch(title)} />
           <div className="dropdown" ref={searchBoxRef}>
             {loading ? (
               <div>Loading</div>
-            ) : displaySearchBox ? (
-              <div></div>
             ) : (
               searchRes?.map((manga, index) => (
-                <p
-                  onClick={(e) => handleMangaClick(manga, e)}
-                  key={index}
-                  style={{
-                    width: "700px",
-                    height: "50px",
-                    fontSize: "13px",
-                    marginRight: "auto",
-                    marginLeft: "auto",
-                    overflowX: "hidden",
-                    userSelect: "none",
-                    justifyContent: 'center'
-                  }}
-                >
+                <p onClick={(e) => handleMangaClick(manga, e)} key={index}>
                   {manga.title}
                 </p>
               ))
@@ -195,6 +166,7 @@ const Header = ({ setManga }) => {
             Login
           </a>
         )}
+        <h3 style={{ margin: "12px", fontSize: "30px" }}>{username}</h3>
       </div>
     </div>
   );

@@ -6,8 +6,7 @@
 }
 .item3 {
   grid-area: main;
-  background-image:linear-gradient(to right, #16222a, #3a6073);
-
+  background-image: linear-gradient(to right, #16222a, #3a6073);
 }
 
 * {
@@ -29,10 +28,10 @@
   font-weight: normal;
 }
 #loginButton:hover {
-  background-image:linear-gradient(to right, #16222a, #3a6073);
+  background-image: linear-gradient(to right, #16222a, #3a6073);
 }
 #logoutBtn:hover {
-  background-image:linear-gradient(to right, #16222a, #3a6073);
+  background-image: linear-gradient(to right, #16222a, #3a6073);
 }
 
 .topnav {
@@ -52,9 +51,41 @@
 }
 
 .dropdown > p {
+  text-align: center;
   border-top-style: solid;
   border-bottom-style: solid;
   border-width: 1px;
+  width: 700px;
+  height: 50px;
+  font-size: 13px;
+  padding-top: 18px;
+  overflow-x: hidden;
+  user-select: none;
+  justify-content: center;
+}
+
+#searchIcon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  color: #10a7c2;
+  padding: 5px;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+#hideBtn {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  color: #10a7c2;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+#searchIcon:hover,
+#hideBtn:hover {
+  color: peru;
 }
 
 .dropdown > p:hover {
@@ -62,22 +93,22 @@
   background-color: #1b6fa8;
 }
 
-@media screen and (max-width: 600px) {
-  .topnav .search-container {
-    float: none;
+#searchInputText {
+  margin-right: 5px;
+  width: 700px;
+  height: 35px;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 1660px) {
+  #searchInputText {
+    width: 300px;
   }
-  .topnav a,
-  .topnav input[type="text"],
-  .topnav .search-container button {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
+  .dropdown {
+    width: 300px;
   }
-  .topnav input[type="text"] {
-    border: 1px solid #ccc;
+  .dropdown > p {
+    width: 300px;
   }
 }
 
@@ -105,7 +136,7 @@
   border-top: 1px solid #1f1f1f;
 }
 #item_2 {
-  background-image:linear-gradient(to right, #16222a, #3a6073);
+  background-image: linear-gradient(to right, #16222a, #3a6073);
   width: 250px;
   position: fixed;
   height: 100%;
@@ -124,7 +155,7 @@
 }
 
 .cont_read_container {
-  background-image:linear-gradient(to right, #16222a, #3a6073);
+  background-image: linear-gradient(to right, #16222a, #3a6073);
   height: 100%;
 }
 
