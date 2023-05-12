@@ -143,15 +143,14 @@ const Comment = () => {
   return (
     <div style={{ marginLeft: 40 }} classname="comment-area">
       <div className="comment-flexbox">
-        <h3 className="comment-text">Comment</h3>
+        <h3 className="comment-text" style={{color:'white'}}>Comment</h3>
         <textarea
           value={comment}
           onChange={onChangeHandler}
           onKeyPress={handleKeyPress}
           className="input-box"
         />
-        <button
-          ref={submitButtonRef}
+        <button style={{backgroundColor: "#7558b1"}}
           onClick={onClickHandler}
           className="comment-button"
         >

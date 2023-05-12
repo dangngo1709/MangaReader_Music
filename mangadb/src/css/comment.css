@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
  height: 100%;
-  background-color: #ececec;
+ background: linear-gradient(to right, #076585, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   align-content: left;}
 
 .main-container {

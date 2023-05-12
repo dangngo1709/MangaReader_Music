@@ -3,7 +3,9 @@
     align-items: left;
     padding: 20px;
      width: 100%;
-   }
+   background-image:linear-gradient(to right, #16222a, #3a6073);
+    
+}
    .left-image{
     float: left;
     margin-top: 50px;
@@ -19,7 +21,7 @@
    }
    .description{
        font-size: 25px;
-       color: black;
+       color: white;
        text-overflow:ellipsis;
        overflow:hidden;
        display: -webkit-box !important;
@@ -46,7 +48,7 @@
        margin: 0px;
        background-color: #10a7c2;
        color: white;
-       margin-top: 5px;
+      
        margin-left: 10px;
        font-size: 25px;
        border-radius: 5px;
@@ -63,7 +65,7 @@
     margin: 0px;
     background-color: #10a7c2;
     color: white;
-    margin-top: 5px;
+    
     margin-left: 10px;
     font-size: 25px;
     border-radius: 5px;
