@@ -23,8 +23,10 @@ const Menu = () => {
   };
 
   const adjustCurrentSong = (index) => {
-    setSongTitle(songList[index].name);
-    setUrl(`https://www.youtube.com/watch?v=${songList[index].videoID}`);
+    if (songList) {
+      setSongTitle(songList[index].name);
+      setUrl(`https://www.youtube.com/watch?v=${songList[index].videoID}`);
+    }
   };
 
   const selectPlaylist = (event) => {
