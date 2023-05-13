@@ -111,7 +111,6 @@ const MangaPage = ({ manga, setManga }) => {
         mangaObj,
       }),
     });
-    console.log(res);
     const data = await res.json();
     if (data.status === "success") {
       alert("manga has been added to the favorites list!");
@@ -133,7 +132,7 @@ const MangaPage = ({ manga, setManga }) => {
   return (
     <div className="grid-container">
       <div className="item1" id="item_1">
-        <Header setManga={setManga} />
+        <div id="gradient-gray"></div>
       </div>
       <div className="item2" id="item_2">
         <Menu />
@@ -143,7 +142,7 @@ const MangaPage = ({ manga, setManga }) => {
           <img src={coverArt} height={350} width={200} className="left-image" />
 
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <p style={{ textAlign: "left", fontSize: "30px", color: 'wheat' }}>
+            <p style={{ textAlign: "left", fontSize: "30px", color: "wheat" }}>
               {mangaObj.title}
             </p>
             <div className="description">
@@ -165,7 +164,9 @@ const MangaPage = ({ manga, setManga }) => {
               ))}
             </p>
             <p style={{ textAlign: "left", fontSize: "25px", color: "white" }}>
-              <span style={{ fontWeight: "bold", color: 'white' }}>Scan Groups: </span>
+              <span style={{ fontWeight: "bold", color: "white" }}>
+                Scan Groups:{" "}
+              </span>
               {scanGroups?.map((group, index) => (
                 <span key={index}> {group},</span>
               ))}
@@ -176,12 +177,12 @@ const MangaPage = ({ manga, setManga }) => {
           style={{
             display: "flex",
             justifyContent: "left",
-            backgroundImage:'linear-gradient(to right, #16222a, #3a6073)'
-            
+            backgroundImage: "linear-gradient(to right, #16222a, #3a6073)",
           }}
         >
           <label>
-            <select style ={{marginLeft: '40px'}}
+            <select
+              style={{ marginLeft: "40px" }}
               name="Sort Order"
               id="orderSelect"
               onChange={handleChapterClick}
@@ -203,7 +204,11 @@ const MangaPage = ({ manga, setManga }) => {
             Add To Favorites
           </button>
         </div>
-        <div style={{backgroundImage: 'linear-gradient(to right, #16222a, #3a6073)'}}>
+        <div
+          style={{
+            backgroundImage: "linear-gradient(to right, #16222a, #3a6073)",
+          }}
+        >
           <Comment />
         </div>
       </div>
