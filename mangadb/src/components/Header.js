@@ -48,6 +48,7 @@ const Header = ({ setManga }) => {
     event.preventDefault();
     const id = manga.id;
     manga.generateChapters(id);
+    setManga(manga);
     setTimeout(() => {
       setManga(manga);
       localStorage.setItem("manga", JSON.stringify(manga));

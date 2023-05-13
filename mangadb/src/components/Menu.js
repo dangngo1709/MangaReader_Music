@@ -31,14 +31,18 @@ const Menu = () => {
 
   const selectPlaylist = (event) => {
     setPlaylistName(event.target.value);
-    for (let i = 0; i < playlists.length; i++) {
-      if (event.target.value == playlists[i].name) {
-        setSongList(playlists[i].songs);
-        setSongTitle(playlists[i].songs[0].name);
-        setUrl(
-          `https://www.youtube.com/watch?v=${playlists[i].songs[0].videoID}`
-        );
+    if (songList) {
+      for (let i = 0; i < playlists.length; i++) {
+        if (event.target.value == playlists[i].name) {
+          setSongList(playlists[i].songs);
+          setSongTitle(playlists[i].songs[0].name);
+          setUrl(
+            `https://www.youtube.com/watch?v=${playlists[i].songs[0].videoID}`
+          );
+        }
       }
+    } else {
+      alert("Playlist is empty, please add a song!");
     }
   };
 

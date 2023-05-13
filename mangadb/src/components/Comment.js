@@ -26,7 +26,6 @@ const Comment = () => {
       }),
     });
     const data = await resp.json();
-    console.log(data);
     fetchMangaPage();
   };
 
@@ -44,7 +43,6 @@ const Comment = () => {
       }),
     });
     const data = await resp.json();
-    console.log(data);
     fetchMangaPage();
   };
   const fetchUsername = async () => {
@@ -55,7 +53,6 @@ const Comment = () => {
     });
     const data = await resp.json();
     setName(data.user.name);
-    console.log(data.user.name);
     const resp1 = await fetch(`mangadb/getMangaPage`, {
       method: "POST",
       headers: {
@@ -66,7 +63,6 @@ const Comment = () => {
       }),
     });
     const mangaPage = await resp1.json();
-    console.log(mangaPage.mangapage.comments);
     setComments(mangaPage.mangapage.comments);
   };
   const fetchMangaPage = async () => {
@@ -118,7 +114,6 @@ const Comment = () => {
       }),
     });
     const data = await resp.json();
-    console.log(data);
     setComment("");
     fetchMangaPage();
   };
