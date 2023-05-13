@@ -106,7 +106,6 @@ const Profile = ({ setManga }) => {
               >
                 {username}
               </h3>
-              ;
               <p
                 style={{
                   color: "black",
