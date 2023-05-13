@@ -101,7 +101,9 @@ const MusicSearch = () => {
   };
 
   const handleSearchSubmit = (event) => {
-    setSearchSubmit(true);
+    if (term?.length > 0) {
+      setSearchSubmit(true);
+    }
   };
 
   const handleSongClick = (index) => {
