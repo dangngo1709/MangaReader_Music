@@ -56,7 +56,7 @@ const Cont_Read = ({ setManga, genre, mangaList, setList }) => {
     //important, need to wait 1 second or else it wont render
     setTimeout(() => {
       setLoading(true);
-    }, 1200);
+    }, 1500);
   }, [genre, orderFilter]);
 
   //for adding to favorites list/page
@@ -66,9 +66,12 @@ const Cont_Read = ({ setManga, genre, mangaList, setList }) => {
     <div className="cont_read_container">
       <div id="cont-read">
         Genre: <span id="reading">{genre} </span>
-        <span  id="Filter">
+        <span id="Filter">
           <label>
-            <select style ={{backgroundImage:'linear-gradient(to right, #16222a, #3a6073)'}}
+            <select
+              style={{
+                backgroundImage: "linear-gradient(to right, #16222a, #3a6073)",
+              }}
               name="Sort Order"
               id="orderSelect"
               onChange={handleOrderChange}
