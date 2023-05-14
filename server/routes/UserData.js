@@ -3,14 +3,19 @@ import bcrypt from "bcrypt";
 import User from "../model/User_model.js";
 import MangaPage from "../model/MangaPage_model.js";
 import dotenv from "dotenv";
+
+// initialize router
 dotenv.config();
 const router = express.Router();
 const app = express();
+// create a hash from a plaintext
 const generateHash = async (plaintext) => {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(plaintext, salt);
   return hash;
 };
+
+// Edit a comment, requires id, comment and mangaPageId from frontend
 router.post("/mangadb/updateComment", async (req, res) => {
   const { id, comment, mangaPageId } = req.body;
   const modify = await MangaPage.updateOne(
@@ -31,6 +36,7 @@ router.post("/mangadb/updateComment", async (req, res) => {
   }
 });
 
+// Create data for a new manga page, requires manga id from frontend
 router.post("/mangadb/createMangaPage", async (req, res) => {
   try {
     if (req.body) {
@@ -48,6 +54,7 @@ router.post("/mangadb/createMangaPage", async (req, res) => {
     res.json({ status: "error" });
   }
 });
+// Get a manga page, returns a manga page from backend
 router.post("/mangadb/getMangaPage", async (req, res) => {
   const page = await MangaPage.findOne({
     manga_id: req.body.id,
@@ -58,6 +65,7 @@ router.post("/mangadb/getMangaPage", async (req, res) => {
     res.json({ status: "error" });
   }
 });
+// Set a new about me text on the profile
 router.post("/mangadb/profileAboutMe", async (req, res) => {
   try {
     const user = await User.updateOne(
@@ -74,7 +82,7 @@ router.post("/mangadb/profileAboutMe", async (req, res) => {
     return res.json({ status: "error" });
   }
 });
-
+// Get data for the user, requires session id, returns user data
 router.get("/mangadb/getUser", async (req, res) => {
   const user = await User.findOne({
     email: req.session.userEmail,
@@ -85,7 +93,8 @@ router.get("/mangadb/getUser", async (req, res) => {
     res.json({ status: "error" });
   }
 });
-
+// Add a new playlist for the user, requires playlist object and session id
+// Also checks for duplicate playlist
 router.post("/mangadb/addNewPlaylist", async (req, res) => {
   const playlistObj = req.body.playlistObj;
   const checkPlaylistDuplicate = await User.findOne({
@@ -110,7 +119,7 @@ router.post("/mangadb/addNewPlaylist", async (req, res) => {
     }
   }
 });
-
+// Delete a playlist, requires session id and playlist obj
 router.post("/mangadb/deletePlaylist", async (req, res) => {
   const playlistObj = req.body.playlistObj;
   const findPlaylistToDelete = await User.updateOne(
@@ -131,17 +140,7 @@ router.post("/mangadb/deletePlaylist", async (req, res) => {
     return res.json({ status: "error" });
   }
 });
-
-router.get("/mangadb/getUser", async (req, res) => {
-  const user = await User.findOne({
-    email: req.session.userEmail,
-  });
-  if (user) {
-    res.json({ status: "true", user: user });
-  } else {
-    res.json({ status: "error" });
-  }
-});
+// Delete a specific comment from a manga page, requires mangaPageID and comment id
 router.post("/mangadb/deleteComment", async (req, res) => {
   const { id, mangaPageId } = req.body;
   const modify = await MangaPage.updateOne(
@@ -162,6 +161,7 @@ router.post("/mangadb/deleteComment", async (req, res) => {
     res.json({ status: "error" });
   }
 });
+// Add a comment to a manga page, requires manga page id and comment object
 router.post("/mangadb/addComment", async (req, res) => {
   const modify = await MangaPage.updateOne(
     {
@@ -177,7 +177,7 @@ router.post("/mangadb/addComment", async (req, res) => {
     res.json({ status: "error" });
   }
 });
-
+// Get the user's about me text, requires session id
 router.get("/mangadb/getAboutMe", async (req, res) => {
   const user = await User.findOne({
     email: req.session.userEmail,
@@ -188,6 +188,7 @@ router.get("/mangadb/getAboutMe", async (req, res) => {
     res.json({ status: "error" });
   }
 });
+// Get the user's username, requires sesison id
 router.get("/mangadb/getUserName", async (req, res) => {
   const user = await User.findOne({
     email: req.session.userEmail,
@@ -198,10 +199,11 @@ router.get("/mangadb/getUserName", async (req, res) => {
     res.json({ status: "error" });
   }
 });
+// Get the default route of the server
 router.get("", async (req, res) => {
   return req.json({ status: "mangadb" });
 });
-
+// Delete a song from user data, requires song obj and session id
 router.post("/mangadb/deleteSong", async (req, res) => {
   const songObj = req.body.song;
   const findPlaylistToDelete = await User.updateOne(
@@ -222,7 +224,7 @@ router.post("/mangadb/deleteSong", async (req, res) => {
     return res.json({ status: "error" });
   }
 });
-
+// Add a new song, requires session id and song object
 router.post("/mangadb/addNewSong", async (req, res) => {
   const songObj = req.body.songObj;
   const playlistName = req.body.playlistName;
@@ -249,7 +251,7 @@ router.post("/mangadb/addNewSong", async (req, res) => {
     }
   }
 });
-
+// get all playlists from user data, requires session id
 router.get("/mangadb/getAllPlaylists", async (req, res) => {
   const user = await User.findOne({
     email: req.session.userEmail,
@@ -260,11 +262,8 @@ router.get("/mangadb/getAllPlaylists", async (req, res) => {
     res.json({ status: "error" });
   }
 });
-
-router.get("", async (req, res) => {
-  res.json({ status: "mangadb" });
-});
-
+// register the user into the backend, requires username, email and password
+// from frontend
 router.post("/mangadb/register", async (req, res) => {
   try {
     if (req.body) {
@@ -284,6 +283,7 @@ router.post("/mangadb/register", async (req, res) => {
     res.json({ status: "error" });
   }
 });
+// login the user, requires email and generates session id
 router.post("/mangadb/login", async (req, res) => {
   try {
     const user = await User.findOne({
@@ -301,15 +301,16 @@ router.post("/mangadb/login", async (req, res) => {
     res.json({ status: "error" });
   }
 });
+// logut the user, remove session id
 router.get("/mangadb/logout", (req, res) => {
   req.session.destroy();
   res.send({ status: "success" });
 });
-
+// get the youtube api key
 router.get("/mangadb/apikey", async (req, res) => {
   res.json({ key: process.env.api_key });
 });
-
+// delete user data and account, requires session id, username
 router.post("/mangadb/delete", async (req, res) => {
   const deleteUserComments = await MangaPage.updateMany(
     {},
@@ -330,7 +331,7 @@ router.post("/mangadb/delete", async (req, res) => {
     res.send({ status: "error" });
   }
 });
-
+// get session id from backend
 router.get("/mangadb/getSessionID", async (req, res) => {
   const sessionID = req.session.userEmail;
   if (sessionID) {

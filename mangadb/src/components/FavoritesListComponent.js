@@ -10,7 +10,7 @@ const FavoritesListComponent = ({ setManga }) => {
   const navigate = useNavigate();
   //for removing manga off of the favorites list page
   const handleRemoveManga = async (mangaObj) => {
-    const res = await fetch("/mangadb/deleteMangaFromPlaylist", {
+    const res = await fetch("/mangadb/deleteMangaFromFavoriteList", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

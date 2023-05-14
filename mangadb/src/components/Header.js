@@ -94,7 +94,7 @@ const Header = ({ setManga }) => {
       });
       setTimeout(() => {
         setLoading(false);
-      }, 1200);
+      }, 1500);
       setUpdate(false);
     }
     fetchSessionID();
