@@ -14,25 +14,33 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        // default path to our project is the register page
         <Route path="/" element={<Register />} />
+        // path to homepage
         <Route
           path="/homepage"
           element={<Homepage manga={manga} setManga={setManga} />}
         />
+        // path to login page
         <Route path="/login" element={<Login />} />
+        // path to chapter page
         <Route
           path="/chapterpage"
           element={<ChapterPage manga={manga} setManga={setManga} />}
         />
+        // path to manga page
         <Route
           path="/mangapage"
           element={<MangaPage manga={manga} setManga={setManga} />}
         />
+        // path to profile page
         <Route path="/profilepage" element={<Profile setManga={setManga} />} />
+        // path to music playlist page
         <Route
           path="/musicplaylist"
           element={<MusicPlaylist setManga={setManga} />}
         />
+        // path to favorites list page
         <Route
           path="/FavoritesListPage"
           element={<FavoritesListPage manga={manga} />}

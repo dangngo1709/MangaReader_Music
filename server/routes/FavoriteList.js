@@ -7,13 +7,13 @@ dotenv.config();
 const router = express.Router();
 const app = express();
 
+// add a manga to user's favorite list, requires session id and manga object
 router.post("/mangadb/addMangaToFavoriteList", async (req, res) => {
   const mangaObj = req.body.mangaObj;
   const checkMangaDuplicate = await User.findOne({
     email: req.session.userEmail,
     "favoriteList.id": mangaObj.id,
   });
-  console.log(mangaObj);
   if (checkMangaDuplicate) {
     res.json({ status: "error", msg: "Duplicate Playlist Name" });
   } else {
@@ -32,8 +32,8 @@ router.post("/mangadb/addMangaToFavoriteList", async (req, res) => {
     }
   }
 });
-
-router.post("/mangadb/deleteMangaFromPlaylist", async (req, res) => {
+//Delete a manga from user's favorite list, requires session id and manga object
+router.post("/mangadb/deleteMangaFromFavoriteList", async (req, res) => {
   const mangaObj = req.body.mangaObj;
   const findMangaToDelete = await User.updateOne(
     {

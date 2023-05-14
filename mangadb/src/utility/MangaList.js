@@ -1,6 +1,18 @@
 import MangaClass from "./Manga";
 import axios from "axios";
 export default class MangaList {
+  /**
+   * MangaList Class
+   * manga_list: list of manga objects
+   * titleSearch: title filter
+   * order: filter based on order
+   * filters: misc. filters
+   * includedTagNames: ids for included genres
+   * excludedTagNames: ids for excluded genres
+   * base_url: base url of mangadex api
+   * include: url for including cover art, author, artist
+   * in mangadex api requests
+   */
   constructor() {
     this.manga_list = [];
     this.titleSearch = "";
@@ -33,6 +45,7 @@ export default class MangaList {
   getMangaList() {
     return this.manga_list;
   }
+  // set filters: included and excluded genres and order
   async setFilter(filters) {
     if (filters.includedTags) {
       let includedTagIDs;
@@ -61,7 +74,8 @@ export default class MangaList {
       this.setOrder(finalOrderQuery);
     }
   }
-
+  // fetch mangaID based on included and excluded genres, title, order
+  // gets 12 manga ids from mangadex api
   async fetchMangaID() {
     const resp = await axios({
       method: "GET",
@@ -74,6 +88,7 @@ export default class MangaList {
         ...this.order,
       },
     }).then((resp) => {
+      // for each manga id assign it to a manga object and add to manga_list
       resp.data.data.map((manga) => {
         const newManga = new MangaClass();
         newManga.setID(manga.id);
@@ -81,7 +96,7 @@ export default class MangaList {
       });
     });
   }
-
+  // for each manga object in manga_list, fetch the manga from mangadex api
   async fetchMangaFromID() {
     const promise = this.manga_list.map(async (manga) => {
       const response = await axios({
@@ -92,7 +107,9 @@ export default class MangaList {
     });
     return Promise.all(promise);
   }
-
+  // for each manga request, set the title, cover art,
+  // artist, arthor,  and description for each manga object
+  // in the manga_list
   generateMangaInfo(res) {
     const list = res.map((data) => data.data.data);
     for (let i = 0; i < this.manga_list.length; i++) {
@@ -131,7 +148,8 @@ export default class MangaList {
     }
     return this.manga_list;
   }
-
+  // execute fetchMangaID, then fetchMangaFromID, and
+  // lastly generateMangaInfo
   async generateMangaList() {
     this.fetchMangaID().then(() => {
       this.fetchMangaFromID().then((res) => {
