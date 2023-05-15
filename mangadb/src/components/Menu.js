@@ -14,14 +14,20 @@ const Menu = () => {
   const [playlists, setPlaylists] = useState(null);
   const [currPlaylistName, setPlaylistName] = useState(null);
   const [songList, setSongList] = useState(null);
+
+  //for dropdown on menu
   const handleMenuClick = () => {
     setIsMenuExpanded(!isMenuExpanded);
   };
 
+  //for dropdown on account
   const handleAccountClick = () => {
     setIsAccountExpanded(!isAccountExpanded);
   };
 
+  //for the music player under the dropdown links
+  //users can shuffle between the songs in their current playlist
+  //uses accompanying youtube links to play the songs 
   const adjustCurrentSong = (index) => {
     if (songList) {
       setSongTitle(songList[index].name);
@@ -29,6 +35,9 @@ const Menu = () => {
     }
   };
 
+  //assumption: user has already created a playlist(s)
+  //users are then able to select their preferred playlist and play 
+  //uses song names and a modified youtube url to play songs
   const selectPlaylist = (event) => {
     setPlaylistName(event.target.value);
     if (songList) {
@@ -46,24 +55,30 @@ const Menu = () => {
     }
   };
 
+  //gets each specific user's created playlist
   const setUpMusicPlayer = () => {
     const resp = fetch(`/mangadb/getAllPlaylists`, {
       method: "GET",
     }).then(async (res) => {
       const data = await res.json();
+      //user specific playlists
       setPlaylists(data.playlists);
       for (let i = 0; i < playlists?.length; i++) {
         if (playlists[i].name === currPlaylistName) {
           setSongList(playlists[i].songs);
         }
       }
+      //for switching between songs
       adjustCurrentSong(currentIndex);
     });
   };
 
   useEffect(() => {
+    //gets each specific user's created playlist
     setUpMusicPlayer();
   }, [selectPlaylist, currentIndex]);
+
+
   return (
     <div className="menu">
       <button onClick={handleMenuClick} className="MenuButton">

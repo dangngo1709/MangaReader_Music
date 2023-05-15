@@ -8,8 +8,13 @@ const Cont_Read = ({ setManga, genre, mangaList, setList }) => {
   const [orderFilter, setOrder] = useState("Most Popular");
   const [scanGroups, setGroup] = useState(null);
   const navigate = useNavigate();
+
+  //upon click, the user is redirected to the "manga page"
+  //of the current manga
   const handleMangaClick = async (manga, event) => {
     event.preventDefault();
+
+    //takes the 
     const id = manga.id;
     manga.generateChapters(id);
     setTimeout(() => {
@@ -18,6 +23,9 @@ const Cont_Read = ({ setManga, genre, mangaList, setList }) => {
       navigate("/mangapage");
     }, 1000);
   };
+
+  //for changing the mangas displayed based on popularity, 
+  //relevancy and latest chapter upload
   const handleOrderChange = (event) => {
     event.preventDefault();
     setOrder(event.target.value);
@@ -38,13 +46,13 @@ const Cont_Read = ({ setManga, genre, mangaList, setList }) => {
     } else {
       order.latestUploadedChapter = "desc";
     }
-    //list.setTitleSearch(title);
+    //for filtering the manga objects based on order shown above 
+    //then by genre tags of mangas
     const filterObj = {
       includedTags: includedTags,
       excludedTags: excludedTags,
       order: order,
 
-      //for fav list
     };
     // Create filters above ^^
     // If you like to search just for a title, add in the setTitleSearch
@@ -59,8 +67,6 @@ const Cont_Read = ({ setManga, genre, mangaList, setList }) => {
     }, 1500);
   }, [genre, orderFilter]);
 
-  //for adding to favorites list/page
-  const handleAddToFaves = async (event) => {};
 
   return (
     <div className="cont_read_container">

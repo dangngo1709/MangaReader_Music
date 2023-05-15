@@ -17,6 +17,8 @@ const MusicSearch = () => {
   const [playlist, setPlaylist] = useState(null);
   let api;
 
+  //uses song title, videoID (based on youtube), and the 
+  //selected playlist to add the song into
   const handleAddSongToPlaylist = async () => {
     if (songTitle && playlist) {
       const songObj = new SongClass();
@@ -33,6 +35,7 @@ const MusicSearch = () => {
           playlistName,
         }),
       });
+        //checks to see if song is already added into the playlist
       const data = await resp.json();
       if (data.status === "error") {
         alert(
@@ -45,6 +48,8 @@ const MusicSearch = () => {
       alert("Please choose a song and a playlist!");
     }
   };
+
+  //uses Hai's API key to make React Player work
   const fetchAPI = async () => {
     const resp = await axios({
       method: "GET",
@@ -52,6 +57,8 @@ const MusicSearch = () => {
     });
     return resp.data.key;
   };
+
+  //searches the api using the url shown below
   const searchPlaylist = async (api, term) => {
     const resp = await axios({
       method: "GET",
@@ -59,6 +66,8 @@ const MusicSearch = () => {
     });
     return resp;
   };
+
+  //searches the api using the url shown below
   const searchSongs = async (api, id) => {
     const resp = await axios({
       method: "GET",
@@ -67,19 +76,30 @@ const MusicSearch = () => {
     return resp;
   };
 
+
   useEffect(() => {
+    //gets user specific playlist
     const resp = fetch(`/mangadb/getAllPlaylists`, {
       method: "GET",
     }).then(async (res) => {
       const data = await res.json();
+
+      //sets playlists for users
       setPlaylists(data.playlists);
     });
+    
+      //if user has pressed submit
     if (searchSubmit == true) {
       const songList = [];
       fetchAPI().then((res) => {
         api = res;
+
+        //ensures api key is valid
+        //searches playlist based on search term
         searchPlaylist(api, term).then((res) => {
           res.data.items.map((item) => {
+
+            //creates a song list based on search term
             searchSongs(api, item.id.playlistId).then((res) => {
               res.data.items.map((item) => {
                 let song = new SongClass();
@@ -87,7 +107,10 @@ const MusicSearch = () => {
                 song.name = item.snippet.title;
                 songList.push(song);
               });
+              //the new displayed song list
               setSongList(songList);
+
+              //allows users to search for new terms
               setSearchSubmit(false);
             });
           });
@@ -96,22 +119,28 @@ const MusicSearch = () => {
     }
   }, [searchSubmit]);
 
+
+  //term is the user inputted song name
   const handleSearch = (event) => {
     setTerm(event.target.value);
   };
 
+  //checks that term isn't empty/no empty submit
   const handleSearchSubmit = (event) => {
     if (term?.length > 0) {
       setSearchSubmit(true);
     }
   };
 
+  //displays song and allows users to play the clicked song from the list 
   const handleSongClick = (index) => {
     setSongTitle(songList[index].name);
     setSongID(songList[index].videoID);
     setUrl(`https://www.youtube.com/watch?v=${songList[index].videoID}`);
   };
 
+
+  //for hovering over song names
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {

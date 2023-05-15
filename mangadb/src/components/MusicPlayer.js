@@ -13,6 +13,10 @@ const MusicPlayer = ({ songTitle, url, currentIndex, setIndex, songList }) => {
   const [secondsPlayed, setSecondsPlayed] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.3);
+
+  //these four functions are simple music play functions
+  //pause, play, change volume and then be able to see
+  //a progress bar of the current song playing
   const handlePause = () => {
     setPlaying(false);
   };
@@ -28,6 +32,9 @@ const MusicPlayer = ({ songTitle, url, currentIndex, setIndex, songList }) => {
     setFractionPlayed(e.played);
     setSecondsPlayed(e.playedSeconds);
   };
+
+  //React player doesn't automatically convert time to minutes. 
+  //As such, this is to compensate for that and show song times properly
   const convertSecondsToMinutes = (seconds) => {
     let min = Math.floor(seconds / 60);
     let remainderSeconds = Math.floor(seconds % 60);
@@ -37,6 +44,9 @@ const MusicPlayer = ({ songTitle, url, currentIndex, setIndex, songList }) => {
     }
     return `${min}:${lessThan10Seconds ? 0 : ""}${remainderSeconds}`;
   };
+
+  //simply music play functions again
+  //go to the previous song before current song
   const prevSong = () => {
     let prevIndex = currentIndex - 1;
     if (prevIndex >= 0) {
@@ -44,12 +54,15 @@ const MusicPlayer = ({ songTitle, url, currentIndex, setIndex, songList }) => {
     }
   };
 
+  //skip to the next song 
   const nextSong = () => {
     let nextIndex = currentIndex + 1;
     if (nextIndex < songList?.length) {
       setIndex(nextIndex);
     }
   };
+
+  //move on to the next song if the current one is finished 
   const handleEndOfSong = () => {
     if (currentIndex + 1 >= songList?.length) {
       let i = 0;

@@ -13,6 +13,8 @@ const MusicPlaylistPage = () => {
   const [songTitle, setSongTitle] = useState("");
   const [songUrl, setSongUrl] = useState("");
 
+
+  //get user specific playlists
   const fetchPlaylists = async () => {
     const resp = fetch(`/mangadb/getAllPlaylists`, {
       method: "GET",
@@ -27,6 +29,9 @@ const MusicPlaylistPage = () => {
     });
   };
 
+  //adding new user specific playlist
+  //on click, a new playlist object is created
+  //which will represent the user's newest playlist 
   const handleAddPlaylist = async () => {
     if (playlistNewName) {
       const playlistObj = new PlaylistClass();
@@ -49,6 +54,10 @@ const MusicPlaylistPage = () => {
       alert("Please Enter a playlist name!");
     }
   };
+
+  //deleting a playlist
+  //onclick, remove this specific playlist 
+  //from the rest of the other playlists 
   const deletePlaylist = async (name) => {
     if (name) {
       const playlistObj = new PlaylistClass();
@@ -73,6 +82,8 @@ const MusicPlaylistPage = () => {
       alert("Please click on the name of a playlist first");
     }
   };
+
+  //deletes the song chosen from the user specific playlist
   const deleteSong = async (song) => {
     const resp = await fetch(`/mangadb/deleteSong`, {
       method: "POST",
@@ -91,6 +102,9 @@ const MusicPlaylistPage = () => {
       alert(`Failed to delete song: ${song.name}`);
     }
   };
+
+  //the clicked playlist will display the song names
+  //that're currently in the playlist
   const handlePlaylistClick = (name) => {
     setCurrentName(name);
     for (let i = 0; i < playlists.length; i++) {
@@ -101,8 +115,12 @@ const MusicPlaylistPage = () => {
   };
 
   useEffect(() => {
+    //get user specific playlists
     fetchPlaylists();
   }, []);
+
+  //needed to use react player correctly
+  //uses one of our member's api key 
   const fetchAPI = async () => {
     const resp = await axios({
       method: "GET",
@@ -110,6 +128,10 @@ const MusicPlaylistPage = () => {
     });
     return resp.data.key;
   };
+
+  //checks that apikey is valid
+  //if true, then use the react player 
+  //specific url song parser to play the chosen song
   const clickSong = async (song) => {
     setSongTitle(song.name);
     let apikey;

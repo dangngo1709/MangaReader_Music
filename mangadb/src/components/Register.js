@@ -9,6 +9,8 @@ const Register = () => {
     const user_email = event.target[1].value;
     const user_pass = event.target[2].value;
     const confirm_user_pass = event.target[3].value;
+
+    //checks to see that the inputted user password is correct
     if(user_pass === confirm_user_pass){
       const resp = await fetch(`/mangadb/register`, {
         method: "POST",
@@ -22,6 +24,7 @@ const Register = () => {
         }),
       });
       const data = await resp.json();
+      //checks to see that the inputted credentials are valid to use
       if (data.user) {
         register_bad.current.style.display = "none";
         password_bad.current.style.display = "none"

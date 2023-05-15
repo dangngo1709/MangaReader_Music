@@ -19,7 +19,7 @@ const ChapterPage = ({ manga, setManga }) => {
   const base_url = "https://api.mangadex.org";
   const img_url = "https://uploads.mangadex.org";
   function sortData(data) {
-    //bubble sort
+    //bubble sort to sift through data
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < data.length - i - 1; j++) {
         if (Number(data[j].chapter_num) > Number(data[j + 1].chapter_num)) {
@@ -31,10 +31,15 @@ const ChapterPage = ({ manga, setManga }) => {
     }
     return data;
   }
+
+  //for displaying selected chapter's images based on user selection
   useEffect(() => {
     selectRef.current.selectedIndex = localStorage.getItem("select_index");
     setChImgs(JSON.parse(localStorage.getItem("chapterImgs")));
   }, []);
+  
+  //for the requested manga, generate the corresponding 
+  //images based on which chapter was chosen
   async function generateChapterImgs(chapter) {
     const chapter_imgs = [];
     const chID = chapter.chapter_id;
@@ -52,6 +57,7 @@ const ChapterPage = ({ manga, setManga }) => {
     return chapter_imgs;
   }
 
+  //for going back to the previous manga chapter 
   const handlePrev = async (event) => {
     let mangaObj = JSON.parse(localStorage.getItem("manga"));
     event.preventDefault();
@@ -74,6 +80,7 @@ const ChapterPage = ({ manga, setManga }) => {
     }
   };
 
+  //for going to the next manga chapter 
   const handleNext = async (event) => {
     let mangaObj = JSON.parse(localStorage.getItem("manga"));
     event.preventDefault();
@@ -96,6 +103,7 @@ const ChapterPage = ({ manga, setManga }) => {
     }
   };
 
+  //to display the selected manga chapter's images
   const handleChapterClick = async (event) => {
     event.preventDefault();
     let mangaObj = JSON.parse(localStorage.getItem("manga"));
@@ -115,10 +123,12 @@ const ChapterPage = ({ manga, setManga }) => {
     }, 700);
   };
 
+  //for displaying the manga pages horizontally or vertically
   const handleView = (event) => {
     setView(event.target.value);
   };
 
+  //for going to the next manga chapter page
   const handleNextPage = (event) => {
     if (pageIndex < chImgs.length - 1) {
       const page = pageIndex + 1;
@@ -126,6 +136,7 @@ const ChapterPage = ({ manga, setManga }) => {
       window.scrollTo(0, 0);
     }
   };
+  //for going to the next manga chapter page
   const handlePrevPage = (event) => {
     if (pageIndex > 0) {
       const page = pageIndex - 1;

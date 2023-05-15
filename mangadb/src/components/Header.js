@@ -19,6 +19,8 @@ const Header = ({ setManga }) => {
   const [hidden, setHidden] = useState(false);
   const [loggedIn, setLoggedIn] = useState("false");
   const [username, setUsername] = useState("");
+
+  //hiding the search bar results
   const hide = () => {
     setHidden(!hidden);
     if (hidden === true) {
@@ -28,6 +30,7 @@ const Header = ({ setManga }) => {
     }
   };
 
+  //depends on the user. Checks to see if a user is logged in or not
   const fetchSessionID = async () => {
     const resp = await fetch(`/mangadb/getSessionID`, {
       method: "GET",
@@ -44,6 +47,7 @@ const Header = ({ setManga }) => {
     }
   };
 
+  //redirects to the selected manga's page 
   const handleMangaClick = async (manga, event) => {
     event.preventDefault();
     const id = manga.id;
@@ -56,13 +60,17 @@ const Header = ({ setManga }) => {
     }, 1000);
   };
 
+  //for the search bar (upon search)
   const onSearch = (searchTerm) => {
+    //updates, loads and shows the
     setUpdate(true);
     setLoading(true);
     setTitle(searchTerm);
     searchBoxRef.current.style.height = "500px";
   };
 
+
+  //getting specific users
   const fetchUser = async () => {
     const resp = await fetch(`/mangadb/getUser`, {
       method: "GET",
@@ -74,12 +82,20 @@ const Header = ({ setManga }) => {
   };
 
   useEffect(() => {
+
+    //checks if search bar actually has input 
+    //list created along with certain filters 
     if (title?.length > 0 && updateSearch == true) {
       const list = new MangaListClass();
+
+      //included/excluded genres
       const includedTags = [""];
       const excludedTags = ["Harem", "Ecchi"];
+      //for searching manga title
       list.setTitleSearch(title);
       let order = {};
+
+      //for filters and changing manga order
       const filterObj = {
         includedTags: includedTags,
         excludedTags: excludedTags,
@@ -101,6 +117,9 @@ const Header = ({ setManga }) => {
     fetchUser();
   }, [updateSearch, searchRes, onSearch]);
 
+  //checks if user is logged in and promptly redirects them 
+  //to the login page 
+  //removes every user specific item from localstorage
   const handleLogout = async () => {
     if (loggedIn) {
       const resp = await fetch(`/mangadb/logout`, {
@@ -126,10 +145,10 @@ const Header = ({ setManga }) => {
     }
   };
 
+  //for user input
   const onChange = (event) => {
     setTitle(event.target.value);
   };
-  const doNothing = () => {};
 
   return (
     <div class="topnav">

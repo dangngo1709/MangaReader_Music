@@ -6,6 +6,7 @@ import { FaTrash } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 
 const FavoritesListComponent = ({ setManga }) => {
+  //for each specific manga block object 
   let mangaObj = JSON.parse(localStorage.getItem("manga"));
   const navigate = useNavigate();
   //for removing manga off of the favorites list page
@@ -20,6 +21,7 @@ const FavoritesListComponent = ({ setManga }) => {
       }),
     });
 
+    //for checking to see if manga been deleted properly from the list
     const data = await res.json();
     if (data.status === "success") {
       alert("manga has been deleted from the favorites list!");
@@ -29,19 +31,24 @@ const FavoritesListComponent = ({ setManga }) => {
     }
   };
 
+  //getting different user's lists
   const response = () => {
     fetch("/mangadb/getUser", {
       method: "GET",
     }).then(async (res) => {
       const data = await res.json();
+      //display favorites list based on the current user logged in 
       setfavoriteList(data.user.favoriteList);
     });
   };
 
   useEffect(() => {
+    //getting different user's lists
     response();
   }, []);
 
+
+  //favorites list 
   const [favoriteList, setfavoriteList] = useState(null);
 
   //for redirecting to manga page
@@ -52,6 +59,9 @@ const FavoritesListComponent = ({ setManga }) => {
     const resp = await manga.generateChapters(id);
     setManga(manga);
 
+
+    //needed bc if manga object blocks are clicked on too quickly,
+    //the images and/or manga information simply won't display
     setTimeout(() => {
       setManga(manga);
       localStorage.setItem("manga", JSON.stringify(manga));

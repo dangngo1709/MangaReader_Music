@@ -12,6 +12,8 @@ const MangaPage = ({ manga, setManga }) => {
   const [coverArt, setcoverArt] = useState("");
   const [scanGroups, setGroup] = useState(null);
   const selectRef = useRef(null);
+
+  //for each manga object block 
   let mangaObj = JSON.parse(localStorage.getItem("manga"));
   const base_url = "https://api.mangadex.org";
   const img_url = "https://uploads.mangadex.org";
@@ -29,6 +31,8 @@ const MangaPage = ({ manga, setManga }) => {
     }
     return data;
   }
+
+  //for displaying manga chapters and each chapters' images
   async function generateChapterImgs(chapter) {
     const chapter_imgs = [];
     const chID = chapter.chapter_id;
@@ -47,6 +51,9 @@ const MangaPage = ({ manga, setManga }) => {
   }
   let sortedChList;
   const [chList, setChList] = useState([]);
+
+  //upon click, take the selected chapter from the list and 
+  //display the corresponding manga chapter images in the chapter page
   const handleChapterClick = async (event) => {
     event.preventDefault();
     localStorage.setItem("select_index", selectRef.current.selectedIndex);
@@ -64,6 +71,9 @@ const MangaPage = ({ manga, setManga }) => {
     localStorage.setItem("chapterImgs", JSON.stringify(chapterImgs));
     navigate("/chapterpage");
   };
+
+  //required function in accordance to MangaDex API use requirements
+  //shows the scan groups for each specific manga 
   function createScanGroups() {
     let scanGroups = ["Mangadex"];
     for (let i = 0; i < mangaObj.chapter_list.length; i++) {
@@ -76,16 +86,21 @@ const MangaPage = ({ manga, setManga }) => {
     }
     return scanGroups;
   }
+
   useEffect(() => {
     localStorage.setItem("groupList", JSON.stringify(createScanGroups()));
+    //for getting the manga's scantalation group
     setGroup(JSON.parse(localStorage.getItem("groupList")));
+    //for ensuring renders work properly
     setTimeout(() => {}, 200);
     let chList = mangaObj.chapter_list;
     sortedChList = sortData(chList);
+    //new sorted chapter list based on selected manga
     setChList(sortedChList);
     setcoverArt(mangaObj.coverArt);
   }, []);
 
+  //to start reading the manga's first chapter
   const handleFirstPage = async (event) => {
     event.preventDefault();
     localStorage.setItem("select_index", 0);
@@ -101,6 +116,9 @@ const MangaPage = ({ manga, setManga }) => {
     navigate("/chapterpage");
   };
 
+  //adding to favorites function
+  //adds the current manga object into the favorite list 
+  //this list is located in the favorite list component 
   const handleFaves = async () => {
     const res = await fetch("/mangadb/addMangaToFavoriteList", {
       method: "POST",
@@ -113,21 +131,12 @@ const MangaPage = ({ manga, setManga }) => {
     });
     const data = await res.json();
     if (data.status === "success") {
-      alert("manga has been added to the favorites list!");
+      alert(manga.title + " has been added to the favorites list!");
     } else {
       alert("Cannot add duplicate manga to favorite list!");
     }
   };
 
-  const handleLogin = () => {
-    localStorage.clear();
-    window.location.href = "/login";
-  };
-
-  const handleRegister = () => {
-    localStorage.clear();
-    window.location.href = "/";
-  };
 
   return (
     <div className="grid-container">

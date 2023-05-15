@@ -1,6 +1,8 @@
 import "../css/HotCategories.css";
 import React, { useState, useEffect } from "react";
 const HotCategories = ({ setGenre }) => {
+
+  //most common genres in manga
   const genres = [
     "Adventure",
     "Sports",
@@ -15,10 +17,13 @@ const HotCategories = ({ setGenre }) => {
     "Horror",
     "Mystery",
   ];
+
+  //for creating new filtered list of genres
   const [genreList, setGenreList] = useState([]);
   useEffect(() => {
     setGenreList(genres);
   }, []);
+  //for displaying mangas under this specific genre
   const handleGenreClick = (genre, e) => {
     setGenre(genre);
   };

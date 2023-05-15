@@ -9,11 +9,16 @@ const MusicPlaylist = ({ setManga }) => {
   const playlistPageRef = useRef();
   const [isSearchPage, setIsSearchPage] = useState(false);
 
+  //for toggling between searching for songs and 
+  //managing a playlist 
   const handlePlaylistPage = () => {
     searchPageRef.current.style.color = "white";
     playlistPageRef.current.style.color = "#10a7c2";
     setIsSearchPage(false);
   };
+
+    //for toggling between searching for songs and 
+  //managing a playlist 
   const handleSearchPage = () => {
     searchPageRef.current.style.color = "#10a7c2";
     playlistPageRef.current.style.color = "white";

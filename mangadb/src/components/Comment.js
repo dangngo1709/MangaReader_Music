@@ -11,6 +11,8 @@ const Comment = () => {
 
   const submitButtonRef = useRef(null);
 
+  //assumption: user has already made a comment(s)
+  //looks at manga id, 
   const updateComment = async (id, comment) => {
     const mangaObj = JSON.parse(localStorage.getItem("manga"));
     const mangaPageId = mangaObj.id;

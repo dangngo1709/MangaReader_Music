@@ -30,6 +30,7 @@ const Profile = ({ setManga }) => {
       }),
     });
   };
+  //request to get about me statements for current user
   const getAboutMe = async () => {
     const res = await fetch("/mangadb/getAboutMe", {
       method: "GET",
@@ -41,6 +42,7 @@ const Profile = ({ setManga }) => {
       alert("error");
     }
   };
+  //request to get current user's username
   const getUserName = async () => {
     const res = await fetch("/mangadb/getUserName", {
       method: "GET",
@@ -52,6 +54,8 @@ const Profile = ({ setManga }) => {
       alert("error");
     }
   };
+
+  //deleting current user's account
   const deleteAccount = async () => {
     const res = await fetch("/mangadb/delete", {
       method: "POST",
@@ -76,7 +80,7 @@ const Profile = ({ setManga }) => {
     }
   };
   useEffect(() => {
-    /* Make a ge request to retrieve data */
+    /* Make a get request to retrieve data */
     getAboutMe();
     getUserName();
   }, []);

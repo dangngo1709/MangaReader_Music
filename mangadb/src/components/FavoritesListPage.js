@@ -6,6 +6,9 @@ import Header from "./Header";
 import FavoritesListComponent from "./FavoritesListComponent";
 
 const FavoritesListPage = ({ manga, setManga }) => {
+
+  //favorites list page grid setup 
+  //pass state to header and favorites list component 
   useEffect(() => {}, []);
 
   const handleLogin = () => {

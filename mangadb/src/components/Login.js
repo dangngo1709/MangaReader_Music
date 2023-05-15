@@ -4,6 +4,8 @@ const Login = ({}) => {
   const login_missing_ref = useRef(null);
   const login_bad_ref = useRef(null);
   const navigate = useNavigate();
+
+  //request to get user info and validate user login
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     const user_email = event.target[0].value;
@@ -21,6 +23,9 @@ const Login = ({}) => {
     });
     const data = await resp.json();
     if (data.user) {
+          //checks if login is missing
+          //validates and navigates user to the 
+          //home page if login successful 
       localStorage.setItem("loggedIn", true);
       localStorage.setItem("session_id", data.sessionID);
       login_bad_ref.current.style.display = "none";
@@ -35,6 +40,7 @@ const Login = ({}) => {
   };
 
   useEffect(() => {
+    //checks if login is missing
     if (localStorage.getItem("login_missing") == "true") {
       login_missing_ref.current.style.display = "block";
     }
